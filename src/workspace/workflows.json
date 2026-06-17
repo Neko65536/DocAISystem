@@ -1,0 +1,131 @@
+{
+  "wf_pdf_simple": {
+    "id": "wf_pdf_simple",
+    "name": "PDF处理工作流",
+    "icon": "📕",
+    "time": "系统预设",
+    "type": "template",
+    "canvasNodes": [
+      {
+        "id": "n_pdf_input",
+        "type": "input",
+        "icon": "📕",
+        "title": "PDF 输入",
+        "body": "从本地或文档库导入 PDF 文件",
+        "x": 30,
+        "y": 160,
+        "configValues": {
+          "source": "local"
+        },
+        "schema": {
+          "icon": "📕",
+          "iconClass": "input",
+          "title": "PDF 输入",
+          "subtitle": "输入节点",
+          "fields": [
+            {
+              "key": "source",
+              "label": "数据来源",
+              "type": "select",
+              "options": [
+                "本地文件",
+                "文档库"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "n_parse",
+        "type": "parse",
+        "icon": "📖",
+        "title": "文档解析",
+        "body": "提取文本、表格、图表结构化数据",
+        "x": 290,
+        "y": 160,
+        "configValues": {
+          "parseMode": "标准解析（文本+结构）",
+          "extractTables": true,
+          "extractImages": false
+        },
+        "schema": {
+          "icon": "📖",
+          "iconClass": "parse",
+          "title": "文档解析",
+          "subtitle": "处理节点",
+          "fields": [
+            {
+              "key": "parseMode",
+              "label": "解析模式",
+              "type": "select",
+              "options": [
+                "快速解析（仅文本）",
+                "标准解析（文本+结构）",
+                "深度解析（全量）"
+              ]
+            },
+            {
+              "key": "extractTables",
+              "label": "提取表格",
+              "type": "toggle"
+            },
+            {
+              "key": "extractImages",
+              "label": "提取图片描述",
+              "type": "toggle"
+            }
+          ]
+        }
+      },
+      {
+        "id": "n_save",
+        "type": "output",
+        "icon": "💾",
+        "title": "保存文件",
+        "body": "保存处理结果到指定位置",
+        "x": 550,
+        "y": 160,
+        "configValues": {
+          "outputMode": "保存到本地",
+          "savePath": "workspace/output",
+          "fileFormat": "Markdown (.md)"
+        },
+        "schema": {
+          "icon": "💾",
+          "iconClass": "output",
+          "title": "保存文件",
+          "subtitle": "输出节点",
+          "fields": [
+            {
+              "key": "outputMode",
+              "label": "输出方式",
+              "type": "select",
+              "options": [
+                "保存到本地",
+                "保存到文档库"
+              ]
+            },
+            {
+              "key": "savePath",
+              "label": "保存路径",
+              "type": "input",
+              "placeholder": "例如: workspace/output"
+            },
+            {
+              "key": "fileFormat",
+              "label": "文件格式",
+              "type": "select",
+              "options": [
+                "PDF",
+                "Word (.docx)",
+                "Markdown (.md)",
+                "TXT (.txt)",
+                "JSON (.json)"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

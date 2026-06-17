@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文档智能系统 - Web端产品演示</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Light Mode */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-tertiary: #f3f4f6;
+      --bg-sidebar: #f8f9fa;
+      --bg-card: #ffffff;
+      --bg-hover: #f3f4f6;
+      --bg-active: #e5e7eb;
+      
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      --text-inverse: #ffffff;
+      
+      --border-color: #e5e7eb;
+      --border-color-hover: #d1d5db;
+      
+      --accent-primary: #3b82f6;
+      --accent-primary-hover: #2563eb;
+      --accent-success: #10b981;
+      --accent-warning: #f59e0b;
+      --accent-danger: #ef4444;
+      --accent-purple: #8b5cf6;
+      
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 20px;
+      
+      --sidebar-width: 260px;
+      --sidebar-collapsed: 64px;
+      --header-height: 60px;
+      --panel-width: 320px;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --bg-tertiary: #374151;
+      --bg-sidebar: #1f2937;
+      --bg-card: #1f2937;
+      --bg-hover: #374151;
+      --bg-active: #4b5563;
+      
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
+      --text-muted: #6b7280;
+      --text-inverse: #111827;
+      
+      --border-color: #374151;
+      --border-color-hover: #4b5563;
+      
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* App Layout */
+    .app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      height: var(--header-height);
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .global-search {
+      position: relative;
+      width: 400px;
+    }
+
+    .global-search input {
+      width: 100%;
+      padding: 10px 16px 10px 42px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .global-search input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .global-search::before {
+      content: '🔍';
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+    }
+
+    .global-search kbd {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 2px 8px;
+      background: var(--bg-tertiary);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 18px;
+    }
+
+    .header-btn:hover {
+      background: var(--bg-hover);
+    }
+
+    .theme-toggle {
+      position: relative;
+    }
+
+    .theme-toggle .sun { display: block; }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-success), var(--accent-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Main Container */
+    .main-container {
+      display: flex;
+      flex: 1;
+      margin-top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s ease;
+      overflow: hidden;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      bottom: 0;
+      z-index: 90;
+    }
+
+    .sidebar.collapsed {
+      width: var(--sidebar-collapsed);
+    }
+
+    .sidebar-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .new-chat-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--accent-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .new-chat-btn:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .collapse-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .collapse-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .sidebar-nav {
+      padding: 8px 12px;
+    }
+
+    .nav-section {
+      margin-bottom: 16px;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed .nav-section-title {
+      opacity: 0;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent-primary);
+    }
+
+    .nav-item-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .nav-item-text {
+      font-size: 14px;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar.collapsed .nav-item-text {
+      display: none;
+    }
+
+    .nav-item-badge {
+      margin-left: auto;
+      padding: 2px 8px;
+      background: var(--accent-primary);
+      color: white;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .sidebar.collapsed .nav-item-badge {
+      display: none;
+    }
+
+    /* Chat Sessions */
+    .chat-sessions {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 12px;
+    }
+
+    .session-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+    }
+
+    .session-item:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .session-item.active {
+      background: var(--bg-active);
+      color: var(--text-primary);
+    }
+
+    .session-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .session-title {
+      font-size: 13px;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .sidebar.collapsed .session-icon,
+    .sidebar.collapsed .session-title {
+      display: none;
+    }
+
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .storage-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .storage-bar {
+      height: 4px;
+      background: var(--bg-tertiary);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .storage-bar-fill {
+      height: 100%;
+      width: 35%;
+      background: linear-gradient(90deg, var(--accent-success), var(--accent-primary));
+      border-radius: 2px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      display: flex;
+      flex-direction: column;
+      transition: margin-left 0.3s ease;
+      min-width: 0;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: var(--sidebar-collapsed);
+    }
+
+    /* Mode Tabs */
+    .mode-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 20px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .mode-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-tab:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .mode-tab.active {
+      background: var(--accent-primary);
+      color: white;
+    }
+
+    .mode-tab-icon {
+      font-size: 16px;
+    }
+
+    /* Chat View */
+    .chat-view {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-primary);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .welcome-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .welcome-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .welcome-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .welcome-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .quick-action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quick-action:hover {
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .quick-action-icon {
+      font-size: 18px;
+    }
+
+    /* Message */
+    .message {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      animation: messageIn 0.3s ease;
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.user {
+      flex-direction: row-reverse;
+    }
+
+    .message-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .message.assistant .message-avatar {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+      color: white;
+    }
+
+    .message.user .message-avatar {
+      background: var(--accent-success);
+      color: white;
+    }
+
+    .message-content {
+      max-width: 70%;
+      min-width: 300px;
+    }
+
+    .message-bubble {
+      padding: 16px 20px;
+      border-radius: var(--radius-lg);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .message.assistant .message-bubble {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-top-left-radius: 4px;
+    }
+
+    .message.user .message-bubble {
+      background: var(--accent-primary);
+      color: white;
+      border-top-right-radius: 4px;
+    }
+
+    .message-bubble h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .message.user .message-bubble h4 {
+      color: white;
+    }
+
+    .message-bubble ul {
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    .message-bubble li {
+      margin-bottom: 8px;
+    }
+
+    .message-bubble table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .message-bubble th,
+    .message-bubble td {
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .message.bubble th {
+      background: var(--bg-tertiary);
+      font-weight: 600;
+    }
+
+    .message-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .message-action {
+      padding: 4px 12px;
+      background: var(--bg-tertiary);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .message-action:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .message-time {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .message.user .message-time {
+      text-align: right;
+    }
+
+    /* Chat Input */
+    .chat-input-area {
+      padding: 16px 20px 24px;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .file-drop-zone {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-secondary);
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .file-drop-zone.dragover {
+      border-color: var(--accent-primary);
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    .file-drop-zone-icon {
+      font-size: 24px;
+      color: var(--text-muted);
+    }
+
+    .file-drop-zone-text {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .file-drop-zone-text span {
+      color: var(--accent-primary);
+      cursor: pointer;
+    }
+
+    .uploaded-files {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .uploaded-file {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+    }
+
+    .uploaded-file-icon {
+      font-size: 16px;
+    }
+
+    .uploaded-file-name {
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .uploaded-file-remove {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-tertiary);
+      border: none;
+      border-radius: 50%;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .chat-input-wrapper {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .chat-input {
+      flex: 1;
+      position: relative;
+    }
+
+    .chat-input textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      font-size: 15px;
+      color: var(--text-primary);
+      outline: none;
+      resize: none;
+      min-height: 52px;
+      max-height: 200px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .chat-input textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .input-hint {
+      position: absolute;
+      bottom: -22px;
+      left: 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .send-btn {
+      width: 52px;
+      height: 52px;
+      background: var(--accent-primary);
+      border: none;
+      border-radius: var(--radius-lg);
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .send-btn:hover {
+      background: var(--accent-primary-hover);
+      transform: scale(1.05);
+    }
+
+    .send-btn:disabled {
+      background: var(--bg-tertiary);
+      color: var(--text-muted);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Workflow View */
+    .workflow-view {
+      flex: 1;
+      display: flex;
+      background: var(--bg-secondary);
+      position: relative;
+    }
+
+    .workflow-toolbox {
+      width: 240px;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border-color);
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .toolbox-search {
+      padding: 10px 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      color: var(--text-primary);
+      outline: none;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .toolbox-section {
+      margin-bottom: 20px;
+    }
+
+    .toolbox-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .toolbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
+      cursor: grab;
+      transition: all 0.2s;
+      font-size: 13px;
+    }
+
+    .toolbox-item:hover {
+      border-color: var(--accent-primary);
+      background: var(--bg-hover);
+    }
+
+    .toolbox-item-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .toolbox-item-name {
+      font-weight: 500;
+    }
+
+    .workflow-canvas {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .canvas-toolbar {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
+    }
+
+    .canvas-tool {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .canvas-tool:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .canvas-tool.active {
+      background: var(--accent-primary);
+      color: white;
+    }
+
+    .workflow-canvas-area {
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle, var(--border-color) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .workflow-node {
+      position: absolute;
+      min-width: 180px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      cursor: move;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .workflow-node:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-primary);
+    }
+
+    .workflow-node.selected {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .node-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .node-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .node-icon.input { background: rgba(59, 130, 246, 0.1); }
+    .node-icon.process { background: rgba(16, 185, 129, 0.1); }
+    .node-icon.ai { background: rgba(139, 92, 246, 0.1); }
+    .node-icon.output { background: rgba(245, 158, 11, 0.1); }
+
+    .node-title {
+      font-size: 14px;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .node-body {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .workflow-edge {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* Document View */
+    .document-view {
+      flex: 1;
+      display: flex;
+    }
+
+    .document-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .document-panel:last-child {
+      border-right: none;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-actions {
+      display: flex;
+      gap: 4px;
+    }
+
+    .panel-action {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .panel-action:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .panel-content {
+      flex: 1;
+      overflow: auto;
+      padding: 20px;
+    }
+
+    .document-preview {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      min-height: 100%;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .document-preview h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .document-preview h2 {
+      font-size: 18px;
+      margin: 24px 0 12px;
+      color: #1a1a1a;
+    }
+
+    .document-preview p {
+      margin-bottom: 12px;
+      text-indent: 2em;
+    }
+
+    .document-preview table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .document-preview th,
+    .document-preview td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .document-preview th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    /* Extraction Form */
+    .extraction-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-input {
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+    }
+
+    /* Right Panel */
+    .right-panel {
+      width: var(--panel-width);
+      background: var(--bg-card);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: var(--header-height);
+      right: 0;
+      bottom: 0;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 80;
+    }
+
+    .right-panel.open {
+      transform: translateX(0);
+    }
+
+    .panel-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .panel-tab {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      border: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .panel-tab:hover {
+      color: var(--text-primary);
+    }
+
+    .panel-tab.active {
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+    }
+
+    .panel-content-inner {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .info-section {
+      margin-bottom: 20px;
+    }
+
+    .info-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 13px;
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: var(--text-muted);
+    }
+
+    .info-value {
+      font-weight: 500;
+    }
+
+    .confidence-bar {
+      height: 6px;
+      background: var(--bg-tertiary);
+      border-radius: 3px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .confidence-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-warning), var(--accent-success));
+      border-radius: 3px;
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Thinking Animation */
+    .thinking-dots {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    .thinking-dots span {
+      width: 6px;
+      height: 6px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: bounce 1.4s ease-in-out infinite;
+    }
+
+    .thinking-dots span:nth-child(1) { animation-delay: 0s; }
+    .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .right-panel {
+        width: 280px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        width: var(--sidebar-collapsed);
+      }
+      
+      .sidebar .nav-item-text,
+      .sidebar .nav-section-title,
+      .sidebar .session-title {
+        display: none;
+      }
+      
+      .main-content {
+        margin-left: var(--sidebar-collapsed);
+      }
+      
+      .global-search {
+        width: 280px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .global-search {
+        display: none;
+      }
+      
+      .document-view {
+        flex-direction: column;
+      }
+      
+      .document-panel {
+        min-height: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <div class="logo-icon">📄</div>
+          <span>文档智能系统</span>
+        </div>
+        <div class="global-search">
+          <input type="text" placeholder="搜索文档、工作流...">
+          <kbd>⌘K</kbd>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="header-btn theme-toggle" onclick="toggleTheme()">
+          <span class="sun">☀️</span>
+          <span class="moon">🌙</span>
+        </button>
+        <button class="header-btn" title="通知">🔔</button>
+        <button class="header-btn" title="设置">⚙️</button>
+        <div class="user-avatar">张</div>
+      </div>
+    </header>
+
+    <div class="main-container">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <button class="new-chat-btn" onclick="loadConversation(null)">
+            <span>+</span>
+            <span>新建对话</span>
+          </button>
+          <button class="collapse-btn" onclick="toggleSidebar()">
+            <span id="collapseIcon">◀</span>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title">功能模块</div>
+            <a href="#" class="nav-item active" data-view="chat" onclick="switchView('chat')">
+              <span class="nav-item-icon">💬</span>
+              <span class="nav-item-text">智能对话</span>
+            </a>
+            <a href="#" class="nav-item" data-view="workflow" onclick="switchView('workflow')">
+              <span class="nav-item-icon">🔄</span>
+              <span class="nav-item-text">工作流编排</span>
+            </a>
+            <a href="#" class="nav-item" data-view="document" onclick="switchView('document')">
+              <span class="nav-item-icon">📄</span>
+              <span class="nav-item-text">文档处理</span>
+            </a>
+            <a href="#" class="nav-item" data-view="extraction" onclick="switchView('extraction')">
+              <span class="nav-item-icon">🎯</span>
+              <span class="nav-item-text">数据提取</span>
+            </a>
+          </div>
+        </nav>
+
+        <div class="chat-sessions">
+          <div class="nav-section">
+            <div class="nav-section-title">演示场景</div>
+            <div class="session-item" onclick="loadConversation('presetConversation1')">
+              <span class="session-icon">📊</span>
+              <span class="session-title">财务报告分析</span>
+            </div>
+            <div class="session-item" onclick="loadConversation('presetConversation2')">
+              <span class="session-icon">⚖️</span>
+              <span class="session-title">合同风险审查</span>
+            </div>
+            <div class="session-item" onclick="loadConversation('presetConversation3')">
+              <span class="session-icon">📈</span>
+              <span class="session-title">销售数据提取</span>
+            </div>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section-title">最近会话</div>
+            <div class="session-item active" onclick="loadConversation(null)">
+              <span class="session-icon">💬</span>
+              <span class="session-title">年报财务分析</span>
+            </div>
+            <div class="session-item">
+              <span class="session-icon">📄</span>
+              <span class="session-title">合同风险识别</span>
+            </div>
+            <div class="session-item">
+              <span class="session-icon">📊</span>
+              <span class="session-title">销售数据提取</span>
+            </div>
+            <div class="session-item">
+              <span class="session-icon">🔄</span>
+              <span class="session-title">批量处理流程</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="storage-info">
+            <span>存储空间</span>
+            <span style="margin-left: auto;">35%</span>
+          </div>
+          <div class="storage-bar">
+            <div class="storage-bar-fill"></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Mode Tabs -->
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="dialog" onclick="switchMode('dialog')">
+            <span class="mode-tab-icon">💬</span>
+            <span>对话模式</span>
+          </button>
+          <button class="mode-tab" data-mode="workflow" onclick="switchMode('workflow')">
+            <span class="mode-tab-icon">🔄</span>
+            <span>工作流模式</span>
+          </button>
+          <button class="mode-tab" data-mode="document" onclick="switchMode('document')">
+            <span class="mode-tab-icon">📄</span>
+            <span>文档模式</span>
+          </button>
+        </div>
+
+        <!-- Chat View -->
+        <div class="chat-view" id="chatView">
+          <div class="chat-messages" id="chatMessages">
+            <div class="welcome-state" id="welcomeState">
+              <div class="welcome-icon">🤖</div>
+              <h1 class="welcome-title">欢迎使用文档智能系统</h1>
+              <p class="welcome-subtitle">
+                基于大语言模型的智能文档处理平台，支持文档理解、编辑、实体提取等多种场景
+              </p>
+              <div class="quick-actions">
+                <button class="quick-action" onclick="insertPrompt('请帮我分析这份文档的主要内容')">
+                  <span class="quick-action-icon">📖</span>
+                  <span>分析文档</span>
+                </button>
+                <button class="quick-action" onclick="insertPrompt('提取文档中的关键信息')">
+                  <span class="quick-action-icon">🎯</span>
+                  <span>提取信息</span>
+                </button>
+                <button class="quick-action" onclick="insertPrompt('帮我总结这份报告的核心要点')">
+                  <span class="quick-action-icon">📝</span>
+                  <span>生成摘要</span>
+                </button>
+                <button class="quick-action" onclick="switchMode('workflow')">
+                  <span class="quick-action-icon">🔄</span>
+                  <span>创建工作流</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Messages will be inserted here -->
+          </div>
+
+          <!-- Preset Conversations -->
+          <template id="presetConversation1">
+            <div class="message user">
+              <div class="message-avatar">👤</div>
+              <div class="message-content">
+                <div class="message-bubble">请帮我分析这份年度报告中的关键财务指标</div>
+                <div class="message-time">14:32</div>
+              </div>
+            </div>
+            <div class="message assistant">
+              <div class="message-avatar">🤖</div>
+              <div class="message-content">
+                <div class="message-bubble">
+                  <h4>📊 2023年度财务指标分析</h4>
+                  <p>根据文档内容，以下是关键财务指标：</p>
+                  <table>
+                    <thead>
+                      <tr><th>指标</th><th>数值</th><th>同比变化</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>营业收入</td><td>1,256亿元</td><td style="color:#10b981">+12.3%</td></tr>
+                      <tr><td>净利润</td><td>186亿元</td><td style="color:#10b981">+18.7%</td></tr>
+                      <tr><td>毛利率</td><td>34.2%</td><td style="color:#10b981">+1.4%</td></tr>
+                      <tr><td>研发投入</td><td>89亿元</td><td style="color:#10b981">+18.7%</td></tr>
+                    </tbody>
+                  </table>
+                  <p>需要我进一步分析哪些方面？</p>
+                </div>
+                <div class="message-actions">
+                  <button class="message-action" onclick="insertPrompt('提取关键数据为JSON')">📥 导出数据</button>
+                  <button class="message-action" onclick="insertPrompt('生成可视化图表')">📈 生成图表</button>
+                  <button class="message-action" onclick="insertPrompt('对比去年数据')">🔍 对比分析</button>
+                </div>
+                <div class="message-time">14:32</div>
+              </div>
+            </div>
+          </template>
+
+          <template id="presetConversation2">
+            <div class="message user">
+              <div class="message-avatar">👤</div>
+              <div class="message-content">
+                <div class="message-bubble">这是一份劳动合同，请帮我检查其中的风险条款</div>
+                <div class="message-time">15:20</div>
+              </div>
+            </div>
+            <div class="message assistant">
+              <div class="message-avatar">🤖</div>
+              <div class="message-content">
+                <div class="message-bubble">
+                  <h4>⚠️ 劳动合同风险分析</h4>
+                  <p>已完成对合同的全面审查，发现以下风险点：</p>
+                  <h5 style="margin-top:12px;font-size:14px;">🔴 高风险</h5>
+                  <ul style="margin:8px 0 12px;padding-left:20px;">
+                    <li><strong>竞业限制条款</strong>：未约定补偿金额，违反《劳动合同法》第23条</li>
+                    <li><strong>违约金条款</strong>：约定的违约金数额过高，超出法定标准</li>
+                  </ul>
+                  <h5 style="margin-top:12px;font-size:14px;">🟡 中风险</h5>
+                  <ul style="margin:8px 0 12px;padding-left:20px;">
+                    <li><strong>试用期约定</strong>：试用期工资低于转正后80%</li>
+                    <li><strong>加班条款</strong>：未明确加班调休或加班费的计算方式</li>
+                  </ul>
+                  <h5 style="margin-top:12px;font-size:14px;">🟢 建议优化</h5>
+                  <ul style="margin:8px 0;padding-left:20px;">
+                    <li>建议补充保密协议的具体范围</li>
+                    <li>建议明确离职交接的具体流程</li>
+                  </ul>
+                </div>
+                <div class="message-actions">
+                  <button class="message-action" onclick="insertPrompt('生成修改建议')">✏️ 修改建议</button>
+                  <button class="message-action" onclick="insertPrompt('导出风险报告')">📥 导出报告</button>
+                </div>
+                <div class="message-time">15:21</div>
+              </div>
+            </div>
+          </template>
+
+          <template id="presetConversation3">
+            <div class="message user">
+              <div class="message-avatar">👤</div>
+              <div class="message-content">
+                <div class="message-bubble">请从这份Excel中提取所有销售额超过100万的客户订单</div>
+                <div class="message-time">16:45</div>
+              </div>
+            </div>
+            <div class="message assistant">
+              <div class="message-avatar">🤖</div>
+              <div class="message-content">
+                <div class="message-bubble">
+                  <h4>🎯 数据筛选结果</h4>
+                  <p>已从 <strong>销售数据2023.xlsx</strong> 中筛选出 <strong>23条</strong> 符合条件的记录：</p>
+                  <table>
+                    <thead>
+                      <tr><th>客户名称</th><th>订单号</th><th>金额(万)</th><th>日期</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>华为技术有限公司</td><td>ORD-2023-0892</td><td style="color:#10b981">356.8</td><td>2023-03-15</td></tr>
+                      <tr><td>腾讯科技</td><td>ORD-2023-1204</td><td style="color:#10b981">289.5</td><td>2023-04-22</td></tr>
+                      <tr><td>阿里巴巴集团</td><td>ORD-2023-1567</td><td style="color:#10b981">445.2</td><td>2023-05-08</td></tr>
+                      <tr><td>字节跳动</td><td>ORD-2023-1834</td><td style="color:#10b981">178.3</td><td>2023-06-30</td></tr>
+                      <tr><td>京东集团</td><td>ORD-2023-2109</td><td style="color:#10b981">215.6</td><td>2023-08-14</td></tr>
+                    </tbody>
+                  </table>
+                  <p style="margin-top:12px;color:#6b7280;font-size:13px;">仅显示前5条记录，另有18条...</p>
+                </div>
+                <div class="message-actions">
+                  <button class="message-action" onclick="insertPrompt('下载完整数据')">📥 下载Excel</button>
+                  <button class="message-action" onclick="insertPrompt('生成统计图表')">📊 统计图表</button>
+                  <button class="message-action" onclick="insertPrompt('按地区分组')">🗺️ 按地区分组</button>
+                </div>
+                <div class="message-time">16:46</div>
+              </div>
+            </div>
+          </template>
+
+          <div class="chat-input-area">
+            <div class="file-drop-zone" id="dropZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+              <span class="file-drop-zone-icon">📎</span>
+              <span class="file-drop-zone-text">
+                拖拽文件到此处或 <span onclick="document.getElementById('fileInput').click()">浏览</span>
+              </span>
+              <input type="file" id="fileInput" style="display:none" multiple accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.md">
+            </div>
+            <div class="uploaded-files" id="uploadedFiles">
+              <div class="uploaded-file">
+                <span class="uploaded-file-icon">📄</span>
+                <span class="uploaded-file-name">年度报告2023.pdf</span>
+                <button class="uploaded-file-remove" onclick="removeFile(this)">×</button>
+              </div>
+            </div>
+            <div class="chat-input-wrapper">
+              <div class="chat-input">
+                <textarea id="chatInput" rows="1" placeholder="输入消息... (Enter 发送，Shift+Enter 换行)" onkeydown="handleKeyDown(event)" oninput="autoResize(this)"></textarea>
+                <span class="input-hint">按 @ 提及文档，: 提及命令</span>
+              </div>
+              <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow View -->
+        <div class="workflow-view" id="workflowView" style="display: none;">
+          <div class="workflow-toolbox">
+            <input type="text" class="toolbox-search" placeholder="搜索组件...">
+            <div class="toolbox-section">
+              <div class="toolbox-section-title">输入</div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">📄</div>
+                <span class="toolbox-item-name">文档上传</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">📊</div>
+                <span class="toolbox-item-name">Excel导入</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">🔗</div>
+                <span class="toolbox-item-name">API触发</span>
+              </div>
+            </div>
+            <div class="toolbox-section">
+              <div class="toolbox-section-title">处理</div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">📖</div>
+                <span class="toolbox-item-name">文档解析</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">🎯</div>
+                <span class="toolbox-item-name">实体提取</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">✂️</div>
+                <span class="toolbox-item-name">数据清洗</span>
+              </div>
+            </div>
+            <div class="toolbox-section">
+              <div class="toolbox-section-title">AI能力</div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">🤖</div>
+                <span class="toolbox-item-name">智能分析</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">💬</div>
+                <span class="toolbox-item-name">对话生成</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">📝</div>
+                <span class="toolbox-item-name">内容总结</span>
+              </div>
+            </div>
+            <div class="toolbox-section">
+              <div class="toolbox-section-title">输出</div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">💾</div>
+                <span class="toolbox-item-name">保存文件</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">📧</div>
+                <span class="toolbox-item-name">发送邮件</span>
+              </div>
+              <div class="toolbox-item" draggable="true">
+                <div class="toolbox-item-icon">🔔</div>
+                <span class="toolbox-item-name">通知提醒</span>
+              </div>
+            </div>
+          </div>
+          <div class="workflow-canvas">
+            <div class="canvas-toolbar">
+              <button class="canvas-tool active" title="选择">↖</button>
+              <button class="canvas-tool" title="拖拽">✋</button>
+              <button class="canvas-tool" title="连接">🔗</button>
+              <button class="canvas-tool" title="缩放">🔍</button>
+              <button class="canvas-tool" title="撤销">↩</button>
+              <button class="canvas-tool" title="重做">↪</button>
+              <button class="canvas-tool" title="运行" style="background: var(--accent-success); color: white;">▶</button>
+            </div>
+            <div class="workflow-canvas-area" id="workflowCanvas">
+              <div class="workflow-node" style="left: 100px; top: 150px;" id="node1">
+                <div class="node-header">
+                  <div class="node-icon input">📄</div>
+                  <span class="node-title">上传文档</span>
+                </div>
+                <div class="node-body">支持 PDF/Word/Excel</div>
+              </div>
+              <div class="workflow-node" style="left: 350px; top: 100px;" id="node2">
+                <div class="node-header">
+                  <div class="node-icon ai">🤖</div>
+                  <span class="node-title">智能分析</span>
+                </div>
+                <div class="node-body">LLM 理解文档内容</div>
+              </div>
+              <div class="workflow-node" style="left: 350px; top: 250px;" id="node3">
+                <div class="node-header">
+                  <div class="node-icon process">🎯</div>
+                  <span class="node-title">实体提取</span>
+                </div>
+                <div class="node-body">提取关键信息为结构化数据</div>
+              </div>
+              <div class="workflow-node" style="left: 600px; top: 175px;" id="node4">
+                <div class="node-header">
+                  <div class="node-icon output">💾</div>
+                  <span class="node-title">保存结果</span>
+                </div>
+                <div class="node-body">导出为 JSON/Excel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Document View -->
+        <div class="document-view" id="documentView" style="display: none;">
+          <div class="document-panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>📄</span>
+                <span>原始文档</span>
+              </div>
+              <div class="panel-actions">
+                <button class="panel-action" title="缩小">➖</button>
+                <button class="panel-action" title="放大">➕</button>
+                <button class="panel-action" title="下载">⬇</button>
+              </div>
+            </div>
+            <div class="panel-content">
+              <div class="document-preview">
+                <h1>2023年度财务报告</h1>
+                <h2>一、公司概况</h2>
+                <p>本公司成立于2010年，是一家专注于人工智能技术研发与应用的高新技术企业。公司总部位于北京，业务遍及全国多个城市。</p>
+                <h2>二、财务摘要</h2>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>指标</th>
+                      <th>2023年</th>
+                      <th>2022年</th>
+                      <th>同比变化</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>营业收入</td>
+                      <td>1,256亿元</td>
+                      <td>1,118亿元</td>
+                      <td>+12.3%</td>
+                    </tr>
+                    <tr>
+                      <td>净利润</td>
+                      <td>186亿元</td>
+                      <td>157亿元</td>
+                      <td>+18.7%</td>
+                    </tr>
+                    <tr>
+                      <td>毛利率</td>
+                      <td>34.2%</td>
+                      <td>32.8%</td>
+                      <td>+1.4%</td>
+                    </tr>
+                    <tr>
+                      <td>研发投入</td>
+                      <td>89亿元</td>
+                      <td>75亿元</td>
+                      <td>+18.7%</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h2>三、业务发展</h2>
+                <p>2023年，公司在人工智能领域持续深耕，产品线和解决方案得到进一步完善。市场占有率稳步提升，客户群体持续扩大。</p>
+              </div>
+            </div>
+          </div>
+          <div class="document-panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🎯</span>
+                <span>提取结果</span>
+              </div>
+              <div class="panel-actions">
+                <button class="panel-action" title="导出">⬇</button>
+                <button class="panel-action" title="分享">🔗</button>
+              </div>
+            </div>
+            <div class="panel-content">
+              <div class="extraction-form">
+                <div class="form-field">
+                  <label class="form-label">
+                    <span>📅</span> 报告年份
+                  </label>
+                  <input type="text" class="form-input" value="2023年" readonly>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">
+                    <span>💰</span> 营业收入
+                  </label>
+                  <input type="text" class="form-input" value="1,256亿元">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">
+                    <span>📈</span> 净利润
+                  </label>
+                  <input type="text" class="form-input" value="186亿元">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">
+                    <span>📊</span> 毛利率
+                  </label>
+                  <input type="text" class="form-input" value="34.2%">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">
+                    <span>🔬</span> 研发投入
+                  </label>
+                  <input type="text" class="form-input" value="89亿元">
+                </div>
+                <div class="form-field">
+                  <label class="form-label">
+                    <span>📝</span> 关键摘要
+                  </label>
+                  <textarea class="form-input" rows="3">公司在AI领域持续深耕，营收同比增长12.3%，净利润增长18.7%，研发投入占比稳步提升。</textarea>
+                </div>
+                <div class="form-actions">
+                  <button class="btn btn-primary">保存修改</button>
+                  <button class="btn btn-secondary">导出JSON</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Right Panel -->
+      <aside class="right-panel" id="rightPanel">
+        <div class="panel-tabs">
+          <button class="panel-tab active">详情</button>
+          <button class="panel-tab">历史</button>
+          <button class="panel-tab">设置</button>
+        </div>
+        <div class="panel-content-inner">
+          <div class="info-section">
+            <div class="info-title">文档信息</div>
+            <div class="info-item">
+              <span class="info-label">文件名</span>
+              <span class="info-value">年度报告2023.pdf</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">文件大小</span>
+              <span class="info-value">2.4 MB</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">页数</span>
+              <span class="info-value">48 页</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">上传时间</span>
+              <span class="info-value">2024-01-15</span>
+            </div>
+          </div>
+          <div class="info-section">
+            <div class="info-title">AI 置信度</div>
+            <div class="info-item">
+              <span class="info-label">实体提取</span>
+              <span class="info-value">96%</span>
+            </div>
+            <div class="confidence-bar">
+              <div class="confidence-fill" style="width: 96%;"></div>
+            </div>
+            <div class="info-item" style="margin-top: 8px;">
+              <span class="info-label">语义理解</span>
+              <span class="info-value">94%</span>
+            </div>
+            <div class="confidence-bar">
+              <div class="confidence-fill" style="width: 94%;"></div>
+            </div>
+          </div>
+          <div class="info-section">
+            <div class="info-title">引用来源</div>
+            <div class="info-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+              <span style="font-size: 12px; color: var(--text-muted);">第 3 页 · 财务摘要表格</span>
+              <span style="font-size: 13px;">营业收入：1,256亿元</span>
+            </div>
+            <div class="info-item" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+              <span style="font-size: 12px; color: var(--text-muted);">第 5 页 · 业务发展段落</span>
+              <span style="font-size: 13px;">公司在AI领域持续深耕...</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let currentView = 'chat';
+    let currentMode = 'dialog';
+    let sidebarCollapsed = false;
+    let messages = [];
+
+    // Theme Toggle
+    function toggleTheme() {
+      const app = document.getElementById('app');
+      const currentTheme = app.getAttribute('data-theme');
+      app.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+      localStorage.setItem('theme', currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.getElementById('app').setAttribute('data-theme', savedTheme);
+
+    // Sidebar Toggle
+    function toggleSidebar() {
+      sidebarCollapsed = !sidebarCollapsed;
+      const sidebar = document.getElementById('sidebar');
+      const collapseIcon = document.getElementById('collapseIcon');
+      
+      if (sidebarCollapsed) {
+        sidebar.classList.add('collapsed');
+        collapseIcon.textContent = '▶';
+      } else {
+        sidebar.classList.remove('collapsed');
+        collapseIcon.textContent = '◀';
+      }
+    }
+
+    // View Switching
+    function switchView(view) {
+      currentView = view;
+      
+      // Update nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.view === view) {
+          item.classList.add('active');
+        }
+      });
+
+      // Hide all views
+      document.getElementById('chatView').style.display = 'none';
+      document.getElementById('workflowView').style.display = 'none';
+      document.getElementById('documentView').style.display = 'none';
+
+      // Show selected view
+      switch(view) {
+        case 'chat':
+        case 'extraction':
+          document.getElementById('chatView').style.display = 'flex';
+          break;
+        case 'workflow':
+          document.getElementById('workflowView').style.display = 'flex';
+          break;
+        case 'document':
+          document.getElementById('documentView').style.display = 'flex';
+          break;
+      }
+    }
+
+    // Mode Switching
+    function switchMode(mode) {
+      currentMode = mode;
+      
+      // Update tabs
+      document.querySelectorAll('.mode-tab').forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.dataset.mode === mode) {
+          tab.classList.add('active');
+        }
+      });
+
+      // Update view based on mode
+      switch(mode) {
+        case 'dialog':
+          switchView('chat');
+          break;
+        case 'workflow':
+          switchView('workflow');
+          break;
+        case 'document':
+          switchView('document');
+          break;
+      }
+    }
+
+    // Removed: startNewChat replaced by loadConversation
+
+    // File Upload
+    function handleDragOver(e) {
+      e.preventDefault();
+      document.getElementById('dropZone').classList.add('dragover');
+    }
+
+    function handleDragLeave(e) {
+      document.getElementById('dropZone').classList.remove('dragover');
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      document.getElementById('dropZone').classList.remove('dragover');
+      // Handle file upload
+      const files = e.dataTransfer.files;
+      addFilesToList(files);
+    }
+
+    function addFilesToList(files) {
+      const container = document.getElementById('uploadedFiles');
+      for (let file of files) {
+        const fileEl = document.createElement('div');
+        fileEl.className = 'uploaded-file';
+        fileEl.innerHTML = `
+          <span class="uploaded-file-icon">${getFileIcon(file.name)}</span>
+          <span class="uploaded-file-name">${file.name}</span>
+          <button class="uploaded-file-remove" onclick="removeFile(this)">×</button>
+        `;
+        container.appendChild(fileEl);
+      }
+    }
+
+    function getFileIcon(filename) {
+      const ext = filename.split('.').pop().toLowerCase();
+      const icons = {
+        pdf: '📕',
+        doc: '📘',
+        docx: '📘',
+        xls: '📗',
+        xlsx: '📗',
+        txt: '📄',
+        md: '📝',
+        png: '🖼️',
+        jpg: '🖼️',
+        jpeg: '🖼️'
+      };
+      return icons[ext] || '📄';
+    }
+
+    function removeFile(btn) {
+      btn.parentElement.remove();
+    }
+
+    // Chat Input
+    function handleKeyDown(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function autoResize(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.min(textarea.scrollHeight, 200) + 'px';
+    }
+
+    function insertPrompt(text) {
+      document.getElementById('chatInput').value = text;
+      document.getElementById('chatInput').focus();
+    }
+
+    // Send Message
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      // Hide welcome state
+      const welcomeState = document.querySelector('.welcome-state');
+      if (welcomeState) {
+        welcomeState.remove();
+      }
+
+      const chatMessages = document.getElementById('chatMessages');
+      const currentTime = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+      
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user';
+      userMsg.innerHTML = `
+        <div class="message-avatar">👤</div>
+        <div class="message-content">
+          <div class="message-bubble">${escapeHtml(message)}</div>
+          <div class="message-time">${currentTime}</div>
+        </div>
+      `;
+      chatMessages.appendChild(userMsg);
+
+      // Clear input
+      input.value = '';
+      input.style.height = 'auto';
+
+      // Simulate AI thinking
+      const thinkingMsg = document.createElement('div');
+      thinkingMsg.className = 'message assistant thinking';
+      thinkingMsg.innerHTML = `
+        <div class="message-avatar">🤖</div>
+        <div class="message-content">
+          <div class="message-bubble" style="display:flex;align-items:center;gap:8px;">
+            <span class="thinking-dots">
+              <span></span><span></span><span></span>
+            </span>
+            <span style="color:var(--text-muted)">正在分析文档...</span>
+          </div>
+          <div class="message-time">${currentTime}</div>
+        </div>
+      `;
+      chatMessages.appendChild(thinkingMsg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Simulate AI response after delay
+      setTimeout(() => {
+        thinkingMsg.remove();
+        
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'message assistant';
+        aiMsg.innerHTML = `
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            <div class="message-bubble">
+              <h4>📊 分析结果</h4>
+              <p>根据您上传的文档，我已完成分析。以下是主要发现：</p>
+              <ul>
+                <li><strong>关键指标</strong>：数据已成功提取，准确率 96%</li>
+                <li><strong>结构化输出</strong>：已转换为 JSON 格式</li>
+                <li><strong>置信度</strong>：整体置信度 94%，部分字段需人工确认</li>
+              </ul>
+              <p>您可以点击下方按钮进行下一步操作：</p>
+            </div>
+            <div class="message-actions">
+              <button class="message-action" onclick="insertPrompt('导出JSON')">📥 导出数据</button>
+              <button class="message-action" onclick="insertPrompt('生成图表')">📈 生成图表</button>
+              <button class="message-action" onclick="insertPrompt('查看更多详情')">🔍 查看详情</button>
+            </div>
+            <div class="message-time">${currentTime}</div>
+          </div>
+        `;
+        chatMessages.appendChild(aiMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1500);
+
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Load preset conversation
+    function loadConversation(conversationId) {
+      const chatMessages = document.getElementById('chatMessages');
+      
+      // Update active state
+      document.querySelectorAll('.session-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      // Find and activate the clicked session
+      if (event && event.target) {
+        const clickedItem = event.target.closest('.session-item');
+        if (clickedItem) {
+          clickedItem.classList.add('active');
+        }
+      }
+      
+      // Clear existing messages
+      chatMessages.innerHTML = '';
+      
+      if (conversationId) {
+        // Load preset conversation
+        const template = document.getElementById(conversationId);
+        if (template) {
+          const content = template.content.cloneNode(true);
+          chatMessages.appendChild(content);
+        }
+      } else {
+        // Show welcome state for new conversation
+        chatMessages.innerHTML = `
+          <div class="welcome-state">
+            <div class="welcome-icon">🤖</div>
+            <h1 class="welcome-title">欢迎使用文档智能系统</h1>
+            <p class="welcome-subtitle">
+              基于大语言模型的智能文档处理平台，支持文档理解、编辑、实体提取等多种场景
+            </p>
+            <div class="quick-actions">
+              <button class="quick-action" onclick="insertPrompt('请帮我分析这份文档的主要内容')">
+                <span class="quick-action-icon">📖</span>
+                <span>分析文档</span>
+              </button>
+              <button class="quick-action" onclick="insertPrompt('提取文档中的关键信息')">
+                <span class="quick-action-icon">🎯</span>
+                <span>提取信息</span>
+              </button>
+              <button class="quick-action" onclick="insertPrompt('帮我总结这份报告的核心要点')">
+                <span class="quick-action-icon">📝</span>
+                <span>生成摘要</span>
+              </button>
+              <button class="quick-action" onclick="switchMode('workflow')">
+                <span class="quick-action-icon">🔄</span>
+                <span>创建工作流</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Initialize - load first preset after DOM ready
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => loadConversation('presetConversation1'), 100);
+    });
+
+    // Initialize file input
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      addFilesToList(e.target.files);
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      // Cmd/Ctrl + K for search
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        document.querySelector('.global-search input').focus();
+      }
+      // Cmd/Ctrl + N for new chat
+      if ((e.metaKey || e.ctrlKey) && e.key === 'n') {
+        e.preventDefault();
+        startNewChat();
+      }
+    });
+
+    // Workflow node dragging
+    let draggedNode = null;
+    document.querySelectorAll('.workflow-node').forEach(node => {
+      node.addEventListener('mousedown', function(e) {
+        draggedNode = node;
+        const rect = node.getBoundingClientRect();
+        node.style.cursor = 'grabbing';
+      });
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (draggedNode) {
+        const canvas = document.getElementById('workflowCanvas');
+        const canvasRect = canvas.getBoundingClientRect();
+        const x = e.clientX - canvasRect.left - 90;
+        const y = e.clientY - canvasRect.top - 30;
+        draggedNode.style.left = Math.max(0, x) + 'px';
+        draggedNode.style.top = Math.max(0, y) + 'px';
+      }
+    });
+
+    document.addEventListener('mouseup', function() {
+      if (draggedNode) {
+        draggedNode.style.cursor = 'move';
+        draggedNode = null;
+      }
+    });
+
+    // Node selection
+    document.querySelectorAll('.workflow-node').forEach(node => {
+      node.addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.querySelectorAll('.workflow-node').forEach(n => n.classList.remove('selected'));
+        node.classList.add('selected');
+      });
+    });
+
+    document.getElementById('workflowCanvas').addEventListener('click', function() {
+      document.querySelectorAll('.workflow-node').forEach(n => n.classList.remove('selected'));
+    });
+
+    // Panel tabs
+    document.querySelectorAll('.panel-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const parent = this.parentElement;
+        parent.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

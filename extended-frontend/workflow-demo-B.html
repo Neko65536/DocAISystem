@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方案B：节点内联展开 — 工作流节点配置</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-tertiary: #1a1a24;
+      --bg-card: #16161f;
+      --bg-hover: #222230;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --border-color: rgba(255,255,255,0.08);
+      --border-color-hover: rgba(255,255,255,0.15);
+      --accent-primary: #6366f1;
+      --accent-success: #10b981;
+      --accent-purple: #a855f7;
+      --accent-cyan: #06b6d4;
+      --accent-warning: #f59e0b;
+      --gradient-primary: linear-gradient(135deg, #6366f1, #a855f7);
+      --gradient-success: linear-gradient(135deg, #10b981, #06b6d4);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.5);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    .demo-header {
+      height: 56px;
+      background: rgba(18, 18, 26, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .demo-badge {
+      padding: 4px 12px;
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-purple);
+    }
+
+    .demo-title { font-size: 16px; font-weight: 600; }
+    .demo-desc { font-size: 13px; color: var(--text-muted); margin-left: auto; }
+
+    .workflow-wrap {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .workflow-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .workflow-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    /* Vertical flow layout */
+    .flow-container {
+      position: relative;
+    }
+
+    /* The vertical backbone line */
+    .flow-backbone {
+      position: absolute;
+      left: 56px;
+      top: 48px;
+      bottom: 48px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-purple), var(--accent-cyan));
+      opacity: 0.3;
+      border-radius: 1px;
+    }
+
+    /* Node Block */
+    .node-block {
+      position: relative;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+
+    .node-block:hover {
+      border-color: var(--border-color-hover);
+      box-shadow: var(--shadow-md);
+    }
+
+    .node-block.expanded {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15), var(--shadow-lg);
+    }
+
+    /* Node Header Row */
+    .node-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      position: relative;
+    }
+
+    .node-step-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: all 0.3s;
+      z-index: 2;
+    }
+
+    .node-block.expanded .node-step-badge,
+    .node-block:hover .node-step-badge {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+      color: white;
+    }
+
+    .node-block.expanded .node-step-badge {
+      box-shadow: 0 0 12px rgba(168,85,247,0.5);
+    }
+
+    .node-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+
+    .node-icon.type-input { background: rgba(99,102,241,0.15); }
+    .node-icon.type-parse { background: rgba(6,182,212,0.15); }
+    .node-icon.type-ai { background: rgba(168,85,247,0.15); }
+    .node-icon.type-output { background: rgba(245,158,11,0.15); }
+
+    .node-block.expanded .node-icon { transform: scale(1.05); }
+
+    .node-info { flex: 1; }
+    .node-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .node-desc { font-size: 13px; color: var(--text-muted); }
+
+    .node-toggle-icon {
+      font-size: 20px;
+      color: var(--text-muted);
+      transition: transform 0.3s;
+    }
+
+    .node-block.expanded .node-toggle-icon {
+      transform: rotate(180deg);
+      color: var(--accent-purple);
+    }
+
+    /* Config Body - slides open */
+    .node-config-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .node-block.expanded .node-config-body {
+      max-height: 600px;
+    }
+
+    .node-config-inner {
+      padding: 0 24px 24px 116px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Fields */
+    .config-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .config-field {
+      flex: 1;
+    }
+
+    .config-field.full { flex: 1; }
+
+    .field-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      padding: 10px 13px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(168,85,247,0.1);
+    }
+
+    .field-select { cursor: pointer; }
+    .field-textarea { resize: vertical; min-height: 70px; }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    /* Toggle */
+    .field-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+    }
+
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .toggle-switch.on { background: rgba(168,85,247,0.3); border-color: var(--accent-purple); }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+    }
+    .toggle-switch.on::after { left: 22px; }
+
+    /* Inline tag select */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag-chip {
+      padding: 5px 12px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tag-chip:hover { border-color: var(--accent-purple); color: var(--text-primary); }
+    .tag-chip.active {
+      background: rgba(168,85,247,0.15);
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+      font-weight: 600;
+    }
+
+    /* Section divider */
+    .config-divider {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border-color);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Run button */
+    .run-section {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .run-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--gradient-success);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+    }
+
+    .run-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16,185,129,0.4);
+    }
+
+    .run-hint {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Animations */
+    @keyframes nodeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .node-block { animation: nodeIn 0.4s ease backwards; }
+    .node-block:nth-child(1) { animation-delay: 0.1s; }
+    .node-block:nth-child(2) { animation-delay: 0.2s; }
+    .node-block:nth-child(3) { animation-delay: 0.3s; }
+    .node-block:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<div class="demo-header">
+  <span class="demo-badge">方案 B</span>
+  <span class="demo-title">节点内联展开配置</span>
+  <span class="demo-desc">点击任意节点展开其配置面板，所有节点配置一目了然</span>
+</div>
+
+<div class="workflow-wrap">
+  <div class="workflow-title">
+    <span>🌍</span> 论文翻译工作流
+  </div>
+  <div class="workflow-meta">4 个节点 · 点击节点即可展开配置 · 参数实时保存</div>
+
+  <div class="flow-container">
+    <div class="flow-backbone"></div>
+
+    <!-- Node 1: Input -->
+    <div class="node-block expanded" id="block1" onclick="toggleNode('block1')">
+      <div class="node-head">
+        <div class="node-step-badge">1</div>
+        <div class="node-icon type-input">📄</div>
+        <div class="node-info">
+          <div class="node-name">文档输入</div>
+          <div class="node-desc">从文档库选择多个文档</div>
+        </div>
+        <div class="node-toggle-icon">▼</div>
+      </div>
+      <div class="node-config-body">
+        <div class="node-config-inner">
+          <div class="config-row">
+            <div class="config-field">
+              <label class="field-label">输入文档库</label>
+              <select class="field-select" id="f1_library">
+                <option>论文翻译</option>
+                <option>合同审查</option>
+                <option>年报分析</option>
+                <option>自定义文档库...</option>
+              </select>
+            </div>
+            <div class="config-field">
+              <label class="field-label">批处理大小</label>
+              <input class="field-input" type="number" value="10" id="f1_batch" />
+              <div class="field-hint">每批处理的文档数量</div>
+            </div>
+          </div>
+          <div class="config-divider">文件过滤</div>
+          <div class="config-row">
+            <div class="config-field full">
+              <label class="field-label">允许的文件类型</label>
+              <div class="tag-list" id="f1_tags">
+                <span class="tag-chip active" onclick="toggleTag(event,'f1_tags',this)">PDF</span>
+                <span class="tag-chip active" onclick="toggleTag(event,'f1_tags',this)">Word (.docx)</span>
+                <span class="tag-chip" onclick="toggleTag(event,'f1_tags',this)">Excel (.xlsx)</span>
+                <span class="tag-chip" onclick="toggleTag(event,'f1_tags',this)">PPT</span>
+                <span class="tag-chip" onclick="toggleTag(event,'f1_tags',this)">TXT</span>
+              </div>
+            </div>
+          </div>
+          <div class="config-row">
+            <div class="config-field field-toggle" style="flex:none">
+              <label class="field-label" style="margin:0">跳过已处理文档</label>
+              <div class="toggle-switch on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Node 2: Parse -->
+    <div class="node-block" id="block2" onclick="toggleNode('block2')">
+      <div class="node-head">
+        <div class="node-step-badge">2</div>
+        <div class="node-icon type-parse">📖</div>
+        <div class="node-info">
+          <div class="node-name">文档解析</div>
+          <div class="node-desc">提取文本、表格、图表结构化数据</div>
+        </div>
+        <div class="node-toggle-icon">▼</div>
+      </div>
+      <div class="node-config-body">
+        <div class="node-config-inner">
+          <div class="config-row">
+            <div class="config-field">
+              <label class="field-label">解析模式</label>
+              <select class="field-select">
+                <option>快速解析（仅文本）</option>
+                <option selected>标准解析（文本+结构）</option>
+                <option>深度解析（全量）</option>
+              </select>
+              <div class="field-hint">深度解析耗时长但质量最高</div>
+            </div>
+            <div class="config-field">
+              <label class="field-label">OCR 语言</label>
+              <select class="field-select">
+                <option selected>自动检测</option>
+                <option>简体中文</option>
+                <option>英文</option>
+                <option>日文</option>
+                <option>多语言</option>
+              </select>
+            </div>
+          </div>
+          <div class="config-divider">提取选项</div>
+          <div style="display:flex;gap:24px">
+            <div class="config-field field-toggle" style="flex:none">
+              <label class="field-label" style="margin:0">提取表格</label>
+              <div class="toggle-switch on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+            </div>
+            <div class="config-field field-toggle" style="flex:none">
+              <label class="field-label" style="margin:0">提取图片描述</label>
+              <div class="toggle-switch on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+            </div>
+            <div class="config-field field-toggle" style="flex:none">
+              <label class="field-label" style="margin:0">提取图表数据</label>
+              <div class="toggle-switch" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Node 3: AI Translate -->
+    <div class="node-block" id="block3" onclick="toggleNode('block3')">
+      <div class="node-head">
+        <div class="node-step-badge">3</div>
+        <div class="node-icon type-ai">🤖</div>
+        <div class="node-info">
+          <div class="node-name">LLM 翻译</div>
+          <div class="node-desc">使用大模型翻译文档内容</div>
+        </div>
+        <div class="node-toggle-icon">▼</div>
+      </div>
+      <div class="node-config-body">
+        <div class="node-config-inner">
+          <div class="config-row">
+            <div class="config-field">
+              <label class="field-label">目标语言</label>
+              <select class="field-select">
+                <option selected>英文</option>
+                <option>中文</option>
+                <option>日文</option>
+                <option>韩文</option>
+                <option>法文</option>
+              </select>
+            </div>
+            <div class="config-field">
+              <label class="field-label">翻译模型</label>
+              <select class="field-select">
+                <option selected>GPT-4o (推荐)</option>
+                <option>GPT-4o-mini</option>
+                <option>Claude 3.5 Sonnet</option>
+                <option>DeepSeek V3</option>
+              </select>
+            </div>
+            <div class="config-field">
+              <label class="field-label">翻译风格</label>
+              <select class="field-select">
+                <option selected>学术论文</option>
+                <option>商务正式</option>
+                <option>通俗易懂</option>
+                <option>保留原文风格</option>
+              </select>
+            </div>
+          </div>
+          <div class="config-row">
+            <div class="config-field full">
+              <label class="field-label">系统提示词</label>
+              <textarea class="field-textarea">你是一位专业的学术翻译。请将以下文档翻译为英文，保持学术论文的风格和格式，特别注意专业术语的一致性。</textarea>
+              <div class="field-hint">可自定义翻译行为和语气</div>
+            </div>
+          </div>
+          <div class="config-row">
+            <div class="config-field field-toggle" style="flex:none">
+              <label class="field-label" style="margin:0">保留原文格式</label>
+              <div class="toggle-switch on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Node 4: Output -->
+    <div class="node-block" id="block4" onclick="toggleNode('block4')">
+      <div class="node-head">
+        <div class="node-step-badge">4</div>
+        <div class="node-icon type-output">📁</div>
+        <div class="node-info">
+          <div class="node-name">输出文件</div>
+          <div class="node-desc">保存翻译结果</div>
+        </div>
+        <div class="node-toggle-icon">▼</div>
+      </div>
+      <div class="node-config-body">
+        <div class="node-config-inner">
+          <div class="config-row">
+            <div class="config-field">
+              <label class="field-label">输出文档库</label>
+              <select class="field-select">
+                <option selected>英文版论文</option>
+                <option>翻译结果</option>
+                <option>分析结果</option>
+                <option>+ 新建文档库...</option>
+              </select>
+            </div>
+            <div class="config-field">
+              <label class="field-label">文件命名规则</label>
+              <input class="field-input" value="{原名}_翻译" />
+              <div class="field-hint">{原名}、{时间}、{语言} 可用</div>
+            </div>
+          </div>
+          <div class="config-row">
+            <div class="config-field">
+              <label class="field-label">自动打标签</label>
+              <input class="field-input" value="AI翻译,2026" />
+              <div class="field-hint">逗号分隔多个标签</div>
+            </div>
+            <div class="config-field field-toggle" style="flex:none;align-self:flex-end;padding-bottom:10px">
+              <label class="field-label" style="margin:0;display:none">完成通知</label>
+              <div class="toggle-switch on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+            </div>
+          </div>
+          <div class="run-section">
+            <button class="run-btn" onclick="event.stopPropagation()">
+              <span>▶</span> 开始批量处理
+            </button>
+            <span class="run-hint">将处理 4 个文档，预计耗时约 3 分钟</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function toggleNode(id) {
+    const all = document.querySelectorAll('.node-block');
+    const target = document.getElementById(id);
+    const isExpanded = target.classList.contains('expanded');
+
+    // Close all
+    all.forEach(b => b.classList.remove('expanded'));
+
+    // Toggle target
+    if (!isExpanded) {
+      target.classList.add('expanded');
+    }
+
+    // Scroll node into view
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 50);
+  }
+
+  function toggleTag(event, tagListId, el) {
+    event.stopPropagation();
+    el.classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>

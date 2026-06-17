@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方案A：右侧面板切换 — 工作流节点配置</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-tertiary: #1a1a24;
+      --bg-card: #16161f;
+      --bg-hover: #222230;
+      --bg-active: #2a2a3a;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --border-color: rgba(255,255,255,0.08);
+      --border-color-hover: rgba(255,255,255,0.15);
+      --accent-primary: #6366f1;
+      --accent-success: #10b981;
+      --accent-warning: #f59e0b;
+      --accent-purple: #a855f7;
+      --accent-cyan: #06b6d4;
+      --gradient-primary: linear-gradient(135deg, #6366f1, #a855f7);
+      --gradient-success: linear-gradient(135deg, #10b981, #06b6d4);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.5);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .demo-header {
+      height: 56px;
+      background: rgba(18, 18, 26, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .demo-badge {
+      padding: 4px 12px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-primary);
+      letter-spacing: 0.5px;
+    }
+
+    .demo-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .demo-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    .app {
+      display: flex;
+      height: calc(100vh - 56px);
+    }
+
+    /* ========== Left Sidebar ========== */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .sidebar-section {
+      padding: 20px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .wf-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .wf-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .wf-item.active {
+      background: rgba(168, 85, 247, 0.12);
+      color: var(--accent-purple);
+    }
+
+    .wf-item-icon { font-size: 16px; flex-shrink: 0; }
+    .wf-item-name { font-size: 14px; font-weight: 500; flex: 1; }
+    .wf-item-time { font-size: 11px; color: var(--text-muted); }
+
+    /* ========== Canvas Area ========== */
+    .canvas-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .canvas-toolbar {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
+    }
+
+    .tool-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .tool-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .tool-btn.active { background: var(--accent-purple); color: white; }
+    .tool-btn.run-btn { background: var(--accent-success); color: white; }
+    .tool-btn.run-btn:hover { filter: brightness(1.15); transform: scale(1.05); }
+
+    .canvas-bg {
+      flex: 1;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative;
+      cursor: default;
+    }
+
+    /* ========== Node ========== */
+    .node {
+      position: absolute;
+      min-width: 220px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .node:hover {
+      border-color: var(--border-color-hover);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .node.selected {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2), var(--shadow-lg);
+    }
+
+    .node-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .node-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .node-icon-wrap.type-input { background: rgba(99, 102, 241, 0.15); }
+    .node-icon-wrap.type-parse { background: rgba(6, 182, 212, 0.15); }
+    .node-icon-wrap.type-ai { background: rgba(168, 85, 247, 0.15); }
+    .node-icon-wrap.type-output { background: rgba(245, 158, 11, 0.15); }
+
+    .node-title-wrap { flex: 1; }
+    .node-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .node-subtitle { font-size: 12px; color: var(--text-muted); }
+
+    .node-body {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .node-badge {
+      position: absolute;
+      top: -1px;
+      right: 12px;
+      transform: translateY(-50%);
+      padding: 2px 10px;
+      background: var(--accent-purple);
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .node.selected .node-badge { opacity: 1; }
+
+    /* Node Ports */
+    .node-port {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      cursor: crosshair;
+      transition: all 0.2s;
+      z-index: 2;
+    }
+
+    .node-port:hover {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple);
+      transform: scale(1.3);
+    }
+
+    .node-port.in { left: -7px; top: 50%; transform: translateY(-50%); }
+    .node-port.out { right: -7px; top: 50%; transform: translateY(-50%); }
+    .node-port.in:hover, .node-port.out:hover { transform: translateY(-50%) scale(1.3); }
+
+    /* ========== Connection Lines ========== */
+    .connections-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .conn-path {
+      fill: none;
+      stroke: rgba(168, 85, 247, 0.4);
+      stroke-width: 2;
+      stroke-dasharray: 6 4;
+    }
+
+    .conn-path.selected {
+      stroke: var(--accent-purple);
+      stroke-width: 2.5;
+      stroke-dasharray: none;
+      filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.5));
+    }
+
+    /* ========== Right Config Panel ========== */
+    .config-panel {
+      width: 340px;
+      background: var(--bg-card);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .panel-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .panel-tab {
+      flex: 1;
+      padding: 14px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .panel-tab:hover { color: var(--text-secondary); background: var(--bg-hover); }
+    .panel-tab.active { color: var(--accent-purple); border-bottom-color: var(--accent-purple); background: rgba(168,85,247,0.05); }
+
+    .panel-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    /* Panel Empty State */
+    .panel-empty {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .panel-empty-icon {
+      font-size: 40px;
+      opacity: 0.3;
+    }
+
+    .panel-empty-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .panel-empty-desc {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Node Config Section */
+    .node-config-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .node-config-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .node-config-icon.input { background: rgba(99, 102, 241, 0.15); }
+    .node-config-icon.parse { background: rgba(6, 182, 212, 0.15); }
+    .node-config-icon.ai { background: rgba(168, 85, 247, 0.15); }
+    .node-config-icon.output { background: rgba(245, 158, 11, 0.15); }
+
+    .node-config-title { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .node-config-type { font-size: 12px; color: var(--text-muted); }
+
+    .config-group {
+      margin-bottom: 20px;
+    }
+
+    .config-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      padding: 10px 13px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+    }
+
+    .field-select { cursor: pointer; }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    .field-range {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .field-range input[type=range] {
+      flex: 1;
+      height: 4px;
+      background: var(--bg-tertiary);
+      border-radius: 2px;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .field-range input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: var(--accent-purple);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(168,85,247,0.4);
+    }
+
+    .field-range-val {
+      min-width: 36px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-purple);
+      background: rgba(168,85,247,0.1);
+      padding: 3px 8px;
+      border-radius: 8px;
+    }
+
+    /* Toggle switch */
+    .field-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .toggle-switch.on { background: rgba(168,85,247,0.3); border-color: var(--accent-purple); }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+    }
+
+    .toggle-switch.on::after { left: 22px; }
+
+    /* Node Step Indicator */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-md);
+    }
+
+    .step-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-color);
+      transition: all 0.3s;
+    }
+
+    .step-dot.active { background: var(--accent-purple); box-shadow: 0 0 8px rgba(168,85,247,0.5); }
+    .step-dot.done { background: var(--accent-success); }
+
+    .step-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border-color);
+    }
+
+    .step-connector.done { background: var(--accent-success); }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .node-config-section {
+      animation: fadeIn 0.25s ease;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div class="demo-header">
+  <span class="demo-badge">方案 A</span>
+  <span class="demo-title">右侧面板切换配置</span>
+  <span class="demo-desc">点击画布上的节点 → 右侧面板自动切换显示该节点的专属配置</span>
+</div>
+
+<div class="app">
+
+  <!-- Left Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">工作流</div>
+      <div class="wf-item active">
+        <span class="wf-item-icon">🌍</span>
+        <span class="wf-item-name">论文翻译工作流</span>
+        <span class="wf-item-time">刚刚</span>
+      </div>
+      <div class="wf-item">
+        <span class="wf-item-icon">⚖️</span>
+        <span class="wf-item-name">合同审查工作流</span>
+        <span class="wf-item-time">昨天</span>
+      </div>
+      <div class="wf-item">
+        <span class="wf-item-icon">📊</span>
+        <span class="wf-item-name">年报分析工作流</span>
+        <span class="wf-item-time">3天前</span>
+      </div>
+    </div>
+    <div class="sidebar-section" style="flex:1">
+      <div class="sidebar-label">组件库</div>
+      <div class="wf-item" style="font-size:13px">
+        <span class="wf-item-icon">📄</span>
+        <span class="wf-item-name">文档上传</span>
+      </div>
+      <div class="wf-item" style="font-size:13px">
+        <span class="wf-item-icon">📖</span>
+        <span class="wf-item-name">文档解析</span>
+      </div>
+      <div class="wf-item" style="font-size:13px">
+        <span class="wf-item-icon">🤖</span>
+        <span class="wf-item-name">LLM 翻译</span>
+      </div>
+      <div class="wf-item" style="font-size:13px">
+        <span class="wf-item-icon">💾</span>
+        <span class="wf-item-name">保存文件</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Canvas -->
+  <div class="canvas-area">
+    <div class="canvas-toolbar">
+      <button class="tool-btn active" title="选择">◻</button>
+      <button class="tool-btn" title="连接">⬡</button>
+      <button class="tool-btn" title="撤销">↩</button>
+      <button class="tool-btn" title="重做">↪</button>
+      <button class="tool-btn run-btn" title="运行工作流">▶</button>
+    </div>
+    <div class="canvas-bg" id="canvas" onclick="deselectAll(event)">
+
+      <!-- SVG Connections -->
+      <svg class="connections-svg">
+        <path id="conn1" class="conn-path" d="M 240 200 Q 290 200 330 200" />
+        <path id="conn2" class="conn-path" d="M 510 200 Q 550 200 590 200" />
+        <path id="conn3" class="conn-path" d="M 780 200 Q 820 200 860 200" />
+      </svg>
+
+      <!-- Node 1: Input -->
+      <div class="node selected" id="node1" style="left:30px;top:160px" onclick="selectNode(event, 'node1')">
+        <div class="node-badge">当前选中</div>
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon-wrap type-input">📄</div>
+          <div class="node-title-wrap">
+            <div class="node-title">文档输入</div>
+            <div class="node-subtitle">Step 1 of 4</div>
+          </div>
+        </div>
+        <div class="node-body">从文档库选择多个文档，支持 PDF、Word、Excel</div>
+      </div>
+
+      <!-- Node 2: Parse -->
+      <div class="node" id="node2" style="left:330px;top:160px" onclick="selectNode(event, 'node2')">
+        <div class="node-badge">当前选中</div>
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon-wrap type-parse">📖</div>
+          <div class="node-title-wrap">
+            <div class="node-title">文档解析</div>
+            <div class="node-subtitle">Step 2 of 4</div>
+          </div>
+        </div>
+        <div class="node-body">提取文档中的文本、表格、图表结构化数据</div>
+      </div>
+
+      <!-- Node 3: AI Translate -->
+      <div class="node" id="node3" style="left:590px;top:160px" onclick="selectNode(event, 'node3')">
+        <div class="node-badge">当前选中</div>
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon-wrap type-ai">🤖</div>
+          <div class="node-title-wrap">
+            <div class="node-title">LLM 翻译</div>
+            <div class="node-subtitle">Step 3 of 4</div>
+          </div>
+        </div>
+        <div class="node-body">使用大模型将文档内容翻译为目标语言</div>
+      </div>
+
+      <!-- Node 4: Output -->
+      <div class="node" id="node4" style="left:850px;top:160px" onclick="selectNode(event, 'node4')">
+        <div class="node-badge">当前选中</div>
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon-wrap type-output">📁</div>
+          <div class="node-title-wrap">
+            <div class="node-title">输出文件</div>
+            <div class="node-subtitle">Step 4 of 4</div>
+          </div>
+        </div>
+        <div class="node-body">保存翻译结果到指定的文档库空间</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Right Config Panel -->
+  <aside class="config-panel" id="configPanel">
+    <div class="panel-tabs">
+      <button class="panel-tab active" id="tabNode" onclick="switchTab('node')">
+        <span>📋</span> 节点配置
+      </button>
+      <button class="panel-tab" id="tabWf" onclick="switchTab('wf')">
+        <span>⚙️</span> 全局设置
+      </button>
+    </div>
+    <div class="panel-content" id="panelContent">
+      <!-- Dynamically populated -->
+    </div>
+  </aside>
+
+</div>
+
+<script>
+  const state = {
+    selectedNode: 'node1',
+    activeTab: 'node',
+    tabs: ['node1', 'node2', 'node3', 'node4'],
+    activeIndex: 0,
+  };
+
+  const nodeSchemas = {
+    node1: {
+      icon: '📄', iconClass: 'input',
+      title: '文档输入', subtitle: 'Step 1 of 4 · 输入节点',
+      name: '文档输入',
+      fields: [
+        { key: 'inputLibrary', label: '输入文档库', type: 'select',
+          options: ['论文翻译', '合同审查', '年报分析', '数据提取', '自定义...'],
+          value: '论文翻译', hint: '选择源文档所在的文档库' },
+        { key: 'fileTypes', label: '文件类型', type: 'multiselect',
+          options: ['PDF', 'Word (.docx)', 'Excel (.xlsx)', 'PPT', 'TXT', 'Markdown'],
+          value: ['PDF', 'Word (.docx)'], hint: '留空则处理所有支持的类型' },
+        { key: 'batchSize', label: '批处理大小', type: 'range',
+          min: 1, max: 50, value: 10, unit: '个文档/批' },
+        { key: 'skipExisting', label: '跳过已处理文档', type: 'toggle', value: true },
+        { key: 'customPrompt', label: '预处理提示词', type: 'textarea',
+          value: '请提取文档中的所有文本内容和章节结构', hint: '可选，用于引导解析质量' },
+      ]
+    },
+    node2: {
+      icon: '📖', iconClass: 'parse',
+      title: '文档解析', subtitle: 'Step 2 of 4 · 处理节点',
+      name: '文档解析',
+      fields: [
+        { key: 'parseMode', label: '解析模式', type: 'select',
+          options: ['快速解析（仅文本）', '标准解析（文本+结构）', '深度解析（全量）'],
+          value: '标准解析（文本+结构）', hint: '深度解析耗时长但质量最高' },
+        { key: 'extractTables', label: '提取表格', type: 'toggle', value: true },
+        { key: 'extractImages', label: '提取图片描述', type: 'toggle', value: true },
+        { key: 'extractCharts', label: '提取图表数据', type: 'toggle', value: false },
+        { key: 'ocrLang', label: 'OCR 语言', type: 'select',
+          options: ['自动检测', '简体中文', '英文', '日文', '韩文', '多语言'],
+          value: '自动检测' },
+      ]
+    },
+    node3: {
+      icon: '🤖', iconClass: 'ai',
+      title: 'LLM 翻译', subtitle: 'Step 3 of 4 · AI 节点',
+      name: 'LLM 翻译',
+      fields: [
+        { key: 'targetLang', label: '目标语言', type: 'select',
+          options: ['英文', '中文', '日文', '韩文', '法文', '德文', '西班牙文'],
+          value: '英文', hint: '文档将翻译成目标语言' },
+        { key: 'model', label: '翻译模型', type: 'select',
+          options: ['GPT-4o (推荐)', 'GPT-4o-mini', 'Claude 3.5 Sonnet', 'DeepSeek V3'],
+          value: 'GPT-4o (推荐)' },
+        { key: 'style', label: '翻译风格', type: 'select',
+          options: ['学术论文', '商务正式', '通俗易懂', '保留原文风格'],
+          value: '学术论文' },
+        { key: 'preserveFormat', label: '保留原文格式', type: 'toggle', value: true },
+        { key: 'systemPrompt', label: '系统提示词', type: 'textarea',
+          value: '你是一位专业的学术翻译。请将以下文档翻译为英文，保持学术论文的风格和格式。', hint: '可自定义翻译行为' },
+      ]
+    },
+    node4: {
+      icon: '📁', iconClass: 'output',
+      title: '输出文件', subtitle: 'Step 4 of 4 · 输出节点',
+      name: '输出文件',
+      fields: [
+        { key: 'outputLibrary', label: '输出文档库', type: 'select',
+          options: ['英文版论文', '翻译结果', '分析结果', '新建文档库...'],
+          value: '英文版论文', hint: '处理结果将保存到此文档库' },
+        { key: 'namingRule', label: '文件命名规则', type: 'input',
+          value: '{原名}_翻译', hint: '{原名}、{时间}、{语言} 可用' },
+        { key: 'metaTag', label: '自动打标签', type: 'input',
+          value: 'AI翻译,2026', hint: '逗号分隔多个标签' },
+        { key: 'notifyOnComplete', label: '完成通知', type: 'toggle', value: true },
+      ]
+    }
+  };
+
+  function selectNode(event, nodeId) {
+    event.stopPropagation();
+    if (state.selectedNode === nodeId) return;
+
+    document.querySelectorAll('.node').forEach(n => {
+      n.classList.remove('selected');
+      const badge = n.querySelector('.node-badge');
+      if (badge) badge.style.opacity = '0';
+    });
+    document.querySelectorAll('.conn-path').forEach(p => {
+      p.classList.remove('selected');
+    });
+
+    const el = document.getElementById(nodeId);
+    el.classList.add('selected');
+    const badge = el.querySelector('.node-badge');
+    if (badge) badge.style.opacity = '1';
+
+    // Highlight the connection going OUT of this node
+    const nodeIndex = ['node1','node2','node3','node4'].indexOf(nodeId);
+    if (nodeIndex < 3) {
+      const conn = document.getElementById('conn' + (nodeIndex + 1));
+      if (conn) conn.classList.add('selected');
+    }
+
+    state.selectedNode = nodeId;
+    state.activeTab = 'node';
+    updateTabs();
+    renderPanel();
+  }
+
+  function deselectAll(event) {
+    if (event.target.id !== 'canvas') return;
+    document.querySelectorAll('.node').forEach(n => {
+      n.classList.remove('selected');
+      const badge = n.querySelector('.node-badge');
+      if (badge) badge.style.opacity = '0';
+    });
+    document.querySelectorAll('.conn-path').forEach(p => p.classList.remove('selected'));
+    state.selectedNode = null;
+    renderPanel();
+  }
+
+  function switchTab(tab) {
+    state.activeTab = tab;
+    updateTabs();
+    renderPanel();
+  }
+
+  function updateTabs() {
+    const tabNode = document.getElementById('tabNode');
+    const tabWf = document.getElementById('tabWf');
+    tabNode.classList.toggle('active', state.activeTab === 'node');
+    tabWf.classList.toggle('active', state.activeTab === 'wf');
+  }
+
+  function renderPanel() {
+    const content = document.getElementById('panelContent');
+    const nodeId = state.selectedNode;
+
+    // Step indicator
+    const stepDots = ['node1','node2','node3','node4'].map((nid, i) => {
+      const isActive = nid === nodeId;
+      const isDone = !nodeId || ['node1','node2','node3','node4'].indexOf(nodeId) > i;
+      return `<div class="step-dot ${isActive ? 'active' : isDone ? 'done' : ''}"></div>${i < 3 ? `<div class="step-connector ${isDone ? 'done' : ''}"></div>` : ''}`;
+    }).join('');
+
+    if (!nodeId || state.activeTab === 'wf') {
+      // Global / empty state
+      if (state.activeTab === 'wf') {
+        content.innerHTML = `
+          <div class="node-config-section">
+            <div class="node-config-header">
+              <div class="node-config-icon input" style="background:rgba(99,102,241,0.15)">🌍</div>
+              <div>
+                <div class="node-config-title">论文翻译工作流</div>
+                <div class="node-config-type">全局配置 · 4 个节点</div>
+              </div>
+            </div>
+            <div class="config-group">
+              <div class="config-group-title">基础信息</div>
+              <div class="field">
+                <label class="field-label">工作流名称</label>
+                <input class="field-input" value="论文翻译工作流" />
+              </div>
+              <div class="field">
+                <label class="field-label">描述</label>
+                <textarea class="field-textarea">将中文论文批量翻译为英文，保持学术格式和术语一致性。</textarea>
+              </div>
+            </div>
+            <div class="config-group">
+              <div class="config-group-title">运行设置</div>
+              <div class="field">
+                <label class="field-label">并发数量</label>
+                <div class="field-range">
+                  <input type="range" min="1" max="10" value="3" />
+                  <span class="field-range-val">3</span>
+                </div>
+              </div>
+              <div class="field field-toggle">
+                <label class="field-label">出错时继续</label>
+                <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="field field-toggle">
+                <label class="field-label">出错通知</label>
+                <div class="toggle-switch on" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // Empty state
+      content.innerHTML = `
+        <div class="panel-empty">
+          <div class="panel-empty-icon">⬡</div>
+          <div class="panel-empty-title">点击节点以配置</div>
+          <div class="panel-empty-desc">在左侧画布上点击任意节点，<br/>右侧将切换显示该节点的专属配置</div>
+          <div style="margin-top:16px;padding:14px 18px;background:var(--bg-tertiary);border-radius:12px;border:1px solid var(--border-color);text-align:left">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px">工作流节点</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:8px;color:var(--text-secondary)">
+              <span>📄</span> 文档输入
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:8px;color:var(--text-secondary)">
+              <span>📖</span> 文档解析
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:8px;color:var(--text-secondary)">
+              <span>🤖</span> LLM 翻译
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary)">
+              <span>📁</span> 输出文件
+            </div>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    const schema = nodeSchemas[nodeId];
+
+    const fieldsHtml = schema.fields.map(f => {
+      if (f.type === 'select') {
+        return `
+          <div class="field">
+            <label class="field-label">${f.label}</label>
+            <select class="field-select" onchange="updateValue('${nodeId}','${f.key}',this.value)">
+              ${f.options.map(o => `<option value="${o}" ${o === f.value ? 'selected' : ''}>${o}</option>`).join('')}
+            </select>
+            ${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}
+          </div>
+        `;
+      } else if (f.type === 'multiselect') {
+        return `
+          <div class="field">
+            <label class="field-label">${f.label}</label>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+              ${f.options.map(o => `
+                <label style="display:flex;align-items:center;gap:5px;padding:6px 10px;background:var(--bg-tertiary);border:1px solid ${f.value.includes(o)?'var(--accent-purple)':'var(--border-color)'};border-radius:8px;cursor:pointer;font-size:13px;color:${f.value.includes(o)?'var(--accent-purple)':'var(--text-secondary)'};transition:all 0.2s">
+                  <input type="checkbox" style="accent-color:var(--accent-purple);display:none" ${f.value.includes(o)?'checked':''} onchange="toggleMulti('${nodeId}','${f.key}','${o}',this.checked)" />
+                  ${o}
+                </label>
+              `).join('')}
+            </div>
+            ${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}
+          </div>
+        `;
+      } else if (f.type === 'range') {
+        return `
+          <div class="field">
+            <label class="field-label">${f.label}</label>
+            <div class="field-range">
+              <input type="range" min="${f.min}" max="${f.max}" value="${f.value}"
+                oninput="this.nextElementSibling.textContent=this.value;updateValue('${nodeId}','${f.key}',this.value)" />
+              <span class="field-range-val">${f.value}</span>
+            </div>
+            <div class="field-hint">${f.unit}</div>
+          </div>
+        `;
+      } else if (f.type === 'toggle') {
+        return `
+          <div class="field field-toggle">
+            <label class="field-label">${f.label}</label>
+            <div class="toggle-switch ${f.value ? 'on' : ''}" onclick="this.classList.toggle('on');updateValue('${nodeId}','${f.key}',this.classList.contains('on'))"></div>
+          </div>
+        `;
+      } else if (f.type === 'textarea') {
+        return `
+          <div class="field">
+            <label class="field-label">${f.label}</label>
+            <textarea class="field-textarea" oninput="updateValue('${nodeId}','${f.key}',this.value)">${f.value}</textarea>
+            ${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}
+          </div>
+        `;
+      } else if (f.type === 'input') {
+        return `
+          <div class="field">
+            <label class="field-label">${f.label}</label>
+            <input class="field-input" value="${f.value}" oninput="updateValue('${nodeId}','${f.key}',this.value)" />
+            ${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}
+          </div>
+        `;
+      }
+      return '';
+    }).join('');
+
+    content.innerHTML = `
+      <div class="node-config-section">
+        <div class="step-indicator">${stepDots}</div>
+        <div class="node-config-header">
+          <div class="node-config-icon ${schema.iconClass}">${schema.icon}</div>
+          <div>
+            <div class="node-config-title">${schema.title}</div>
+            <div class="node-config-type">${schema.subtitle}</div>
+          </div>
+        </div>
+        <div class="config-group">
+          <div class="config-group-title">参数配置</div>
+          ${fieldsHtml}
+        </div>
+      </div>
+    `;
+  }
+
+  // Global state store (simulated)
+  const nodeValues = {};
+  function updateValue(nodeId, key, val) {
+    if (!nodeValues[nodeId]) nodeValues[nodeId] = {};
+    nodeValues[nodeId][key] = val;
+  }
+
+  function toggleMulti(nodeId, key, option, checked) {
+    if (!nodeValues[nodeId]) nodeValues[nodeId] = {};
+    if (!nodeValues[nodeId][key]) {
+      const orig = nodeSchemas[nodeId].fields.find(f => f.key === key);
+      nodeValues[nodeId][key] = [...orig.value];
+    }
+    if (checked) {
+      if (!nodeValues[nodeId][key].includes(option)) nodeValues[nodeId][key].push(option);
+    } else {
+      nodeValues[nodeId][key] = nodeValues[nodeId][key].filter(v => v !== option);
+    }
+  }
+
+  // Init
+  renderPanel();
+</script>
+
+</body>
+</html>

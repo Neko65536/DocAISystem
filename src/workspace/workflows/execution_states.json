@@ -1,0 +1,5429 @@
+{
+  "07e541db66e845028dfefe609b6ad2cf": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 10,
+    "total_files": 10,
+    "current_file_name": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 10 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/10] 已提交: 85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[2/10] 已提交: 71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[3/10] 已提交: 5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[4/10] 已提交: e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[5/10] 已提交: fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[6/10] 已提交: 6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[7/10] 已提交: 2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[8/10] 已提交: bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[9/10] 已提交: 9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "[10/10] 已提交: 85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out_out.md"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 10 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out_out.md",
+        "path": "output\\71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out_out.md",
+        "size": 5514,
+        "source": "71e1c8d1e19fc9a4804a0fe6676fc681_ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out_out.md",
+        "path": "output\\fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out_out.md",
+        "size": 6300,
+        "source": "fb1a478b6de58b9a1f5ee101f0334e79_aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out_out.md",
+        "path": "output\\5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out_out.md",
+        "size": 8466,
+        "source": "5c518777b6eec187f2c4f00cb23ffdeb_715ac003347c5afc_lgr_lora_eval_1653815_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out_out.md",
+        "path": "output\\85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out_out.md",
+        "size": 9881,
+        "source": "85fea8c0c5718bf1ccfacc3f4df5597c_0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out_out.md",
+        "path": "output\\e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out_out.md",
+        "size": 12059,
+        "source": "e29fcc0fdd27994915cb23efd274e11d_3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out_out.md",
+        "path": "output\\2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out_out.md",
+        "size": 6337,
+        "source": "2ec6e6e40c1ddf7fa8ffe5628f4fbea7_629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out_out.md",
+        "path": "output\\6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out_out.md",
+        "size": 11883,
+        "source": "6c56086fc77a60e1ee30bb6a3e8c2e63_e494b8264ecbe667_lgr_lora_eval_1648422_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out_out.md",
+        "path": "output\\bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out_out.md",
+        "size": 12915,
+        "source": "bf10fbc24c0fc590d1e1abb26daa0e46_a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out_out.md",
+        "path": "output\\9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out_out.md",
+        "size": 13437,
+        "source": "9624617d65cfffdfaf75c1de1ab8a604_9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt",
+        "blob_name": null
+      },
+      {
+        "name": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out_out.md",
+        "path": "output\\85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out_out.md",
+        "size": 12621,
+        "source": "85869851d3d37b24db2fb82d653d7580_44cf86d43edab899_lgr_lora_eval_1651494_out.txt",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T21:51:48.731227+08:00",
+    "updated_at": "2026-06-14T21:52:52.724648+08:00"
+  },
+  "413f1b63e1174404872c9da54af88f56": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 10,
+    "total_files": 10,
+    "current_file_name": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 10 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/10] 已提交: e494b8264ecbe667_lgr_lora_eval_1648422.txt"
+      },
+      {
+        "type": "info",
+        "message": "[2/10] 已提交: 629c35ce2dd183c0_lgr_lora_eval_1648473.txt"
+      },
+      {
+        "type": "info",
+        "message": "[3/10] 已提交: a709f488b6f6cbba_lgr_lora_eval_1648470.txt"
+      },
+      {
+        "type": "info",
+        "message": "[4/10] 已提交: 9b0bda07dffdb26d_lgr_lora_eval_1649775.txt"
+      },
+      {
+        "type": "info",
+        "message": "[5/10] 已提交: 44cf86d43edab899_lgr_lora_eval_1651494.txt"
+      },
+      {
+        "type": "info",
+        "message": "[6/10] 已提交: 3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt"
+      },
+      {
+        "type": "info",
+        "message": "[7/10] 已提交: ee069d92e3206e1c_lgr_lora_eval_1652446.txt"
+      },
+      {
+        "type": "info",
+        "message": "[8/10] 已提交: aeb97dc721080e1f_lgr_lora_eval_1653271.txt"
+      },
+      {
+        "type": "info",
+        "message": "[9/10] 已提交: 715ac003347c5afc_lgr_lora_eval_1653815.txt"
+      },
+      {
+        "type": "info",
+        "message": "[10/10] 已提交: 0ca1cc95d722e29b_lgr_lora_eval_1655276.txt"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 44cf86d43edab899_lgr_lora_eval_1651494_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 44cf86d43edab899_lgr_lora_eval_1651494_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e494b8264ecbe667_lgr_lora_eval_1648422_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: e494b8264ecbe667_lgr_lora_eval_1648422_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 715ac003347c5afc_lgr_lora_eval_1653815_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 715ac003347c5afc_lgr_lora_eval_1653815_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 10 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "44cf86d43edab899_lgr_lora_eval_1651494_out.txt",
+        "path": "output\\44cf86d43edab899_lgr_lora_eval_1651494_out.txt",
+        "size": 14469,
+        "source": "44cf86d43edab899_lgr_lora_eval_1651494.txt",
+        "blob_name": null
+      },
+      {
+        "name": "9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt",
+        "path": "output\\9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt",
+        "size": 13771,
+        "source": "9b0bda07dffdb26d_lgr_lora_eval_1649775.txt",
+        "blob_name": null
+      },
+      {
+        "name": "a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt",
+        "path": "output\\a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt",
+        "size": 14140,
+        "source": "a709f488b6f6cbba_lgr_lora_eval_1648470.txt",
+        "blob_name": null
+      },
+      {
+        "name": "629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt",
+        "path": "output\\629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt",
+        "size": 14400,
+        "source": "629c35ce2dd183c0_lgr_lora_eval_1648473.txt",
+        "blob_name": null
+      },
+      {
+        "name": "e494b8264ecbe667_lgr_lora_eval_1648422_out.txt",
+        "path": "output\\e494b8264ecbe667_lgr_lora_eval_1648422_out.txt",
+        "size": 16135,
+        "source": "e494b8264ecbe667_lgr_lora_eval_1648422.txt",
+        "blob_name": null
+      },
+      {
+        "name": "aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt",
+        "path": "output\\aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt",
+        "size": 12841,
+        "source": "aeb97dc721080e1f_lgr_lora_eval_1653271.txt",
+        "blob_name": null
+      },
+      {
+        "name": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt",
+        "path": "output\\3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt",
+        "size": 13013,
+        "source": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.txt",
+        "blob_name": null
+      },
+      {
+        "name": "715ac003347c5afc_lgr_lora_eval_1653815_out.txt",
+        "path": "output\\715ac003347c5afc_lgr_lora_eval_1653815_out.txt",
+        "size": 13829,
+        "source": "715ac003347c5afc_lgr_lora_eval_1653815.txt",
+        "blob_name": null
+      },
+      {
+        "name": "ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt",
+        "path": "output\\ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt",
+        "size": 14369,
+        "source": "ee069d92e3206e1c_lgr_lora_eval_1652446.txt",
+        "blob_name": null
+      },
+      {
+        "name": "0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt",
+        "path": "output\\0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt",
+        "size": 16152,
+        "source": "0ca1cc95d722e29b_lgr_lora_eval_1655276.txt",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T21:47:46.854262+08:00",
+    "updated_at": "2026-06-14T21:49:17.321025+08:00"
+  },
+  "9bd8b0ca1750484a9db82afdd97802ef": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 38,
+    "total_files": 38,
+    "current_file_name": "715ac003347c5afc_lgr_lora_eval_1653815.log",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 38 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/38] 已提交: f6fca59276a3b066_lgr_selector_eval_1617650.log"
+      },
+      {
+        "type": "info",
+        "message": "[2/38] 已提交: 61c211ef5320d3f5_lgr_lora_eval_1617658.log"
+      },
+      {
+        "type": "info",
+        "message": "[3/38] 已提交: 31e0595d318a0977_lgr_selector_data_1621889.log"
+      },
+      {
+        "type": "info",
+        "message": "[4/38] 已提交: e20c957404c1f340_lgr_selector_1621894.log"
+      },
+      {
+        "type": "info",
+        "message": "[5/38] 已提交: 2ab9aef873ee647c_lgr_selector_eval_1622401.log"
+      },
+      {
+        "type": "info",
+        "message": "[6/38] 已提交: 42abb5a6a3a246f3_lgr_selector_eval_1623017.log"
+      },
+      {
+        "type": "info",
+        "message": "[7/38] 已提交: 85bd50dd04dbf7ee_lgr_selector_eval_1623083.log"
+      },
+      {
+        "type": "info",
+        "message": "[8/38] 已提交: f0f35def843b7888_lgr_oracle_gap_1623094.log"
+      },
+      {
+        "type": "info",
+        "message": "[9/38] 已提交: 3d9c98aca95884b0_lgr_lora_eval_1623119.log"
+      },
+      {
+        "type": "info",
+        "message": "[10/38] 已提交: 7653ccaefab2f2b6_lgr_lora_eval_1630323.log"
+      },
+      {
+        "type": "info",
+        "message": "[11/38] 已提交: 3e3b078261cc9d14_lgr_lora_eval_1630699.log"
+      },
+      {
+        "type": "info",
+        "message": "[12/38] 已提交: fa5143821d6427f0_lgr_lora_eval_1630888.log"
+      },
+      {
+        "type": "info",
+        "message": "[13/38] 已提交: 8e839bff788cfb5d_lgr_lora_eval_1633635.log"
+      },
+      {
+        "type": "info",
+        "message": "[14/38] 已提交: 6a7975097607c661_lgr_lora_eval_1633692.log"
+      },
+      {
+        "type": "info",
+        "message": "[15/38] 已提交: 2a1f24288c1adcd8_lgr_lora_eval_1635584.log"
+      },
+      {
+        "type": "info",
+        "message": "[16/38] 已提交: aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log"
+      },
+      {
+        "type": "info",
+        "message": "[17/38] 已提交: 78f953152ae4de55_lgr_lora_eval_1639930.log"
+      },
+      {
+        "type": "info",
+        "message": "[18/38] 已提交: 4742426a842a1860_lgr_hidden_selector_1639929.log"
+      },
+      {
+        "type": "info",
+        "message": "[19/38] 已提交: 4b66cda2ceea3b0e_lgr_hidden_data_1639572.log"
+      },
+      {
+        "type": "info",
+        "message": "[20/38] 已提交: 432f3ed16a83e9e9_lgr_hidden_selector_1640202.log"
+      },
+      {
+        "type": "info",
+        "message": "[21/38] 已提交: 1a7020036bad9585_lgr_lora_eval_1640361.log"
+      },
+      {
+        "type": "info",
+        "message": "[22/38] 已提交: 5923e386ef10ccdc_lgr_lora_eval_1640828.log"
+      },
+      {
+        "type": "info",
+        "message": "[23/38] 已提交: 7306ee5340eb5e61_lgr_lora_eval_1642119.log"
+      },
+      {
+        "type": "info",
+        "message": "[24/38] 已提交: 22c55e737fdc3e1e_lgr_lora_eval_1643027.log"
+      },
+      {
+        "type": "info",
+        "message": "[25/38] 已提交: 9dc871551dc91f0c_lgr_lora_eval_1643370.log"
+      },
+      {
+        "type": "info",
+        "message": "[26/38] 已提交: 16a5e9a41bc31d6c_lgr_lora_eval_1643658.log"
+      },
+      {
+        "type": "info",
+        "message": "[27/38] 已提交: e276efc6ebb8a408_lgr_lora_eval_1647542.log"
+      },
+      {
+        "type": "info",
+        "message": "[28/38] 已提交: 9b1972529c274de2_lgr_lora_eval_1647999.log"
+      },
+      {
+        "type": "info",
+        "message": "[29/38] 已提交: e494b8264ecbe667_lgr_lora_eval_1648422.log"
+      },
+      {
+        "type": "info",
+        "message": "[30/38] 已提交: 629c35ce2dd183c0_lgr_lora_eval_1648473.log"
+      },
+      {
+        "type": "info",
+        "message": "[31/38] 已提交: a709f488b6f6cbba_lgr_lora_eval_1648470.log"
+      },
+      {
+        "type": "info",
+        "message": "[32/38] 已提交: 9b0bda07dffdb26d_lgr_lora_eval_1649775.log"
+      },
+      {
+        "type": "info",
+        "message": "[33/38] 已提交: 44cf86d43edab899_lgr_lora_eval_1651494.log"
+      },
+      {
+        "type": "info",
+        "message": "[34/38] 已提交: 3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log"
+      },
+      {
+        "type": "info",
+        "message": "[35/38] 已提交: ee069d92e3206e1c_lgr_lora_eval_1652446.log"
+      },
+      {
+        "type": "info",
+        "message": "[36/38] 已提交: aeb97dc721080e1f_lgr_lora_eval_1653271.log"
+      },
+      {
+        "type": "info",
+        "message": "[37/38] 已提交: 715ac003347c5afc_lgr_lora_eval_1653815.log"
+      },
+      {
+        "type": "info",
+        "message": "[38/38] 已提交: 0ca1cc95d722e29b_lgr_lora_eval_1655276.log"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e20c957404c1f340_lgr_selector_1621894.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e20c957404c1f340_lgr_selector_1621894_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: e20c957404c1f340_lgr_selector_1621894_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "f6fca59276a3b066_lgr_selector_eval_1617650.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f6fca59276a3b066_lgr_selector_eval_1617650_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: f6fca59276a3b066_lgr_selector_eval_1617650_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "2ab9aef873ee647c_lgr_selector_eval_1622401.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2ab9aef873ee647c_lgr_selector_eval_1622401_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 2ab9aef873ee647c_lgr_selector_eval_1622401_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "61c211ef5320d3f5_lgr_lora_eval_1617658.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 61c211ef5320d3f5_lgr_lora_eval_1617658_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 61c211ef5320d3f5_lgr_lora_eval_1617658_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "31e0595d318a0977_lgr_selector_data_1621889.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 31e0595d318a0977_lgr_selector_data_1621889_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 31e0595d318a0977_lgr_selector_data_1621889_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 42abb5a6a3a246f3_lgr_selector_eval_1623017_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 42abb5a6a3a246f3_lgr_selector_eval_1623017_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "f0f35def843b7888_lgr_oracle_gap_1623094.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f0f35def843b7888_lgr_oracle_gap_1623094_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: f0f35def843b7888_lgr_oracle_gap_1623094_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 85bd50dd04dbf7ee_lgr_selector_eval_1623083_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 85bd50dd04dbf7ee_lgr_selector_eval_1623083_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "3d9c98aca95884b0_lgr_lora_eval_1623119.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3d9c98aca95884b0_lgr_lora_eval_1623119_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 3d9c98aca95884b0_lgr_lora_eval_1623119_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 7653ccaefab2f2b6_lgr_lora_eval_1630323_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 7653ccaefab2f2b6_lgr_lora_eval_1630323_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "3e3b078261cc9d14_lgr_lora_eval_1630699.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3e3b078261cc9d14_lgr_lora_eval_1630699_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 3e3b078261cc9d14_lgr_lora_eval_1630699_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "fa5143821d6427f0_lgr_lora_eval_1630888.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: fa5143821d6427f0_lgr_lora_eval_1630888_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: fa5143821d6427f0_lgr_lora_eval_1630888_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "8e839bff788cfb5d_lgr_lora_eval_1633635.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 8e839bff788cfb5d_lgr_lora_eval_1633635_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 8e839bff788cfb5d_lgr_lora_eval_1633635_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2a1f24288c1adcd8_lgr_lora_eval_1635584_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 2a1f24288c1adcd8_lgr_lora_eval_1635584_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "6a7975097607c661_lgr_lora_eval_1633692.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 6a7975097607c661_lgr_lora_eval_1633692_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 6a7975097607c661_lgr_lora_eval_1633692_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: aa068b7efe362b91_lgr_hidden_selector_eval_1640125_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: aa068b7efe362b91_lgr_hidden_selector_eval_1640125_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "78f953152ae4de55_lgr_lora_eval_1639930.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 78f953152ae4de55_lgr_lora_eval_1639930_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 78f953152ae4de55_lgr_lora_eval_1639930_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "4742426a842a1860_lgr_hidden_selector_1639929.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 4742426a842a1860_lgr_hidden_selector_1639929_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 4742426a842a1860_lgr_hidden_selector_1639929_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 4b66cda2ceea3b0e_lgr_hidden_data_1639572_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 4b66cda2ceea3b0e_lgr_hidden_data_1639572_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 432f3ed16a83e9e9_lgr_hidden_selector_1640202_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 432f3ed16a83e9e9_lgr_hidden_selector_1640202_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "1a7020036bad9585_lgr_lora_eval_1640361.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 1a7020036bad9585_lgr_lora_eval_1640361_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 1a7020036bad9585_lgr_lora_eval_1640361_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "5923e386ef10ccdc_lgr_lora_eval_1640828.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 5923e386ef10ccdc_lgr_lora_eval_1640828_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 5923e386ef10ccdc_lgr_lora_eval_1640828_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "7306ee5340eb5e61_lgr_lora_eval_1642119.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 7306ee5340eb5e61_lgr_lora_eval_1642119_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 7306ee5340eb5e61_lgr_lora_eval_1642119_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 22c55e737fdc3e1e_lgr_lora_eval_1643027_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 22c55e737fdc3e1e_lgr_lora_eval_1643027_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9dc871551dc91f0c_lgr_lora_eval_1643370.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 9dc871551dc91f0c_lgr_lora_eval_1643370_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 9dc871551dc91f0c_lgr_lora_eval_1643370_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 16a5e9a41bc31d6c_lgr_lora_eval_1643658_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 16a5e9a41bc31d6c_lgr_lora_eval_1643658_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9b1972529c274de2_lgr_lora_eval_1647999.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 9b1972529c274de2_lgr_lora_eval_1647999_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 9b1972529c274de2_lgr_lora_eval_1647999_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e276efc6ebb8a408_lgr_lora_eval_1647542.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e276efc6ebb8a408_lgr_lora_eval_1647542_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: e276efc6ebb8a408_lgr_lora_eval_1647542_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "e494b8264ecbe667_lgr_lora_eval_1648422.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e494b8264ecbe667_lgr_lora_eval_1648422_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: e494b8264ecbe667_lgr_lora_eval_1648422_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "629c35ce2dd183c0_lgr_lora_eval_1648473.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "a709f488b6f6cbba_lgr_lora_eval_1648470.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "44cf86d43edab899_lgr_lora_eval_1651494.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 44cf86d43edab899_lgr_lora_eval_1651494_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 输入节点完成: TXT 输入"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 44cf86d43edab899_lgr_lora_eval_1651494_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 处理节点开始: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 处理节点完成: 数据抽取"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 处理节点开始: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "ee069d92e3206e1c_lgr_lora_eval_1652446.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 处理节点完成: 时间线抽取"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 处理节点开始: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "aeb97dc721080e1f_lgr_lora_eval_1653271.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 处理节点完成: 数据汇总"
+      },
+      {
+        "type": "info",
+        "message": "715ac003347c5afc_lgr_lora_eval_1653815.log: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 715ac003347c5afc_lgr_lora_eval_1653815_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 715ac003347c5afc_lgr_lora_eval_1653815_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 38 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "e20c957404c1f340_lgr_selector_1621894_out.txt",
+        "path": "output\\e20c957404c1f340_lgr_selector_1621894_out.txt",
+        "size": 1410,
+        "source": "e20c957404c1f340_lgr_selector_1621894.log",
+        "blob_name": null
+      },
+      {
+        "name": "f6fca59276a3b066_lgr_selector_eval_1617650_out.txt",
+        "path": "output\\f6fca59276a3b066_lgr_selector_eval_1617650_out.txt",
+        "size": 1585,
+        "source": "f6fca59276a3b066_lgr_selector_eval_1617650.log",
+        "blob_name": null
+      },
+      {
+        "name": "2ab9aef873ee647c_lgr_selector_eval_1622401_out.txt",
+        "path": "output\\2ab9aef873ee647c_lgr_selector_eval_1622401_out.txt",
+        "size": 1633,
+        "source": "2ab9aef873ee647c_lgr_selector_eval_1622401.log",
+        "blob_name": null
+      },
+      {
+        "name": "61c211ef5320d3f5_lgr_lora_eval_1617658_out.txt",
+        "path": "output\\61c211ef5320d3f5_lgr_lora_eval_1617658_out.txt",
+        "size": 1507,
+        "source": "61c211ef5320d3f5_lgr_lora_eval_1617658.log",
+        "blob_name": null
+      },
+      {
+        "name": "31e0595d318a0977_lgr_selector_data_1621889_out.txt",
+        "path": "output\\31e0595d318a0977_lgr_selector_data_1621889_out.txt",
+        "size": 1899,
+        "source": "31e0595d318a0977_lgr_selector_data_1621889.log",
+        "blob_name": null
+      },
+      {
+        "name": "42abb5a6a3a246f3_lgr_selector_eval_1623017_out.txt",
+        "path": "output\\42abb5a6a3a246f3_lgr_selector_eval_1623017_out.txt",
+        "size": 1367,
+        "source": "42abb5a6a3a246f3_lgr_selector_eval_1623017.log",
+        "blob_name": null
+      },
+      {
+        "name": "f0f35def843b7888_lgr_oracle_gap_1623094_out.txt",
+        "path": "output\\f0f35def843b7888_lgr_oracle_gap_1623094_out.txt",
+        "size": 1643,
+        "source": "f0f35def843b7888_lgr_oracle_gap_1623094.log",
+        "blob_name": null
+      },
+      {
+        "name": "85bd50dd04dbf7ee_lgr_selector_eval_1623083_out.txt",
+        "path": "output\\85bd50dd04dbf7ee_lgr_selector_eval_1623083_out.txt",
+        "size": 1498,
+        "source": "85bd50dd04dbf7ee_lgr_selector_eval_1623083.log",
+        "blob_name": null
+      },
+      {
+        "name": "3d9c98aca95884b0_lgr_lora_eval_1623119_out.txt",
+        "path": "output\\3d9c98aca95884b0_lgr_lora_eval_1623119_out.txt",
+        "size": 1309,
+        "source": "3d9c98aca95884b0_lgr_lora_eval_1623119.log",
+        "blob_name": null
+      },
+      {
+        "name": "7653ccaefab2f2b6_lgr_lora_eval_1630323_out.txt",
+        "path": "output\\7653ccaefab2f2b6_lgr_lora_eval_1630323_out.txt",
+        "size": 1501,
+        "source": "7653ccaefab2f2b6_lgr_lora_eval_1630323.log",
+        "blob_name": null
+      },
+      {
+        "name": "3e3b078261cc9d14_lgr_lora_eval_1630699_out.txt",
+        "path": "output\\3e3b078261cc9d14_lgr_lora_eval_1630699_out.txt",
+        "size": 1780,
+        "source": "3e3b078261cc9d14_lgr_lora_eval_1630699.log",
+        "blob_name": null
+      },
+      {
+        "name": "fa5143821d6427f0_lgr_lora_eval_1630888_out.txt",
+        "path": "output\\fa5143821d6427f0_lgr_lora_eval_1630888_out.txt",
+        "size": 1527,
+        "source": "fa5143821d6427f0_lgr_lora_eval_1630888.log",
+        "blob_name": null
+      },
+      {
+        "name": "8e839bff788cfb5d_lgr_lora_eval_1633635_out.txt",
+        "path": "output\\8e839bff788cfb5d_lgr_lora_eval_1633635_out.txt",
+        "size": 1485,
+        "source": "8e839bff788cfb5d_lgr_lora_eval_1633635.log",
+        "blob_name": null
+      },
+      {
+        "name": "2a1f24288c1adcd8_lgr_lora_eval_1635584_out.txt",
+        "path": "output\\2a1f24288c1adcd8_lgr_lora_eval_1635584_out.txt",
+        "size": 1315,
+        "source": "2a1f24288c1adcd8_lgr_lora_eval_1635584.log",
+        "blob_name": null
+      },
+      {
+        "name": "6a7975097607c661_lgr_lora_eval_1633692_out.txt",
+        "path": "output\\6a7975097607c661_lgr_lora_eval_1633692_out.txt",
+        "size": 1722,
+        "source": "6a7975097607c661_lgr_lora_eval_1633692.log",
+        "blob_name": null
+      },
+      {
+        "name": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125_out.txt",
+        "path": "output\\aa068b7efe362b91_lgr_hidden_selector_eval_1640125_out.txt",
+        "size": 1237,
+        "source": "aa068b7efe362b91_lgr_hidden_selector_eval_1640125.log",
+        "blob_name": null
+      },
+      {
+        "name": "78f953152ae4de55_lgr_lora_eval_1639930_out.txt",
+        "path": "output\\78f953152ae4de55_lgr_lora_eval_1639930_out.txt",
+        "size": 1247,
+        "source": "78f953152ae4de55_lgr_lora_eval_1639930.log",
+        "blob_name": null
+      },
+      {
+        "name": "4742426a842a1860_lgr_hidden_selector_1639929_out.txt",
+        "path": "output\\4742426a842a1860_lgr_hidden_selector_1639929_out.txt",
+        "size": 1351,
+        "source": "4742426a842a1860_lgr_hidden_selector_1639929.log",
+        "blob_name": null
+      },
+      {
+        "name": "4b66cda2ceea3b0e_lgr_hidden_data_1639572_out.txt",
+        "path": "output\\4b66cda2ceea3b0e_lgr_hidden_data_1639572_out.txt",
+        "size": 1944,
+        "source": "4b66cda2ceea3b0e_lgr_hidden_data_1639572.log",
+        "blob_name": null
+      },
+      {
+        "name": "432f3ed16a83e9e9_lgr_hidden_selector_1640202_out.txt",
+        "path": "output\\432f3ed16a83e9e9_lgr_hidden_selector_1640202_out.txt",
+        "size": 1706,
+        "source": "432f3ed16a83e9e9_lgr_hidden_selector_1640202.log",
+        "blob_name": null
+      },
+      {
+        "name": "1a7020036bad9585_lgr_lora_eval_1640361_out.txt",
+        "path": "output\\1a7020036bad9585_lgr_lora_eval_1640361_out.txt",
+        "size": 1590,
+        "source": "1a7020036bad9585_lgr_lora_eval_1640361.log",
+        "blob_name": null
+      },
+      {
+        "name": "5923e386ef10ccdc_lgr_lora_eval_1640828_out.txt",
+        "path": "output\\5923e386ef10ccdc_lgr_lora_eval_1640828_out.txt",
+        "size": 1646,
+        "source": "5923e386ef10ccdc_lgr_lora_eval_1640828.log",
+        "blob_name": null
+      },
+      {
+        "name": "7306ee5340eb5e61_lgr_lora_eval_1642119_out.txt",
+        "path": "output\\7306ee5340eb5e61_lgr_lora_eval_1642119_out.txt",
+        "size": 1504,
+        "source": "7306ee5340eb5e61_lgr_lora_eval_1642119.log",
+        "blob_name": null
+      },
+      {
+        "name": "22c55e737fdc3e1e_lgr_lora_eval_1643027_out.txt",
+        "path": "output\\22c55e737fdc3e1e_lgr_lora_eval_1643027_out.txt",
+        "size": 1208,
+        "source": "22c55e737fdc3e1e_lgr_lora_eval_1643027.log",
+        "blob_name": null
+      },
+      {
+        "name": "9dc871551dc91f0c_lgr_lora_eval_1643370_out.txt",
+        "path": "output\\9dc871551dc91f0c_lgr_lora_eval_1643370_out.txt",
+        "size": 1525,
+        "source": "9dc871551dc91f0c_lgr_lora_eval_1643370.log",
+        "blob_name": null
+      },
+      {
+        "name": "16a5e9a41bc31d6c_lgr_lora_eval_1643658_out.txt",
+        "path": "output\\16a5e9a41bc31d6c_lgr_lora_eval_1643658_out.txt",
+        "size": 1476,
+        "source": "16a5e9a41bc31d6c_lgr_lora_eval_1643658.log",
+        "blob_name": null
+      },
+      {
+        "name": "9b1972529c274de2_lgr_lora_eval_1647999_out.txt",
+        "path": "output\\9b1972529c274de2_lgr_lora_eval_1647999_out.txt",
+        "size": 1699,
+        "source": "9b1972529c274de2_lgr_lora_eval_1647999.log",
+        "blob_name": null
+      },
+      {
+        "name": "e276efc6ebb8a408_lgr_lora_eval_1647542_out.txt",
+        "path": "output\\e276efc6ebb8a408_lgr_lora_eval_1647542_out.txt",
+        "size": 1745,
+        "source": "e276efc6ebb8a408_lgr_lora_eval_1647542.log",
+        "blob_name": null
+      },
+      {
+        "name": "e494b8264ecbe667_lgr_lora_eval_1648422_out.txt",
+        "path": "output\\e494b8264ecbe667_lgr_lora_eval_1648422_out.txt",
+        "size": 1377,
+        "source": "e494b8264ecbe667_lgr_lora_eval_1648422.log",
+        "blob_name": null
+      },
+      {
+        "name": "629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt",
+        "path": "output\\629c35ce2dd183c0_lgr_lora_eval_1648473_out.txt",
+        "size": 1340,
+        "source": "629c35ce2dd183c0_lgr_lora_eval_1648473.log",
+        "blob_name": null
+      },
+      {
+        "name": "a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt",
+        "path": "output\\a709f488b6f6cbba_lgr_lora_eval_1648470_out.txt",
+        "size": 1536,
+        "source": "a709f488b6f6cbba_lgr_lora_eval_1648470.log",
+        "blob_name": null
+      },
+      {
+        "name": "9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt",
+        "path": "output\\9b0bda07dffdb26d_lgr_lora_eval_1649775_out.txt",
+        "size": 1593,
+        "source": "9b0bda07dffdb26d_lgr_lora_eval_1649775.log",
+        "blob_name": null
+      },
+      {
+        "name": "44cf86d43edab899_lgr_lora_eval_1651494_out.txt",
+        "path": "output\\44cf86d43edab899_lgr_lora_eval_1651494_out.txt",
+        "size": 1570,
+        "source": "44cf86d43edab899_lgr_lora_eval_1651494.log",
+        "blob_name": null
+      },
+      {
+        "name": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt",
+        "path": "output\\3b6e35c8d7f7f90e_lgr_lora_eval_1651974_out.txt",
+        "size": 1172,
+        "source": "3b6e35c8d7f7f90e_lgr_lora_eval_1651974.log",
+        "blob_name": null
+      },
+      {
+        "name": "ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt",
+        "path": "output\\ee069d92e3206e1c_lgr_lora_eval_1652446_out.txt",
+        "size": 1481,
+        "source": "ee069d92e3206e1c_lgr_lora_eval_1652446.log",
+        "blob_name": null
+      },
+      {
+        "name": "aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt",
+        "path": "output\\aeb97dc721080e1f_lgr_lora_eval_1653271_out.txt",
+        "size": 1557,
+        "source": "aeb97dc721080e1f_lgr_lora_eval_1653271.log",
+        "blob_name": null
+      },
+      {
+        "name": "0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt",
+        "path": "output\\0ca1cc95d722e29b_lgr_lora_eval_1655276_out.txt",
+        "size": 1261,
+        "source": "0ca1cc95d722e29b_lgr_lora_eval_1655276.log",
+        "blob_name": null
+      },
+      {
+        "name": "715ac003347c5afc_lgr_lora_eval_1653815_out.txt",
+        "path": "output\\715ac003347c5afc_lgr_lora_eval_1653815_out.txt",
+        "size": 1531,
+        "source": "715ac003347c5afc_lgr_lora_eval_1653815.log",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T21:40:06.222930+08:00",
+    "updated_at": "2026-06-14T21:41:25.797505+08:00"
+  },
+  "a0893480998a4a5eb8b5c4050cd84237": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 8,
+    "total_files": 8,
+    "current_file_name": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 8 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/8] 已提交: da535a94f7d676e4_2022期末考试 (1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[2/8] 已提交: 8c3bdecc4a40d396_2021期末考试.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[3/8] 已提交: e3b0c44298fc1c14_第三届同济Major.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[4/8] 已提交: 10b5ddf829ca82d2_markdown-converted.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[5/8] 已提交: 6dbd292f1bda2cb8_document.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[6/8] 已提交: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[7/8] 已提交: e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[8/8] 已提交: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e3b0c44298fc1c14_第三届同济Major_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: e3b0c44298fc1c14_第三届同济Major_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 6dbd292f1bda2cb8_document_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 6dbd292f1bda2cb8_document_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: da535a94f7d676e4_2022期末考试 (1)_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: da535a94f7d676e4_2022期末考试 (1)_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 8c3bdecc4a40d396_2021期末考试_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 8c3bdecc4a40d396_2021期末考试_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 10b5ddf829ca82d2_markdown-converted_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: 10b5ddf829ca82d2_markdown-converted_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨_out.txt"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1)_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存到文档库: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1)_out.txt"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 8 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "e3b0c44298fc1c14_第三届同济Major_out.txt",
+        "path": "output\\e3b0c44298fc1c14_第三届同济Major_out.txt",
+        "size": 494,
+        "source": "e3b0c44298fc1c14_第三届同济Major.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "6dbd292f1bda2cb8_document_out.txt",
+        "path": "output\\6dbd292f1bda2cb8_document_out.txt",
+        "size": 655,
+        "source": "6dbd292f1bda2cb8_document.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "da535a94f7d676e4_2022期末考试 (1)_out.txt",
+        "path": "output\\da535a94f7d676e4_2022期末考试 (1)_out.txt",
+        "size": 1109,
+        "source": "da535a94f7d676e4_2022期末考试 (1).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "8c3bdecc4a40d396_2021期末考试_out.txt",
+        "path": "output\\8c3bdecc4a40d396_2021期末考试_out.txt",
+        "size": 2901,
+        "source": "8c3bdecc4a40d396_2021期末考试.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren_out.txt",
+        "path": "output\\e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren_out.txt",
+        "size": 2980,
+        "source": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "10b5ddf829ca82d2_markdown-converted_out.txt",
+        "path": "output\\10b5ddf829ca82d2_markdown-converted_out.txt",
+        "size": 3899,
+        "source": "10b5ddf829ca82d2_markdown-converted.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨_out.txt",
+        "path": "output\\f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨_out.txt",
+        "size": 3257,
+        "source": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1)_out.txt",
+        "path": "output\\f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1)_out.txt",
+        "size": 3724,
+        "source": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T21:22:31.028306+08:00",
+    "updated_at": "2026-06-14T21:22:46.571304+08:00"
+  },
+  "2442b54d6be74b5d96ed91c41c0a2075": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 8,
+    "total_files": 8,
+    "current_file_name": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 8 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/8] 已提交: da535a94f7d676e4_2022期末考试 (1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[2/8] 已提交: 8c3bdecc4a40d396_2021期末考试.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[3/8] 已提交: e3b0c44298fc1c14_第三届同济Major.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[4/8] 已提交: 10b5ddf829ca82d2_markdown-converted.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[5/8] 已提交: 6dbd292f1bda2cb8_document.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[6/8] 已提交: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[7/8] 已提交: e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[8/8] 已提交: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e3b0c44298fc1c14_第三届同济Major.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e3b0c44298fc1c14_第三届同济Major_out.md"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "6dbd292f1bda2cb8_document.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 6dbd292f1bda2cb8_document_out.md"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "da535a94f7d676e4_2022期末考试 (1).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: da535a94f7d676e4_2022期末考试 (1)_out.md"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点开始: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "8c3bdecc4a40d396_2021期末考试.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 8c3bdecc4a40d396_2021期末考试_out.md"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点完成: 内容分析"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren_out.md"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨_out.md"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "10b5ddf829ca82d2_markdown-converted.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 10b5ddf829ca82d2_markdown-converted_out.md"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1)_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 8 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "e3b0c44298fc1c14_第三届同济Major_out.md",
+        "path": "output\\e3b0c44298fc1c14_第三届同济Major_out.md",
+        "size": 180,
+        "source": "e3b0c44298fc1c14_第三届同济Major.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "6dbd292f1bda2cb8_document_out.md",
+        "path": "output\\6dbd292f1bda2cb8_document_out.md",
+        "size": 359,
+        "source": "6dbd292f1bda2cb8_document.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "da535a94f7d676e4_2022期末考试 (1)_out.md",
+        "path": "output\\da535a94f7d676e4_2022期末考试 (1)_out.md",
+        "size": 974,
+        "source": "da535a94f7d676e4_2022期末考试 (1).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "8c3bdecc4a40d396_2021期末考试_out.md",
+        "path": "output\\8c3bdecc4a40d396_2021期末考试_out.md",
+        "size": 1444,
+        "source": "8c3bdecc4a40d396_2021期末考试.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren_out.md",
+        "path": "output\\e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren_out.md",
+        "size": 1558,
+        "source": "e19bde2b79c7a1fc_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨_out.md",
+        "path": "output\\f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨_out.md",
+        "size": 2027,
+        "source": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "10b5ddf829ca82d2_markdown-converted_out.md",
+        "path": "output\\10b5ddf829ca82d2_markdown-converted_out.md",
+        "size": 2929,
+        "source": "10b5ddf829ca82d2_markdown-converted.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1)_out.md",
+        "path": "output\\f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1)_out.md",
+        "size": 2122,
+        "source": "f81c95f1a9ef4532_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (1).pdf",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T21:20:39.663887+08:00",
+    "updated_at": "2026-06-14T21:20:51.230386+08:00"
+  },
+  "a2a49b51f8044843adac86cf64e7306a": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 5,
+    "total_files": 5,
+    "current_file_name": "Review Meeting Summary(1).pdf",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 5 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: Review Meeting Summary(1).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: [标准]_GBT36964-2018软件开发成本度量规范.pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: [标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 5 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/5] 已提交: Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[2/5] 已提交: Review Meeting Summary(1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[3/5] 已提交: PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[4/5] 已提交: [标准]_GBT36964-2018软件开发成本度量规范.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[5/5] 已提交: [标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e44b5dc45a394b87a18a6b5c882f41b5_[标准]_GBT36964-2018软件开发成本度量规范_out.md"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: d2ee56b5d28149408601c6d83ecbdef0_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e51dd73e89b04c71af125fec669e33da_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 0c038343b4ad4a8c80f55ce4b47f0976_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f90beb1c83a747ffbe226f2088eec164_Review Meeting Summary(1)_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 5 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "e44b5dc45a394b87a18a6b5c882f41b5_[标准]_GBT36964-2018软件开发成本度量规范_out.md",
+        "path": "output\\e44b5dc45a394b87a18a6b5c882f41b5_[标准]_GBT36964-2018软件开发成本度量规范_out.md",
+        "size": 251,
+        "source": "[标准]_GBT36964-2018软件开发成本度量规范.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "d2ee56b5d28149408601c6d83ecbdef0_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md",
+        "path": "output\\d2ee56b5d28149408601c6d83ecbdef0_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md",
+        "size": 1816,
+        "source": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "e51dd73e89b04c71af125fec669e33da_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md",
+        "path": "output\\e51dd73e89b04c71af125fec669e33da_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md",
+        "size": 1772,
+        "source": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "0c038343b4ad4a8c80f55ce4b47f0976_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md",
+        "path": "output\\0c038343b4ad4a8c80f55ce4b47f0976_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md",
+        "size": 1001,
+        "source": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "f90beb1c83a747ffbe226f2088eec164_Review Meeting Summary(1)_out.md",
+        "path": "output\\f90beb1c83a747ffbe226f2088eec164_Review Meeting Summary(1)_out.md",
+        "size": 2854,
+        "source": "Review Meeting Summary(1).pdf",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T20:20:00.443899+08:00",
+    "updated_at": "2026-06-14T20:20:10.503876+08:00"
+  },
+  "251593569c694903bb9e25458c9c49e5": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 5,
+    "total_files": 5,
+    "current_file_name": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 5 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: Review Meeting Summary(1).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: [标准]_GBT36964-2018软件开发成本度量规范.pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: [标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 5 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/5] 已提交: Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[2/5] 已提交: Review Meeting Summary(1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[3/5] 已提交: PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[4/5] 已提交: [标准]_GBT36964-2018软件开发成本度量规范.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[5/5] 已提交: [标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 处理节点开始: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_GBT36964-2018软件开发成本度量规范.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 78fd562f9f704b6aa6ea0f623a000d52_[标准]_GBT36964-2018软件开发成本度量规范_out.md"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2cda5448ae89462b9fc9c886e15ee756_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f28bd2d20eb2451fbf4bfca4930c0298_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "Review Meeting Summary(1).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3575e60196954401a1148fc650094bbc_Review Meeting Summary(1)_out.md"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 处理节点完成: 结构化提纲生成"
+      },
+      {
+        "type": "info",
+        "message": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2f5cfe77014e4ea28d04d6940c51efee_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 5 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "78fd562f9f704b6aa6ea0f623a000d52_[标准]_GBT36964-2018软件开发成本度量规范_out.md",
+        "path": "output\\78fd562f9f704b6aa6ea0f623a000d52_[标准]_GBT36964-2018软件开发成本度量规范_out.md",
+        "size": 378,
+        "source": "[标准]_GBT36964-2018软件开发成本度量规范.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "2cda5448ae89462b9fc9c886e15ee756_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md",
+        "path": "output\\2cda5448ae89462b9fc9c886e15ee756_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md",
+        "size": 1067,
+        "source": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "f28bd2d20eb2451fbf4bfca4930c0298_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md",
+        "path": "output\\f28bd2d20eb2451fbf4bfca4930c0298_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md",
+        "size": 1800,
+        "source": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "3575e60196954401a1148fc650094bbc_Review Meeting Summary(1)_out.md",
+        "path": "output\\3575e60196954401a1148fc650094bbc_Review Meeting Summary(1)_out.md",
+        "size": 851,
+        "source": "Review Meeting Summary(1).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "2f5cfe77014e4ea28d04d6940c51efee_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md",
+        "path": "output\\2f5cfe77014e4ea28d04d6940c51efee_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md",
+        "size": 1735,
+        "source": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T20:00:21.717865+08:00",
+    "updated_at": "2026-06-14T20:00:35.770015+08:00"
+  },
+  "664c06dfaf57461d9553a88620d7c90f": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 5,
+    "total_files": 5,
+    "current_file_name": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 5 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: Review Meeting Summary(1).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: [标准]_GBT36964-2018软件开发成本度量规范.pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: [标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发5，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 5 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多5个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/5] 已提交: Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[2/5] 已提交: Review Meeting Summary(1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[3/5] 已提交: PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[4/5] 已提交: [标准]_GBT36964-2018软件开发成本度量规范.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[5/5] 已提交: [标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 9473c2af247847649720a96ba67e31b4_[标准]_GBT36964-2018软件开发成本度量规范_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 457c503ce613422d83c4bebb021b403a_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: cebbcac739cc497fa260d2f34e41d3c3_Review Meeting Summary(1)_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 885acce1128446e18bfbeb78536fa8c1_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 549951e75f194acc853f08d3e813b75d_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 5 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "9473c2af247847649720a96ba67e31b4_[标准]_GBT36964-2018软件开发成本度量规范_out.md",
+        "path": "output\\9473c2af247847649720a96ba67e31b4_[标准]_GBT36964-2018软件开发成本度量规范_out.md",
+        "size": 186,
+        "source": "[标准]_GBT36964-2018软件开发成本度量规范.pdf",
+        "blob_name": null
+      },
+      {
+        "name": "457c503ce613422d83c4bebb021b403a_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md",
+        "path": "output\\457c503ce613422d83c4bebb021b403a_PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3)_out.md",
+        "size": 567,
+        "source": "PowerPoint Layout-and-Style-Consistent Web Page Generation System_Project Charter_Hongzhen Ren (3).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "cebbcac739cc497fa260d2f34e41d3c3_Review Meeting Summary(1)_out.md",
+        "path": "output\\cebbcac739cc497fa260d2f34e41d3c3_Review Meeting Summary(1)_out.md",
+        "size": 1154,
+        "source": "Review Meeting Summary(1).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "885acce1128446e18bfbeb78536fa8c1_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md",
+        "path": "output\\885acce1128446e18bfbeb78536fa8c1_Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2)_out.md",
+        "size": 1761,
+        "source": "Development of Person Re-identification Algorithm for Basketball Ball-handlers in Complex Motion Scenarios-Project Charter-李烨 (2).pdf",
+        "blob_name": null
+      },
+      {
+        "name": "549951e75f194acc853f08d3e813b75d_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md",
+        "path": "output\\549951e75f194acc853f08d3e813b75d_[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014)_out.md",
+        "size": 1244,
+        "source": "[标准]_IEEE-ACM软件工程知识体系(SWEBOK2014).pdf",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T19:18:20.405577+08:00",
+    "updated_at": "2026-06-14T19:18:29.725662+08:00"
+  },
+  "ec3ec449544c426ab4ae699d1756d079": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 3,
+    "total_files": 3,
+    "current_file_name": "eval_1321938.txt",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 3 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: eval_1321938.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: eval_1321932.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: eval_1321565.txt"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发4，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 3 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多4个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/3] 已提交: eval_1321938.txt"
+      },
+      {
+        "type": "info",
+        "message": "[2/3] 已提交: eval_1321932.txt"
+      },
+      {
+        "type": "info",
+        "message": "[3/3] 已提交: eval_1321565.txt"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 1e3f3bc43b6c423cb56dbe636f7e781b_eval_1321565_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: d4f727f82b144581b7764b5c69691d65_eval_1321932_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 07b8c0ae727444539d69c05f0a11d71a_eval_1321938_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 3 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "1e3f3bc43b6c423cb56dbe636f7e781b_eval_1321565_out.md",
+        "path": "output\\1e3f3bc43b6c423cb56dbe636f7e781b_eval_1321565_out.md",
+        "size": 1590,
+        "source": "eval_1321565.txt",
+        "blob_name": null
+      },
+      {
+        "name": "d4f727f82b144581b7764b5c69691d65_eval_1321932_out.md",
+        "path": "output\\d4f727f82b144581b7764b5c69691d65_eval_1321932_out.md",
+        "size": 1837,
+        "source": "eval_1321932.txt",
+        "blob_name": null
+      },
+      {
+        "name": "07b8c0ae727444539d69c05f0a11d71a_eval_1321938_out.md",
+        "path": "output\\07b8c0ae727444539d69c05f0a11d71a_eval_1321938_out.md",
+        "size": 2235,
+        "source": "eval_1321938.txt",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T19:16:40.637216+08:00",
+    "updated_at": "2026-06-14T19:16:48.635880+08:00"
+  },
+  "84cfcb0a3d1147d7bf3d38e7ce17908f": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 3,
+    "total_files": 3,
+    "current_file_name": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 3 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发2，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 3 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多2个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/3] 已提交: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "info",
+        "message": "[2/3] 已提交: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "info",
+        "message": "[3/3] 已提交: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 410673dcdd3842488b33ace48aa1c1b6_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 522a6332b4284b848ee61e393b613de1_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: e815abdc979a42c4ad6a6d9ee1d03674_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 3 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "410673dcdd3842488b33ace48aa1c1b6_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "path": "output\\410673dcdd3842488b33ace48aa1c1b6_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "size": 7348,
+        "source": "2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx",
+        "blob_name": null
+      },
+      {
+        "name": "522a6332b4284b848ee61e393b613de1_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "path": "output\\522a6332b4284b848ee61e393b613de1_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "size": 11295,
+        "source": "2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx",
+        "blob_name": null
+      },
+      {
+        "name": "e815abdc979a42c4ad6a6d9ee1d03674_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "path": "output\\e815abdc979a42c4ad6a6d9ee1d03674_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "size": 8678,
+        "source": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T18:09:52.639002+08:00",
+    "updated_at": "2026-06-14T18:10:39.359788+08:00"
+  },
+  "9105b912f6f245f2af9c8a4f6df2355a": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 3,
+    "total_files": 3,
+    "current_file_name": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 3 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发2，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 3 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多2个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/3] 已提交: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "info",
+        "message": "[2/3] 已提交: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "info",
+        "message": "[3/3] 已提交: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: ab4c9717ca3442d7b45ec27a9ac6904b_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3f399058a425444a8b93973d573c4258_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: a681c4feeee0433580ee0ce78d1cf264_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 3 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "ab4c9717ca3442d7b45ec27a9ac6904b_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "path": "output\\ab4c9717ca3442d7b45ec27a9ac6904b_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "size": 6149,
+        "source": "2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx",
+        "blob_name": null
+      },
+      {
+        "name": "3f399058a425444a8b93973d573c4258_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "path": "output\\3f399058a425444a8b93973d573c4258_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "size": 9106,
+        "source": "2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx",
+        "blob_name": null
+      },
+      {
+        "name": "a681c4feeee0433580ee0ce78d1cf264_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "path": "output\\a681c4feeee0433580ee0ce78d1cf264_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "size": 7128,
+        "source": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T18:08:32.754674+08:00",
+    "updated_at": "2026-06-14T18:09:32.660968+08:00"
+  },
+  "a50b7d32e05540719c961ec30aa6b8d8": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 3,
+    "total_files": 3,
+    "current_file_name": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 3 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发2，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 3 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多2个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/3] 已提交: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "info",
+        "message": "[2/3] 已提交: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "info",
+        "message": "[3/3] 已提交: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3b080fa7054748c89b2bf38e27fa8238_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 7e86359083d44d598962342ed127348e_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 6273bdb6909b4957a38b2e98c4552486_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 3 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "3b080fa7054748c89b2bf38e27fa8238_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "path": "output\\3b080fa7054748c89b2bf38e27fa8238_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "size": 6137,
+        "source": "2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx",
+        "blob_name": null
+      },
+      {
+        "name": "7e86359083d44d598962342ed127348e_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "path": "output\\7e86359083d44d598962342ed127348e_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "size": 9214,
+        "source": "2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx",
+        "blob_name": null
+      },
+      {
+        "name": "6273bdb6909b4957a38b2e98c4552486_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "path": "output\\6273bdb6909b4957a38b2e98c4552486_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "size": 7121,
+        "source": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T17:11:45.621498+08:00",
+    "updated_at": "2026-06-14T17:12:24.410751+08:00"
+  },
+  "d70a07dae1a049c39706710be222e2a5": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 3,
+    "total_files": 3,
+    "current_file_name": "2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 3 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发3，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 3 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多3个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/3] 已提交: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "info",
+        "message": "[2/3] 已提交: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "info",
+        "message": "[3/3] 已提交: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 74d0de60f94c47ca8c4ba3dc5994d7dd_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 3446a2bbfaf84d3ab49bc27c74e01757_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 7d755a394d754439800220caffab4121_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 3 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "74d0de60f94c47ca8c4ba3dc5994d7dd_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "path": "output\\74d0de60f94c47ca8c4ba3dc5994d7dd_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "size": 4320,
+        "source": "2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx",
+        "blob_name": null
+      },
+      {
+        "name": "3446a2bbfaf84d3ab49bc27c74e01757_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "path": "output\\3446a2bbfaf84d3ab49bc27c74e01757_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "size": 4691,
+        "source": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+        "blob_name": null
+      },
+      {
+        "name": "7d755a394d754439800220caffab4121_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "path": "output\\7d755a394d754439800220caffab4121_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "size": 6272,
+        "source": "2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T17:03:27.442947+08:00",
+    "updated_at": "2026-06-14T17:03:46.816918+08:00"
+  },
+  "159b5cc62cb54652b6d92371563ac477": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 3,
+    "total_files": 3,
+    "current_file_name": "2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 3 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发3，出错时停止"
+      },
+      {
+        "type": "info",
+        "message": "共 3 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多3个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/3] 已提交: 2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx"
+      },
+      {
+        "type": "info",
+        "message": "[2/3] 已提交: 2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx"
+      },
+      {
+        "type": "info",
+        "message": "[3/3] 已提交: 2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: f3cf0ece1ff049e0b1140bd74044fb26_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 990749b91bce494ead25e21d9046881b_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 6a04d1a13afd4d8ebf043615222dfcb2_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 3 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "f3cf0ece1ff049e0b1140bd74044fb26_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "path": "output\\f3cf0ece1ff049e0b1140bd74044fb26_2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力_out.md",
+        "size": 7817,
+        "source": "2350283康凤轩-软件工程-在爵士与孤独之间：《星际牛仔：天国之门》的音乐魅力.docx",
+        "blob_name": null
+      },
+      {
+        "name": "990749b91bce494ead25e21d9046881b_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "path": "output\\990749b91bce494ead25e21d9046881b_2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题_out.md",
+        "size": 8275,
+        "source": "2350283康凤轩-软件工程-谁在行动，谁来负责——《攻壳机动队》（1995）的主体性主题.docx",
+        "blob_name": null
+      },
+      {
+        "name": "6a04d1a13afd4d8ebf043615222dfcb2_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "path": "output\\6a04d1a13afd4d8ebf043615222dfcb2_2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析_out.md",
+        "size": 12950,
+        "source": "2350283康凤轩-软件工程-《超时空要塞PLUS：剧场版》的人物塑造分析.docx",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-06-14T17:02:02.771419+08:00",
+    "updated_at": "2026-06-14T17:02:40.152342+08:00"
+  },
+  "d11d8ab6ed564d12979f25b077ed4cc4": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 1,
+    "total_files": 1,
+    "current_file_name": "wf_db_test.txt",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 1 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: wf_db_test.txt"
+      },
+      {
+        "type": "info",
+        "message": "共 1 个文件，开始逐个处理..."
+      },
+      {
+        "type": "info",
+        "message": "[1/1] 正在处理: wf_db_test.txt"
+      },
+      {
+        "type": "info",
+        "message": "处理节点: 内容提取"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: wf_db_test_db.md"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 1 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "wf_db_test_db.md",
+        "path": "output\\wf_db_test_db.md",
+        "size": 1933,
+        "source": "wf_db_test.txt",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-04-20T17:34:27.503122+08:00",
+    "updated_at": "2026-04-20T17:34:53.050608+08:00"
+  },
+  "09ad997533e7478fa49ec81d6c6802dd": {
+    "status": "completed",
+    "error_code": null,
+    "progress": 100,
+    "current_file_index": 1,
+    "total_files": 1,
+    "current_file_name": "wf_test.txt",
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "正在上传 1 个本地文件..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: wf_test.txt"
+      },
+      {
+        "type": "info",
+        "message": "共 1 个文件，开始逐个处理..."
+      },
+      {
+        "type": "info",
+        "message": "[1/1] 正在处理: wf_test.txt"
+      },
+      {
+        "type": "info",
+        "message": "  读取文件..."
+      },
+      {
+        "type": "info",
+        "message": "  内容提取 处理中..."
+      },
+      {
+        "type": "done",
+        "message": "  已保存: wf_test_out.md (MD)"
+      },
+      {
+        "type": "done",
+        "message": "全部完成，已处理 1 个输出文件"
+      }
+    ],
+    "output_files": [
+      {
+        "name": "wf_test_out.md",
+        "path": "output\\wf_test_out.md",
+        "size": 1425,
+        "source": "wf_test.txt",
+        "blob_name": null
+      }
+    ],
+    "error": null,
+    "created_at": "2026-04-20T17:31:14.019369+08:00",
+    "updated_at": "2026-04-20T17:31:33.855514+08:00"
+  },
+  "22f68a19415141e6ab7af4a30d7d7ac6": {
+    "status": "running",
+    "progress": 28,
+    "current_file_index": 3,
+    "total_files": 26,
+    "current_file_name": "ecdddf6bf1dcdc14_2602.23959v1.pdf",
+    "current_node_id": "n_1781503287141",
+    "current_node_name": "PDF 输入",
+    "current_node_index": 1,
+    "total_nodes": 4,
+    "node_progress": [
+      {
+        "id": "n_1781503287141",
+        "title": "PDF 输入",
+        "type": "input",
+        "schemaKey": "schema-pdf-input",
+        "index": 1,
+        "status": "running",
+        "progress": 46,
+        "message": "f5a2be6c36baa730_2603.01667v1.pdf: 输入节点完成: PDF 输入(12/26)"
+      },
+      {
+        "id": "n_1781503310291",
+        "title": "AI 翻译",
+        "type": "ai",
+        "schemaKey": "schema-translate",
+        "index": 2,
+        "status": "running",
+        "progress": 39,
+        "message": "c74f9618be8784cd_2603.00188v1.pdf: 处理节点开始: AI 翻译(10/26)"
+      },
+      {
+        "id": "n_1781503316793",
+        "title": "格式转换",
+        "type": "ai",
+        "schemaKey": "schema-convert-format",
+        "index": 3,
+        "status": "running",
+        "progress": 19,
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 处理节点完成: 格式转换(3/26)"
+      },
+      {
+        "id": "n_1781503330014",
+        "title": "输出文件",
+        "type": "output",
+        "schemaKey": "schema-library-output",
+        "index": 4,
+        "status": "running",
+        "progress": 11,
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 输出节点就绪: 输出文件(3/26)"
+      }
+    ],
+    "logs": [
+      {
+        "type": "info",
+        "message": "任务已启动，正在初始化..."
+      },
+      {
+        "type": "info",
+        "message": "运行设置：并发10，出错时继续"
+      },
+      {
+        "type": "info",
+        "message": "共 26 个文件，开始处理..."
+      },
+      {
+        "type": "info",
+        "message": "并发执行已启用：最多10个文档同时处理"
+      },
+      {
+        "type": "info",
+        "message": "[1/26] 已提交: 2e3d8d0b89d6e2c3_2512.21218v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[2/26] 已提交: 30909361cfd6a0dd_2601.09708v2.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[3/26] 已提交: 50a531bda46c1c2c_2601.10129v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[4/26] 已提交: 2b348b575f98090b_2602.02548v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[5/26] 已提交: d1b38c2eb057bb02_2512.21711v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[6/26] 已提交: 2959e1ba3ea86da8_2602.08783v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[7/26] 已提交: 3d3528f52c6f5551_2602.10229v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[8/26] 已提交: ecdddf6bf1dcdc14_2602.23959v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[9/26] 已提交: daf0d1fee4d881cd_2602.09012v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[10/26] 已提交: 6c63ec5bd2240571_2602.01166v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[11/26] 已提交: c74f9618be8784cd_2603.00188v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[12/26] 已提交: f5a2be6c36baa730_2603.01667v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[13/26] 已提交: c3ff47fb43aa0ff6_2602.23235v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[14/26] 已提交: 93f10d3a33a4bc42_2602.22190v1(GUI-Libra).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[15/26] 已提交: 292d05def0adc277_2601.09636v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[16/26] 已提交: 9ac024d417bfc04a_2602.00575v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[17/26] 已提交: 63610642f97d8903_2602.02007v2.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[18/26] 已提交: f5895e35869946ce_2602.18493v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[19/26] 已提交: 4a0723de4784fd49_2512.00756v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[20/26] 已提交: e67840f2eccfab0b_2512.22009v1(iSHIFT).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[21/26] 已提交: 70de944d75c12d31_2602.07845v1(RD-VLA).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[22/26] 已提交: a6361b644ebe5098_2502.21074v3(CODI).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[23/26] 已提交: 71f376d1f29ddb8c_2602.11683v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[24/26] 已提交: 39751d831966801f_2505.15810v2(GUI-G1).pdf"
+      },
+      {
+        "type": "info",
+        "message": "[25/26] 已提交: 8a951b996a940228_2603.17441v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "[26/26] 已提交: 4e262af0e176999a_2603.28069v1.pdf"
+      },
+      {
+        "type": "info",
+        "message": "50a531bda46c1c2c_2601.10129v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "2e3d8d0b89d6e2c3_2512.21218v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "2b348b575f98090b_2602.02548v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "3d3528f52c6f5551_2602.10229v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "2959e1ba3ea86da8_2602.08783v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "2959e1ba3ea86da8_2602.08783v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "6c63ec5bd2240571_2602.01166v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "2e3d8d0b89d6e2c3_2512.21218v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "d1b38c2eb057bb02_2512.21711v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "daf0d1fee4d881cd_2602.09012v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "2b348b575f98090b_2602.02548v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "30909361cfd6a0dd_2601.09708v2.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "3d3528f52c6f5551_2602.10229v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "50a531bda46c1c2c_2601.10129v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "6c63ec5bd2240571_2602.01166v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "d1b38c2eb057bb02_2512.21711v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "daf0d1fee4d881cd_2602.09012v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "30909361cfd6a0dd_2601.09708v2.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "6c63ec5bd2240571_2602.01166v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "6c63ec5bd2240571_2602.01166v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "2e3d8d0b89d6e2c3_2512.21218v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "2e3d8d0b89d6e2c3_2512.21218v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "2b348b575f98090b_2602.02548v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "2b348b575f98090b_2602.02548v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "3d3528f52c6f5551_2602.10229v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "3d3528f52c6f5551_2602.10229v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "30909361cfd6a0dd_2601.09708v2.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "30909361cfd6a0dd_2601.09708v2.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "d1b38c2eb057bb02_2512.21711v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "d1b38c2eb057bb02_2512.21711v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "50a531bda46c1c2c_2601.10129v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "50a531bda46c1c2c_2601.10129v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "daf0d1fee4d881cd_2602.09012v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "daf0d1fee4d881cd_2602.09012v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "2959e1ba3ea86da8_2602.08783v1.pdf: 处理节点完成: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "2959e1ba3ea86da8_2602.08783v1.pdf: 处理节点开始: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "6c63ec5bd2240571_2602.01166v1.pdf: 处理节点完成: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "6c63ec5bd2240571_2602.01166v1.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 6c63ec5bd2240571_2602.01166v1_out.md"
+      },
+      {
+        "type": "info",
+        "message": "c74f9618be8784cd_2603.00188v1.pdf: 输入节点完成: PDF 输入"
+      },
+      {
+        "type": "info",
+        "message": "c74f9618be8784cd_2603.00188v1.pdf: 处理节点开始: AI 翻译"
+      },
+      {
+        "type": "info",
+        "message": "2b348b575f98090b_2602.02548v1.pdf: 处理节点完成: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "2b348b575f98090b_2602.02548v1.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: 2b348b575f98090b_2602.02548v1_out.md"
+      },
+      {
+        "type": "info",
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 处理节点完成: 格式转换"
+      },
+      {
+        "type": "info",
+        "message": "ecdddf6bf1dcdc14_2602.23959v1.pdf: 输出节点就绪: 输出文件"
+      },
+      {
+        "type": "done",
+        "message": "  已保存: ecdddf6bf1dcdc14_2602.23959v1_out.md"
+      },
+      {
+        "type": "info",
+        "message": "f5a2be6c36baa730_2603.01667v1.pdf: 输入节点完成: PDF 输入"
+      }
+    ],
+    "output_files": [],
+    "error": null,
+    "error_code": null,
+    "created_at": "2026-06-15T06:02:18.917404+00:00",
+    "updated_at": "2026-06-15T06:02:58.120708+00:00"
+  }
+}

@@ -1,0 +1,1 @@
+integration text for schema-outline-generate

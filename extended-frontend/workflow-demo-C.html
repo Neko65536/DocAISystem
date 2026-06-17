@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方案C：双击节点弹出Modal — 工作流节点配置</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-tertiary: #1a1a24;
+      --bg-card: #16161f;
+      --bg-hover: #222230;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --border-color: rgba(255,255,255,0.08);
+      --border-color-hover: rgba(255,255,255,0.15);
+      --accent-primary: #6366f1;
+      --accent-success: #10b981;
+      --accent-purple: #a855f7;
+      --accent-cyan: #06b6d4;
+      --accent-warning: #f59e0b;
+      --gradient-primary: linear-gradient(135deg, #6366f1, #a855f7);
+      --gradient-success: linear-gradient(135deg, #10b981, #06b6d4);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.5);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .demo-header {
+      height: 56px;
+      background: rgba(18, 18, 26, 0.95);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .demo-badge {
+      padding: 4px 12px;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-warning);
+    }
+
+    .demo-title { font-size: 16px; font-weight: 600; }
+    .demo-desc { font-size: 13px; color: var(--text-muted); margin-left: auto; }
+
+    .app {
+      display: flex;
+      height: calc(100vh - 56px);
+    }
+
+    /* ========== Left Sidebar ========== */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      padding: 20px 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .wf-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .wf-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .wf-item.active { background: rgba(168,85,247,0.12); color: var(--accent-purple); }
+    .wf-item-icon { font-size: 16px; flex-shrink: 0; }
+    .wf-item-name { font-size: 14px; font-weight: 500; flex: 1; }
+    .wf-item-time { font-size: 11px; color: var(--text-muted); }
+
+    .toolbox-divider { height: 1px; background: var(--border-color); margin: 20px 0; }
+
+    /* ========== Canvas ========== */
+    .canvas-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .canvas-toolbar {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
+    }
+
+    .tool-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .tool-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .tool-btn.run-btn { background: var(--accent-success); color: white; }
+
+    .canvas-bg {
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative;
+    }
+
+    /* ========== Node Card ========== */
+    .node-card {
+      position: absolute;
+      min-width: 220px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      overflow: hidden;
+    }
+
+    .node-card:hover {
+      border-color: var(--border-color-hover);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .node-card:hover .node-dbl-hint {
+      opacity: 1;
+    }
+
+    .node-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .node-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .node-icon.type-input { background: rgba(99,102,241,0.15); }
+    .node-icon.type-parse { background: rgba(6,182,212,0.15); }
+    .node-icon.type-ai { background: rgba(168,85,247,0.15); }
+    .node-icon.type-output { background: rgba(245,158,11,0.15); }
+
+    .node-title-wrap { flex: 1; }
+    .node-title { font-size: 14px; font-weight: 600; }
+    .node-subtitle { font-size: 12px; color: var(--text-muted); }
+
+    .node-body {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .node-dbl-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px;
+      background: rgba(168,85,247,0.1);
+      border-top: 1px solid rgba(168,85,247,0.15);
+      font-size: 12px;
+      color: var(--accent-purple);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .node-port {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      cursor: crosshair;
+      transition: all 0.2s;
+      z-index: 2;
+    }
+
+    .node-port.in { left: -7px; top: 50%; transform: translateY(-50%); }
+    .node-port.out { right: -7px; top: 50%; transform: translateY(-50%); }
+    .node-port:hover { background: var(--accent-purple); border-color: var(--accent-purple); transform: translateY(-50%) scale(1.3); }
+
+    /* Connections */
+    .conn-svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .conn-path {
+      fill: none;
+      stroke: rgba(168,85,247,0.35);
+      stroke-width: 2;
+      stroke-dasharray: 6 4;
+    }
+
+    /* ========== Modal ========== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      width: 600px;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.88) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Modal Header */
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .modal-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .modal-icon.input { background: rgba(99,102,241,0.15); }
+    .modal-icon.parse { background: rgba(6,182,212,0.15); }
+    .modal-icon.ai { background: rgba(168,85,247,0.15); }
+    .modal-icon.output { background: rgba(245,158,11,0.15); }
+
+    .modal-title-wrap { flex: 1; }
+    .modal-node-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .modal-node-subtitle { font-size: 13px; color: var(--text-muted); }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 22px;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+    /* Modal Body */
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px;
+    }
+
+    .modal-section {
+      margin-bottom: 24px;
+    }
+
+    .modal-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+
+    .field-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .field {
+      flex: 1;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      padding: 10px 13px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 3px rgba(168,85,247,0.1);
+    }
+
+    .field-select { cursor: pointer; }
+    .field-textarea { resize: vertical; min-height: 90px; }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    /* Tag select in modal */
+    .tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .tag-chip {
+      padding: 6px 14px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tag-chip:hover { border-color: var(--accent-purple); color: var(--text-primary); }
+    .tag-chip.active {
+      background: rgba(168,85,247,0.15);
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+      font-weight: 600;
+    }
+
+    /* Toggle */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-md);
+      margin-bottom: 10px;
+    }
+
+    .toggle-label { font-size: 14px; color: var(--text-primary); }
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch.on { background: rgba(168,85,247,0.3); border-color: var(--accent-purple); }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+    }
+    .toggle-switch.on::after { left: 22px; }
+
+    /* Range slider */
+    .range-field {
+      margin-bottom: 14px;
+    }
+
+    .range-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .range-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-purple);
+      background: rgba(168,85,247,0.1);
+      padding: 3px 10px;
+      border-radius: 8px;
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 4px;
+      background: var(--bg-tertiary);
+      border-radius: 2px;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--accent-purple);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(168,85,247,0.4);
+    }
+
+    /* Modal Footer */
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+    }
+
+    .modal-node-pos {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      padding: 10px 22px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-family: inherit;
+    }
+
+    .modal-btn.cancel {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    .modal-btn.cancel:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+    .modal-btn.primary {
+      background: var(--gradient-success);
+      color: white;
+      box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+    }
+
+    .modal-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16,185,129,0.4); }
+
+    /* Node map in footer */
+    .node-map {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .node-map-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-color);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .node-map-dot.current { background: var(--accent-purple); box-shadow: 0 0 8px rgba(168,85,247,0.5); }
+    .node-map-dot:hover { transform: scale(1.3); }
+
+    .node-map-line {
+      width: 20px;
+      height: 2px;
+      background: var(--border-color);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 3px; }
+
+    /* Hint banner */
+    .hint-banner {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(22,22,31,0.9);
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-5px); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-header">
+  <span class="demo-badge">方案 C</span>
+  <span class="demo-title">双击节点弹出 Modal 配置</span>
+  <span class="demo-desc">双击画布上的任意节点，在 Modal 中详细配置该节点参数</span>
+</div>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-title">工作流</div>
+    <div class="wf-item active">
+      <span class="wf-item-icon">🌍</span>
+      <span class="wf-item-name">论文翻译工作流</span>
+      <span class="wf-item-time">刚刚</span>
+    </div>
+    <div class="wf-item">
+      <span class="wf-item-icon">⚖️</span>
+      <span class="wf-item-name">合同审查工作流</span>
+      <span class="wf-item-time">昨天</span>
+    </div>
+    <div class="wf-item">
+      <span class="wf-item-icon">📊</span>
+      <span class="wf-item-name">年报分析工作流</span>
+      <span class="wf-item-time">3天前</span>
+    </div>
+    <div class="toolbox-divider"></div>
+    <div class="sidebar-title">快捷操作</div>
+    <div class="wf-item" style="font-size:13px">
+      <span class="wf-item-icon">➕</span>
+      <span class="wf-item-name">添加节点</span>
+    </div>
+    <div class="wf-item" style="font-size:13px">
+      <span class="wf-item-icon">🔗</span>
+      <span class="wf-item-name">添加连接</span>
+    </div>
+  </aside>
+
+  <!-- Canvas -->
+  <div class="canvas-area">
+    <div class="canvas-toolbar">
+      <button class="tool-btn">◻</button>
+      <button class="tool-btn">⬡</button>
+      <button class="tool-btn">↩</button>
+      <button class="tool-btn">↪</button>
+      <button class="tool-btn run-btn">▶</button>
+    </div>
+
+    <div class="canvas-bg">
+      <!-- SVG Connections -->
+      <svg class="conn-svg">
+        <path class="conn-path" d="M 240 200 Q 290 200 330 200" />
+        <path class="conn-path" d="M 510 200 Q 550 200 590 200" />
+        <path class="conn-path" d="M 780 200 Q 820 200 860 200" />
+      </svg>
+
+      <!-- Node 1 -->
+      <div class="node-card" style="left:30px;top:160px" ondblclick="openModal('node1')">
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon type-input">📄</div>
+          <div class="node-title-wrap">
+            <div class="node-title">文档输入</div>
+            <div class="node-subtitle">Step 1 · 输入节点</div>
+          </div>
+        </div>
+        <div class="node-body">从文档库选择多个文档</div>
+        <div class="node-dbl-hint">
+          <span>⚙️</span> 双击配置
+        </div>
+      </div>
+
+      <!-- Node 2 -->
+      <div class="node-card" style="left:330px;top:160px" ondblclick="openModal('node2')">
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon type-parse">📖</div>
+          <div class="node-title-wrap">
+            <div class="node-title">文档解析</div>
+            <div class="node-subtitle">Step 2 · 处理节点</div>
+          </div>
+        </div>
+        <div class="node-body">提取文本、表格、图表</div>
+        <div class="node-dbl-hint">
+          <span>⚙️</span> 双击配置
+        </div>
+      </div>
+
+      <!-- Node 3 -->
+      <div class="node-card" style="left:590px;top:160px" ondblclick="openModal('node3')">
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon type-ai">🤖</div>
+          <div class="node-title-wrap">
+            <div class="node-title">LLM 翻译</div>
+            <div class="node-subtitle">Step 3 · AI 节点</div>
+          </div>
+        </div>
+        <div class="node-body">大模型文档翻译</div>
+        <div class="node-dbl-hint">
+          <span>⚙️</span> 双击配置
+        </div>
+      </div>
+
+      <!-- Node 4 -->
+      <div class="node-card" style="left:850px;top:160px" ondblclick="openModal('node4')">
+        <div class="node-port in"></div>
+        <div class="node-port out"></div>
+        <div class="node-header">
+          <div class="node-icon type-output">📁</div>
+          <div class="node-title-wrap">
+            <div class="node-title">输出文件</div>
+            <div class="node-subtitle">Step 4 · 输出节点</div>
+          </div>
+        </div>
+        <div class="node-body">保存翻译结果</div>
+        <div class="node-dbl-hint">
+          <span>⚙️</span> 双击配置
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hint-banner">
+      <span>👆</span> 双击任意节点即可打开配置弹窗
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()" id="modal">
+    <div class="modal-header">
+      <div class="modal-icon input" id="modalIcon">📄</div>
+      <div class="modal-title-wrap">
+        <div class="modal-node-name" id="modalTitle">文档输入</div>
+        <div class="modal-node-subtitle" id="modalSubtitle">Step 1 of 4 · 输入节点</div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Dynamic content -->
+    </div>
+    <div class="modal-footer">
+      <div class="node-map" id="nodeMap">
+        <!-- Generated by JS -->
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="closeModalDirect()">取消</button>
+        <button class="modal-btn primary" onclick="closeModalDirect()">
+          ✓ 保存配置
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nodeSchemas = {
+    node1: {
+      icon: '📄', iconClass: 'input',
+      title: '文档输入', subtitle: 'Step 1 of 4 · 输入节点',
+      pos: 1,
+      sections: [
+        {
+          title: '数据源',
+          fields: [
+            { key: 'inputLibrary', label: '输入文档库', type: 'select',
+              options: ['论文翻译', '合同审查', '年报分析', '数据提取', '自定义...'],
+              value: '论文翻译', hint: '选择源文档所在的文档库' },
+            { key: 'folder', label: '指定文件夹', type: 'input',
+              value: '/全部文档', hint: '留空则处理整个文档库' }
+          ]
+        },
+        {
+          title: '文件过滤',
+          fields: [
+            { key: 'fileTypes', label: '允许的文件类型', type: 'tags',
+              options: ['PDF', 'Word (.docx)', 'Excel (.xlsx)', 'PPT', 'TXT', 'Markdown'],
+              value: ['PDF', 'Word (.docx)']
+            }
+          ]
+        },
+        {
+          title: '处理选项',
+          fields: [
+            { key: 'batchSize', label: '批处理大小', type: 'range', min: 1, max: 50, value: 10, unit: '个文档/批' },
+            { key: 'skipExisting', label: '跳过已处理文档', type: 'toggle', value: true },
+            { key: 'errorContinue', label: '出错时继续处理', type: 'toggle', value: false }
+          ]
+        }
+      ]
+    },
+    node2: {
+      icon: '📖', iconClass: 'parse',
+      title: '文档解析', subtitle: 'Step 2 of 4 · 处理节点',
+      pos: 2,
+      sections: [
+        {
+          title: '解析设置',
+          fields: [
+            { key: 'parseMode', label: '解析模式', type: 'select',
+              options: ['快速解析（仅文本）', '标准解析（文本+结构）', '深度解析（全量）'],
+              value: '标准解析（文本+结构）', hint: '深度解析耗时长但质量最高' },
+            { key: 'ocrLang', label: 'OCR 语言', type: 'select',
+              options: ['自动检测', '简体中文', '英文', '日文', '韩文', '多语言'],
+              value: '自动检测' }
+          ]
+        },
+        {
+          title: '提取内容',
+          fields: [
+            { key: 'extractTables', label: '提取表格数据', type: 'toggle', value: true },
+            { key: 'extractImages', label: '提取图片描述', type: 'toggle', value: true },
+            { key: 'extractCharts', label: '提取图表数据', type: 'toggle', value: false }
+          ]
+        }
+      ]
+    },
+    node3: {
+      icon: '🤖', iconClass: 'ai',
+      title: 'LLM 翻译', subtitle: 'Step 3 of 4 · AI 节点',
+      pos: 3,
+      sections: [
+        {
+          title: '翻译配置',
+          fields: [
+            { key: 'targetLang', label: '目标语言', type: 'select',
+              options: ['英文', '中文', '日文', '韩文', '法文', '德文'],
+              value: '英文' },
+            { key: 'model', label: '翻译模型', type: 'select',
+              options: ['GPT-4o (推荐)', 'GPT-4o-mini', 'Claude 3.5 Sonnet', 'DeepSeek V3'],
+              value: 'GPT-4o (推荐)' },
+            { key: 'style', label: '翻译风格', type: 'select',
+              options: ['学术论文', '商务正式', '通俗易懂', '保留原文风格'],
+              value: '学术论文' }
+          ]
+        },
+        {
+          title: '提示词',
+          fields: [
+            { key: 'systemPrompt', label: '系统提示词', type: 'textarea',
+              value: '你是一位专业的学术翻译。请将以下文档翻译为英文，保持学术论文的风格和格式，特别注意专业术语的一致性。',
+              hint: '可自定义翻译行为和语气' }
+          ]
+        },
+        {
+          title: '选项',
+          fields: [
+            { key: 'preserveFormat', label: '保留原文格式', type: 'toggle', value: true }
+          ]
+        }
+      ]
+    },
+    node4: {
+      icon: '📁', iconClass: 'output',
+      title: '输出到文档库', subtitle: 'Step 4 of 4 · 输出节点',
+      pos: 4,
+      sections: [
+        {
+          title: '输出设置',
+          fields: [
+            { key: 'outputLibrary', label: '输出文档库', type: 'select',
+              options: ['英文版论文', '翻译结果', '分析结果', '+ 新建文档库...'],
+              value: '英文版论文', hint: '处理结果将保存到此文档库' },
+            { key: 'namingRule', label: '文件命名规则', type: 'input',
+              value: '{原名}_翻译', hint: '{原名}、{时间}、{语言} 可用' },
+            { key: 'metaTag', label: '自动打标签', type: 'input',
+              value: 'AI翻译,2026', hint: '逗号分隔多个标签' }
+          ]
+        },
+        {
+          title: '通知',
+          fields: [
+            { key: 'notifyOnComplete', label: '处理完成时通知', type: 'toggle', value: true },
+            { key: 'notifyOnError', label: '出错时通知', type: 'toggle', value: true }
+          ]
+        }
+      ]
+    }
+  };
+
+  let activeNode = 'node1';
+
+  function openModal(nodeId) {
+    activeNode = nodeId;
+    const schema = nodeSchemas[nodeId];
+
+    document.getElementById('modalIcon').textContent = schema.icon;
+    document.getElementById('modalIcon').className = 'modal-icon ' + schema.iconClass;
+    document.getElementById('modalTitle').textContent = schema.title;
+    document.getElementById('modalSubtitle').textContent = schema.subtitle;
+
+    // Render sections
+    const body = document.getElementById('modalBody');
+    body.innerHTML = schema.sections.map(sec => {
+      const fieldsHtml = sec.fields.map(f => renderField(f)).join('');
+      return `
+        <div class="modal-section">
+          <div class="modal-section-title">${sec.title}</div>
+          ${fieldsHtml}
+        </div>
+      `;
+    }).join('');
+
+    // Render node map
+    renderNodeMap(nodeId);
+
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  function renderField(f) {
+    if (f.type === 'select') {
+      return `
+        <div class="field">
+          <label class="field-label">${f.label}</label>
+          <select class="field-select">
+            ${f.options.map(o => `<option ${o === f.value ? 'selected' : ''}>${o}</option>`).join('')}
+          </select>
+          ${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}
+        </div>
+      `;
+    } else if (f.type === 'input') {
+      return `
+        <div class="field">
+          <label class="field-label">${f.label}</label>
+          <input class="field-input" value="${f.value}" />
+          ${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}
+        </div>
+      `;
+    } else if (f.type === 'textarea') {
+      return `
+        <div class="field">
+          <label class="field-label">${f.label}</label>
+          <textarea class="field-textarea">${f.value}</textarea>
+          ${f.hint ? `<div class="field-hint">${f.hint}</div>` : ''}
+        </div>
+      `;
+    } else if (f.type === 'tags') {
+      return `
+        <div class="field">
+          <label class="field-label">${f.label}</label>
+          <div class="tag-grid">
+            ${f.options.map(o => `
+              <div class="tag-chip ${f.value.includes(o) ? 'active' : ''}"
+                   onclick="this.classList.toggle('active')">${o}</div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else if (f.type === 'toggle') {
+      return `
+        <div class="toggle-row">
+          <span class="toggle-label">${f.label}</span>
+          <div class="toggle-switch ${f.value ? 'on' : ''}"
+               onclick="this.classList.toggle('on')"></div>
+        </div>
+      `;
+    } else if (f.type === 'range') {
+      return `
+        <div class="range-field">
+          <div class="range-header">
+            <label class="field-label" style="margin:0">${f.label}</label>
+            <span class="range-value">${f.value} ${f.unit}</span>
+          </div>
+          <input type="range" min="${f.min}" max="${f.max}" value="${f.value}"
+            oninput="this.closest('.range-field').querySelector('.range-value').textContent = this.value + ' ${f.unit}'" />
+        </div>
+      `;
+    }
+    return '';
+  }
+
+  function renderNodeMap(currentId) {
+    const nodeIds = ['node1', 'node2', 'node3', 'node4'];
+    const nodeNames = ['输入', '解析', '翻译', '输出'];
+    const currentIndex = nodeIds.indexOf(currentId);
+
+    const dots = nodeIds.map((id, i) => {
+      const isCurrent = id === currentId;
+      const isPast = i < currentIndex;
+      return `<div class="node-map-dot ${isCurrent ? 'current' : ''}"
+                   onclick="openModal('${id}')"
+                   title="${nodeNames[i]}"></div>`;
+    }).join('<div class="node-map-line"></div>');
+
+    document.getElementById('nodeMap').innerHTML = dots;
+  }
+
+  function closeModal(event) {
+    if (event.target.id === 'modalOverlay') {
+      closeModalDirect();
+    }
+  }
+
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModalDirect();
+    if (e.key === 'Enter' && document.getElementById('modalOverlay').classList.contains('active')) {
+      closeModalDirect();
+    }
+  });
+</script>
+
+</body>
+</html>

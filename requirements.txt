@@ -1,0 +1,40 @@
+# 文件解析依赖
+PyMuPDF>=1.23.0
+python-docx>=1.1.0
+openpyxl>=3.1.0
+xlrd>=2.0.1
+docling>=2.23.0
+
+# 系统依赖
+python-dotenv>=1.0.0
+openai>=1.44.0
+langextract>=1.2.1
+pydantic>=2.7.0
+jsonschema>=4.23.0
+rapidfuzz>=3.9.0
+
+# PostgreSQL / Supabase
+psycopg[binary]>=3.1.0
+psycopg-pool>=3.2.0
+
+# HTTP API
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.9
+
+# Azure Blob Storage
+azure-storage-blob>=12.20.0
+
+# Qiniu Object Storage
+qiniu>=7.14.0
+
+# LLM
+langchain-openai>=0.1.0
+
+# PDF处理
+pypdf>=4.0.0
+reportlab>=4.0.0
+
+# 测试
+pytest>=8.0.0
+httpx>=0.27.0
