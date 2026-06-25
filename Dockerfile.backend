@@ -1,0 +1,37 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app/src \
+    WORK_DIR=/app/data/workspace \
+    OUTPUT_DIR=/app/data/output \
+    TEMP_DIR=/app/data/temp \
+    LOG_FILE=/app/data/logs/app.log \
+    PDF_FONT_PATH=/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        fonts-noto-cjk \
+        libgl1 \
+        libglib2.0-0 \
+        libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements-deploy.txt /app/requirements-deploy.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r /app/requirements-deploy.txt
+
+COPY src /app/src
+
+RUN mkdir -p /app/data/workspace /app/data/output /app/data/temp /app/data/logs
+
+EXPOSE 8001
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/ready', timeout=3)"
+
+# 工作流任务当前由进程内线程执行，因此生产容器必须保持单worker。
+CMD ["python", "-m", "uvicorn", "api.main:app", "--app-dir", "src", "--host", "0.0.0.0", "--port", "8001", "--workers", "1", "--proxy-headers", "--forwarded-allow-ips", "*"]

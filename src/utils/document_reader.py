@@ -5,6 +5,9 @@ Document Reader - 本地文档读取器
 """
 import os
 import logging
+import re
+import zipfile
+import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
@@ -62,6 +65,9 @@ class DocxReader(DocumentReader):
             logger.info(f"DOCX文件读取完成: {file_path}, 字符数: {len(extracted_text)}")
             return extracted_text if extracted_text else "No text found in the DOCX."
         except Exception as e:
+            if False:
+                logger.warning(f"openpyxl读取失败，已使用zip XML回退解析: {file_path}, 错误: {str(e)}")
+                return fallback_text
             logger.error(f"读取DOCX文件失败: {file_path}, 错误: {str(e)}")
             return f"Error reading DOCX: {str(e)}"
 
@@ -173,6 +179,21 @@ class ExcelReader(DocumentReader):
         logger.info(f"开始读取Excel文件: {file_path}")
         logger.info(f"参数: max_rows={max_rows} (展示), max_rows_stats={max_rows_stats} (统计), compute_stats={compute_stats}")
 
+        if self._is_legacy_xls(file_path):
+            return self._read_xls(
+                file_path,
+                max_rows=max_rows,
+                compute_stats=compute_stats,
+                max_rows_stats=max_rows_stats,
+                has_header=has_header,
+            )
+
+        if not zipfile.is_zipfile(file_path):
+            return (
+                "Error reading Excel: 文件扩展名是 .xlsx，但文件内容不是有效的 Excel 工作簿。"
+                "请确认上传的是原始 Excel 文件，而不是下载失败的错误页、压缩包或已损坏文件。"
+            )
+
         try:
             wb = load_workbook(file_path)
             sheet_names = wb.sheetnames
@@ -248,8 +269,186 @@ class ExcelReader(DocumentReader):
             logger.info(f"Excel文件读取完成: {file_path}，总行数: {sum(1 for _ in open(file_path, 'rb')) if False else 'N/A'}，输出长度: {len(extracted_text)} 字符")
             return extracted_text if extracted_text else "No text found in the Excel file."
         except Exception as e:
+            fallback_text = self._read_xlsx_zip_fallback(
+                file_path,
+                max_rows=max_rows,
+                compute_stats=compute_stats,
+                max_rows_stats=max_rows_stats,
+                sheet_index=sheet_index,
+                has_header=has_header,
+            )
+            if fallback_text:
+                logger.warning(f"openpyxl读取失败，已使用zip XML回退解析: {file_path}, 错误: {str(e)}")
+                return fallback_text
             logger.error(f"读取Excel文件失败: {file_path}, 错误: {str(e)}")
             return f"Error reading Excel: {str(e)}"
+
+    def _is_legacy_xls(self, file_path: str) -> bool:
+        path = Path(file_path)
+        if path.suffix.lower() == ".xls":
+            return True
+        try:
+            with open(path, "rb") as handle:
+                return handle.read(8).startswith(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1")
+        except Exception:
+            return False
+
+    def _read_xls(
+        self,
+        file_path: str,
+        max_rows: int = 300,
+        compute_stats: bool = True,
+        max_rows_stats: int = 100000,
+        has_header: bool = True,
+    ) -> str:
+        try:
+            import xlrd
+        except Exception as exc:
+            return f"Error reading Excel: 当前文件是旧版 .xls 格式，但缺少 xlrd 依赖: {exc}"
+
+        try:
+            book = xlrd.open_workbook(file_path)
+            sheets: List[Tuple[str, List[List[str]]]] = []
+            for sheet in book.sheets():
+                rows: List[List[str]] = []
+                limit = min(sheet.nrows, max(max_rows, max_rows_stats))
+                for row_idx in range(limit):
+                    rows.append([self._format_xls_cell(sheet.cell_value(row_idx, col_idx)) for col_idx in range(sheet.ncols)])
+                sheets.append((sheet.name, rows))
+            return self._format_sheet_rows(sheets, max_rows=max_rows, compute_stats=compute_stats, has_header=has_header)
+        except Exception as exc:
+            logger.error(f"读取XLS文件失败: {file_path}, 错误: {exc}")
+            return f"Error reading Excel: {exc}"
+
+    def _format_xls_cell(self, value: Any) -> str:
+        if value is None:
+            return ""
+        if isinstance(value, float) and value.is_integer():
+            return str(int(value))
+        return str(value)
+
+    def _read_xlsx_zip_fallback(
+        self,
+        file_path: str,
+        max_rows: int = 300,
+        compute_stats: bool = True,
+        max_rows_stats: int = 100000,
+        sheet_index: Optional[Any] = None,
+        has_header: bool = True,
+    ) -> str:
+        try:
+            with zipfile.ZipFile(file_path) as archive:
+                shared_strings = self._read_shared_strings(archive)
+                sheet_paths = sorted(
+                    name for name in archive.namelist()
+                    if re.fullmatch(r"xl/worksheets/sheet\d+\.xml", name)
+                )
+                if not sheet_paths:
+                    return ""
+                if sheet_index not in (None, "", "all"):
+                    index_value = int(sheet_index)
+                    zero_based_index = index_value - 1 if index_value > 0 else index_value
+                    if zero_based_index < 0 or zero_based_index >= len(sheet_paths):
+                        raise ValueError(f"工作表索引超出范围: {sheet_index}，当前共有{len(sheet_paths)}个工作表")
+                    sheet_paths = [sheet_paths[zero_based_index]]
+
+                sheets: List[Tuple[str, List[List[str]]]] = []
+                for sheet_path in sheet_paths:
+                    rows = self._read_sheet_xml(archive, sheet_path, shared_strings, max(max_rows, max_rows_stats))
+                    sheets.append((Path(sheet_path).stem, rows))
+                return self._format_sheet_rows(sheets, max_rows=max_rows, compute_stats=compute_stats, has_header=has_header)
+        except Exception as exc:
+            logger.warning(f"zip XML回退解析XLSX失败: {file_path}, 错误: {exc}")
+            return ""
+
+    def _read_shared_strings(self, archive: zipfile.ZipFile) -> List[str]:
+        if "xl/sharedStrings.xml" not in archive.namelist():
+            return []
+        root = ET.fromstring(archive.read("xl/sharedStrings.xml"))
+        values: List[str] = []
+        for item in root.iter():
+            if not item.tag.endswith("}si") and item.tag != "si":
+                continue
+            parts = [node.text or "" for node in item.iter() if node.tag.endswith("}t") or node.tag == "t"]
+            values.append("".join(parts))
+        return values
+
+    def _read_sheet_xml(self, archive: zipfile.ZipFile, sheet_path: str, shared_strings: List[str], max_rows_limit: int) -> List[List[str]]:
+        root = ET.fromstring(archive.read(sheet_path))
+        rows: List[List[str]] = []
+        for row in root.iter():
+            if not row.tag.endswith("}row") and row.tag != "row":
+                continue
+            row_values: List[str] = []
+            for cell in row:
+                if not cell.tag.endswith("}c") and cell.tag != "c":
+                    continue
+                cell_ref = cell.attrib.get("r", "")
+                col_idx = self._column_index_from_ref(cell_ref)
+                while len(row_values) < col_idx:
+                    row_values.append("")
+                row_values.append(self._read_xlsx_cell(cell, shared_strings))
+            if any(str(value).strip() for value in row_values):
+                rows.append(row_values)
+            if len(rows) >= max_rows_limit:
+                break
+        return rows
+
+    def _read_xlsx_cell(self, cell: ET.Element, shared_strings: List[str]) -> str:
+        cell_type = cell.attrib.get("t", "")
+        inline_text = "".join(node.text or "" for node in cell.iter() if node.tag.endswith("}t") or node.tag == "t")
+        value_node = next((node for node in cell if node.tag.endswith("}v") or node.tag == "v"), None)
+        raw_value = value_node.text if value_node is not None else inline_text
+        if raw_value is None:
+            return ""
+        if cell_type == "s":
+            try:
+                return shared_strings[int(raw_value)]
+            except Exception:
+                return raw_value
+        return str(raw_value)
+
+    def _column_index_from_ref(self, cell_ref: str) -> int:
+        letters = re.sub(r"[^A-Za-z]", "", cell_ref or "")
+        if not letters:
+            return 0
+        index = 0
+        for char in letters.upper():
+            index = index * 26 + (ord(char) - ord("A") + 1)
+        return max(index - 1, 0)
+
+    def _format_sheet_rows(
+        self,
+        sheets: List[Tuple[str, List[List[str]]]],
+        max_rows: int,
+        compute_stats: bool,
+        has_header: bool,
+    ) -> str:
+        text: List[str] = []
+        for sheet_name, raw_rows in sheets:
+            text.append(f"=== Sheet: {sheet_name} ===")
+            if not raw_rows:
+                text.append("")
+                continue
+
+            headers = raw_rows[0] if has_header else [f"列{i + 1}" for i in range(max(len(row) for row in raw_rows))]
+            data_rows = raw_rows[1:] if has_header else raw_rows
+            if compute_stats and headers and data_rows:
+                text.append(f"\n【统计摘要】（基于 {len(data_rows)} 行数据分析）")
+                text.append(self._compute_statistics(headers, data_rows))
+
+            shown_rows = data_rows[:max_rows]
+            if len(data_rows) > max_rows:
+                text.append(f"\n【数据样本】（共 {len(data_rows)} 行，显示前 {max_rows} 行）")
+            else:
+                text.append(f"\n【完整数据】（共 {len(data_rows)} 行）")
+            text.append("\t".join(headers))
+            for row in shown_rows:
+                text.append("\t".join(str(cell) if cell is not None else "" for cell in row))
+            if len(data_rows) > max_rows:
+                text.append(f"[... 还有 {len(data_rows) - max_rows} 行数据未显示]")
+            text.append("")
+        return "\n".join(text).strip() or "No text found in the Excel file."
 
     def _compute_statistics(self, headers: List[str], rows_data: List[List[str]]) -> str:
         """

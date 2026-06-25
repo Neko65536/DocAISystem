@@ -4,6 +4,7 @@ from __future__ import annotations
 import asyncio
 import re
 import threading
+import zipfile
 from pathlib import Path
 from typing import Any, AsyncGenerator, Dict, List, Optional, Tuple
 
@@ -44,6 +45,21 @@ def clear_session_agent(session_id: str):
             del _agent_cache[session_id]
 
 
+def _is_usable_cached_file(path: Path, file_name: str) -> bool:
+    if not path.exists() or not path.is_file():
+        return False
+    suffix = Path(file_name or path.name).suffix.lower()
+    if suffix == ".xlsx":
+        return zipfile.is_zipfile(path)
+    if suffix == ".xls":
+        try:
+            with path.open("rb") as handle:
+                return handle.read(8).startswith(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1")
+        except Exception:
+            return False
+    return True
+
+
 def _resolve_local_file_path(file_dict: Dict[str, Any], config: SystemConfig, session_id: str = None) -> str:
     """把 storage_key 解析为可被本地 Agent 读取的临时文件路径。"""
     storage_key = str(file_dict.get("storage_key") or "").strip()
@@ -53,13 +69,8 @@ def _resolve_local_file_path(file_dict: Dict[str, Any], config: SystemConfig, se
     file_name = str(file_dict.get("file_name") or storage_key).strip() or storage_key
     cache_dir = Path(config.temp_dir) / "file_cache" / (session_id or "shared")
     cache_path = cache_dir / file_name
-    if cache_path.exists():
+    if _is_usable_cached_file(cache_path, file_name):
         return str(cache_path)
-
-    try:
-        return str(download_file_to_local(storage_key, cache_path, config=config))
-    except Exception:
-        pass
 
     # 本地临时文件路径检查：先尝试直接路径，再尝试相对路径
     storage_path = Path(storage_key)
@@ -78,6 +89,11 @@ def _resolve_local_file_path(file_dict: Dict[str, Any], config: SystemConfig, se
             return str(candidate)
 
     # 尝试相对于项目根目录的路径
+    try:
+        return str(download_file_to_local(storage_key, cache_path, config=config))
+    except Exception:
+        pass
+
     upload_dir = Path("workspace/uploads")
     relative_path = upload_dir / storage_key if not str(storage_key).startswith(str(upload_dir)) else storage_path
     if relative_path.exists():

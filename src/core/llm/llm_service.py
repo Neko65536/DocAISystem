@@ -114,12 +114,14 @@ class LLMService:
 
     def _get_api_key(self) -> str:
         """获取 API Key"""
-        return (
-            self.config.api_key
-            or os.getenv("DEEPSEEK_API_KEY")
-            or os.getenv("OPENAI_API_KEY")
-            or ""
-        )
+        if self.config.api_key:
+            return self.config.api_key
+        provider = self.config.provider.lower()
+        if provider in ("zhipu", "glm"):
+            return os.getenv("ZHIPU_API_KEY") or os.getenv("OPENAI_API_KEY") or ""
+        if provider == "deepseek":
+            return os.getenv("DEEPSEEK_API_KEY") or os.getenv("OPENAI_API_KEY") or ""
+        return os.getenv("OPENAI_API_KEY") or ""
 
     def _get_base_url(self) -> str:
         """获取 API Base URL"""
@@ -129,6 +131,8 @@ class LLMService:
         provider = self.config.provider.lower()
         if provider == "deepseek":
             return "https://api.deepseek.com/v1"
+        elif provider in ("zhipu", "glm"):
+            return "https://open.bigmodel.cn/api/paas/v4/"
         elif provider == "openai":
             return "https://api.openai.com/v1"
         elif provider == "anthropic":

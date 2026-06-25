@@ -189,20 +189,23 @@ def load_config() -> SystemConfig:
     """
     config = SystemConfig()
 
-    # LLM配置 (支持 DeepSeek)
-    if os.getenv("DEEPSEEK_API_KEY"):
-        config.llm.provider = "deepseek"
-        config.llm.api_key = os.getenv("DEEPSEEK_API_KEY")
-        config.llm.model = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
-        config.llm.base_url = "https://api.deepseek.com"
-    elif os.getenv("OPENAI_API_KEY"):
+    # LLM配置：先确定 provider，再读取该 provider 对应的密钥，避免不同服务商串用密钥。
+    provider = os.getenv("LLM_PROVIDER", config.llm.provider).strip().lower()
+    config.llm.provider = provider
+    if provider in ("zhipu", "glm"):
+        config.llm.api_key = os.getenv("ZHIPU_API_KEY") or os.getenv("OPENAI_API_KEY")
+        config.llm.model = os.getenv("LLM_MODEL") or os.getenv("ZHIPU_MODEL", "glm-4-flash")
+        config.llm.base_url = "https://open.bigmodel.cn/api/paas/v4/"
+    elif provider == "deepseek":
+        config.llm.api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("OPENAI_API_KEY")
+        config.llm.model = os.getenv("LLM_MODEL") or os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
+        config.llm.base_url = "https://api.deepseek.com/v1"
+    else:
         config.llm.api_key = os.getenv("OPENAI_API_KEY")
-    if os.getenv("LLM_PROVIDER"):
-        config.llm.provider = os.getenv("LLM_PROVIDER")
-    if os.getenv("LLM_MODEL"):
-        config.llm.model = os.getenv("LLM_MODEL")
+        if os.getenv("LLM_MODEL"):
+            config.llm.model = os.getenv("LLM_MODEL", config.llm.model)
     if os.getenv("LLM_BASE_URL"):
-        config.llm.base_url = os.getenv("LLM_BASE_URL")
+        config.llm.base_url = os.getenv("LLM_BASE_URL", "").strip()
 
     # 数据库配置（支持 DATABASE_URL / SUPABASE_DB_URL 或分段变量）
     if os.getenv("DB_ENABLED"):
@@ -253,6 +256,15 @@ def load_config() -> SystemConfig:
         config.auth.access_token_ttl_minutes = int(os.getenv("AUTH_ACCESS_TOKEN_TTL_MINUTES", "10080"))
     if os.getenv("AUTH_REQUIRE_LOGIN"):
         config.auth.require_auth = os.getenv("AUTH_REQUIRE_LOGIN").lower() == "true"
+
+    if os.getenv("WORK_DIR"):
+        config.work_dir = os.getenv("WORK_DIR", "workspace").strip()
+    if os.getenv("OUTPUT_DIR"):
+        config.output_dir = os.getenv("OUTPUT_DIR", "output").strip()
+    if os.getenv("TEMP_DIR"):
+        config.temp_dir = os.getenv("TEMP_DIR", "temp").strip()
+    if os.getenv("LOG_FILE"):
+        config.log_file = os.getenv("LOG_FILE", "logs/app.log").strip()
 
     # 调试模式
     if os.getenv("DEBUG"):

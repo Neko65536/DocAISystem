@@ -136,6 +136,26 @@ async def health():
     )
 
 
+@app.get("/ready")
+async def ready():
+    """生产就绪探针：数据库启用时必须连接成功。"""
+    _reset_config()
+    cfg = load_config()
+    if cfg.database.enabled:
+        if not is_database_configured(cfg):
+            return JSONResponse(
+                status_code=503,
+                content=err_body("DB_UNAVAILABLE", "数据库已启用但连接信息不完整"),
+            )
+        ok, message = health_check(cfg)
+        if not ok:
+            return JSONResponse(
+                status_code=503,
+                content=err_body("DB_UNAVAILABLE", message),
+            )
+    return ok_body({"status": "ready"})
+
+
 @app.get("/tasks/{task_id}")
 async def get_task(task_id: str):
     """按业务 task_id 查询任务。"""

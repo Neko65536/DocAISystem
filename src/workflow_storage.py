@@ -58,13 +58,16 @@ def _save_all(data: Dict[str, Any], config: Optional[SystemConfig] = None) -> No
         raise
 
 
-def list_workflows(config: Optional[SystemConfig] = None) -> List[Dict[str, Any]]:
+def list_workflows(
+    config: Optional[SystemConfig] = None,
+    user_id: Optional[str] = None,
+) -> List[Dict[str, Any]]:
     """
     获取所有用户自定义工作流列表（不含完整 nodes）。
     优先数据库；未启用时降级 JSON。
     """
     if is_db_enabled(config):
-        return db_list_workflows(config)
+        return db_list_workflows(config, user_id=user_id)
 
     # JSON 降级
     all_data = _load_all(config)
@@ -78,22 +81,27 @@ def list_workflows(config: Optional[SystemConfig] = None) -> List[Dict[str, Any]
             "updated_at": wf.get("updated_at", ""),
         }
         for wf_id, wf in all_data.items()
+        if not user_id or str(wf.get("user_id") or "") == str(user_id)
     ]
     results.sort(key=lambda x: x.get("updated_at") or "", reverse=True)
     return results
 
 
-def get_workflow(workflow_id: str, config: Optional[SystemConfig] = None) -> Optional[Dict[str, Any]]:
+def get_workflow(
+    workflow_id: str,
+    config: Optional[SystemConfig] = None,
+    user_id: Optional[str] = None,
+) -> Optional[Dict[str, Any]]:
     """
     获取指定工作流的完整配置（含 nodes、config）。
     """
     if is_db_enabled(config):
-        return db_get_workflow(workflow_id, config)
+        return db_get_workflow(workflow_id, config, user_id=user_id)
 
     # JSON 降级
     all_data = _load_all(config)
     wf = all_data.get(workflow_id)
-    if not wf:
+    if not wf or (user_id and str(wf.get("user_id") or "") != str(user_id)):
         return None
     return {
         "id": workflow_id,
@@ -116,6 +124,7 @@ def save_workflow(
     config_data: Optional[Dict[str, Any]] = None,
     edges: Optional[List[Dict[str, Any]]] = None,
     config: Optional[SystemConfig] = None,
+    user_id: Optional[str] = None,
 ) -> Dict[str, Any]:
     """
     保存（新建或更新）一个用户工作流。
@@ -124,7 +133,9 @@ def save_workflow(
     if is_db_enabled(config):
         db_config = dict(config_data or {})
         db_config["edges"] = edges or db_config.get("edges", [])
-        wf = db_save_workflow(workflow_id, name, icon, nodes, db_config, config)
+        wf = db_save_workflow(
+            workflow_id, name, icon, nodes, db_config, config, user_id=user_id
+        )
         wf["edges"] = db_config.get("edges", [])
         return wf
 
@@ -134,10 +145,18 @@ def save_workflow(
     all_data = _load_all(config)
     now = datetime.now(timezone.utc).isoformat()
     existing = all_data.get(workflow_id)
+    if (
+        existing
+        and user_id
+        and existing.get("user_id")
+        and str(existing.get("user_id")) != str(user_id)
+    ):
+        raise PermissionError("工作流不属于当前用户")
     created_at = existing.get("created_at", now) if existing else now
 
     all_data[workflow_id] = {
         "id": workflow_id,
+        "user_id": user_id,
         "name": name,
         "icon": icon,
         "type": "custom",
@@ -162,12 +181,16 @@ def save_workflow(
     }
 
 
-def delete_workflow(workflow_id: str, config: Optional[SystemConfig] = None) -> bool:
+def delete_workflow(
+    workflow_id: str,
+    config: Optional[SystemConfig] = None,
+    user_id: Optional[str] = None,
+) -> bool:
     """
     删除指定工作流。
     """
     if is_db_enabled(config):
-        deleted = db_delete_workflow(workflow_id, config)
+        deleted = db_delete_workflow(workflow_id, config, user_id=user_id)
         if deleted:
             return True
         # 兼容历史/降级存储：数据库启用后，旧工作流可能仍存在 JSON 文件中。
@@ -176,7 +199,7 @@ def delete_workflow(workflow_id: str, config: Optional[SystemConfig] = None) -> 
     # JSON 降级
     all_data = _load_all(config)
     wf = all_data.get(workflow_id)
-    if not wf:
+    if not wf or (user_id and str(wf.get("user_id") or "") != str(user_id)):
         return False
     if wf.get("type") == "template":
         logger.warning(f"禁止删除模板工作流: {workflow_id}")

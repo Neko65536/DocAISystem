@@ -18,6 +18,7 @@ Workflow API 路由
 from __future__ import annotations
 
 import asyncio
+import copy
 import json
 import threading
 import uuid
@@ -33,7 +34,7 @@ from pydantic import BaseModel, Field
 from config import SystemConfig, get_config
 from core.orchestrator.coordinator import WorkflowCoordinator
 from core.orchestrator.task_spec import FileInfo, FileType, TaskSpec, TaskType
-from core.storage import build_blob_name, upload_file_to_storage
+from core.storage import build_blob_name, download_file_to_local, upload_file_to_storage
 from db.auth_repository import resolve_user_from_authorization
 from db.connection import is_database_configured
 from db.workflow_repository import db_load_execution_states, db_save_execution_states, is_db_enabled
@@ -47,6 +48,7 @@ logger = get_logger(__name__)
 # ==================== 执行状态存储（进程内内存） ====================
 # key: execution_id, value: state dict
 _EXECUTION_STATES: Dict[str, dict] = {}
+_EXECUTION_STATES_LOCK = threading.RLock()
 
 
 def _execution_states_file(config: Optional[SystemConfig] = None) -> Path:
@@ -77,15 +79,17 @@ def _load_execution_states(config: Optional[SystemConfig] = None) -> Dict[str, d
 
 def _persist_execution_states(config: Optional[SystemConfig] = None) -> None:
     cfg = config or get_config()
+    with _EXECUTION_STATES_LOCK:
+        states_snapshot = copy.deepcopy(_EXECUTION_STATES)
     if is_db_enabled(cfg):
-        if db_save_execution_states(_EXECUTION_STATES, cfg):
+        if db_save_execution_states(states_snapshot, cfg):
             return
 
     path = _execution_states_file(config)
     tmp_path = path.with_suffix(".tmp")
     try:
         tmp_path.write_text(
-            json.dumps(_EXECUTION_STATES, ensure_ascii=False, indent=2),
+            json.dumps(states_snapshot, ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
         tmp_path.replace(path)
@@ -95,7 +99,8 @@ def _persist_execution_states(config: Optional[SystemConfig] = None) -> None:
             tmp_path.unlink()
 
 
-_EXECUTION_STATES.update(_load_execution_states())
+with _EXECUTION_STATES_LOCK:
+    _EXECUTION_STATES.update(_load_execution_states())
 
 # ==================== Request / Response 模型 ====================
 
@@ -439,23 +444,39 @@ def _normalize_lang(code_or_label: str) -> str:
     return _LANG_MAP.get(code_or_label, code_or_label)
 
 
-def _resolve_doc_path(doc_id: str, config: SystemConfig) -> Optional[Tuple[str, str]]:
+def _resolve_doc_path(
+    doc_id: str,
+    config: SystemConfig,
+    user_id: Optional[str] = None,
+) -> Optional[Tuple[str, str]]:
     """根据文档 ID 解析磁盘路径，支持 session 文件和文档库文件。"""
     from db.library_repository import get_library_doc_by_id
 
     # 文档库文档
-    doc = get_library_doc_by_id(doc_id, config=config, user_id=None)
-    if doc and doc.storage_key:
-        p = Path(doc.storage_key)
-        if p.exists():
-            return str(p), str(doc.file_name or p.name)
+    doc = get_library_doc_by_id(doc_id, config=config, user_id=user_id)
+    if doc:
+        original_name = str(doc.file_name or Path(str(doc.storage_key or doc.blob_url or doc_id)).name)
+        if doc.storage_key and config.storage.enabled and config.storage.provider == "azure_blob":
+            cache_path = Path(config.temp_dir) / "workflow_file_cache" / doc_id / original_name
+            try:
+                downloaded = download_file_to_local(str(doc.storage_key), cache_path, config=config)
+                if downloaded and Path(downloaded).exists():
+                    return str(downloaded), original_name
+            except Exception as exc:
+                logger.warning(f"下载文档库文件失败: {doc_id}, {exc}")
+        for candidate_value in (doc.storage_key, doc.blob_url):
+            if not candidate_value:
+                continue
+            p = Path(str(candidate_value))
+            if p.exists():
+                return str(p), original_name
 
     # session 文件
     parts = doc_id.split(":", 1)
     if len(parts) == 2 and parts[0] == "session":
         session_id, file_id = parts[1].split("/", 1)
         try:
-            session = get_session_by_id(session_id, config=config)
+            session = get_session_by_id(session_id, config=config, user_id=user_id)
             if session:
                 for row in getattr(session, "files", []):
                     if str(row.id) == file_id:
@@ -629,7 +650,11 @@ def _make_concurrent_progress_callback_factory(execution_id: str, total_files: i
     return build_file_callback
 
 
-async def _run_execution(execution_id: str, params: ExecuteRequest):
+async def _run_execution(
+    execution_id: str,
+    params: ExecuteRequest,
+    user_id: Optional[str] = None,
+):
     """
     后台执行任务：逐文件处理，支持本地文件和文档库文件。
     在 asyncio.to_thread 中运行，不阻塞事件循环。
@@ -705,7 +730,7 @@ async def _run_execution(execution_id: str, params: ExecuteRequest):
 
         # 从文档库
         for doc_id in params.docs:
-            resolved_doc = _resolve_doc_path(doc_id, config)
+            resolved_doc = _resolve_doc_path(doc_id, config, user_id=user_id)
             if resolved_doc:
                 path, original_name = resolved_doc
                 ft = _detect_file_type(original_name)
@@ -871,7 +896,9 @@ async def _run_execution(execution_id: str, params: ExecuteRequest):
                     state["logs"].append({"type": "done", "message": f"  已保存: {out_name}"})
 
                     if str(output_mode).lower() == "library" and out_path and target_space_id:
-                        ok_lib, lib_msg = _save_output_to_library(str(out_path), str(target_space_id), config)
+                        ok_lib, lib_msg = _save_output_to_library(
+                            str(out_path), str(target_space_id), config, user_id=user_id
+                        )
                         if ok_lib:
                             state["logs"].append({"type": "done", "message": f"  已保存到文档库: {out_name}"})
                         else:
@@ -972,7 +999,9 @@ async def _run_execution(execution_id: str, params: ExecuteRequest):
 
             if str(output_mode).lower() == "library" and out_path:
                 if target_space_id:
-                    ok_lib, lib_msg = _save_output_to_library(str(out_path), str(target_space_id), config)
+                    ok_lib, lib_msg = _save_output_to_library(
+                        str(out_path), str(target_space_id), config, user_id=user_id
+                    )
                     if ok_lib:
                         state["logs"].append({"type": "done", "message": f"  已保存到文档库: {out_name}"})
                     else:
@@ -1010,7 +1039,12 @@ async def _run_execution(execution_id: str, params: ExecuteRequest):
         _persist_execution_states(config)
 
 
-def _save_output_to_library(file_path: str, space_id: str, config: SystemConfig) -> Tuple[bool, str]:
+def _save_output_to_library(
+    file_path: str,
+    space_id: str,
+    config: SystemConfig,
+    user_id: Optional[str] = None,
+) -> Tuple[bool, str]:
     """将输出文件保存到文档库（写存储 + PostgreSQL 登记）。返回 (是否成功, 错误说明)。"""
     if not (config.database.enabled and is_database_configured(config)):
         return False, "数据库未启用或未配置，无法写入 library_documents"
@@ -1024,8 +1058,10 @@ def _save_output_to_library(file_path: str, space_id: str, config: SystemConfig)
             return False, f"输出文件不存在: {file_path}"
 
         # 与手动上传一致：登记为空间所属用户，否则已登录用户列表会带 user_id 条件，看不到 user_id 为空的记录
-        space_row = get_library_space_by_id(space_id, config=config, user_id=None)
-        owner_user_id = space_row.user_id if space_row else None
+        space_row = get_library_space_by_id(space_id, config=config, user_id=user_id)
+        if not space_row:
+            return False, "目标文档库不存在或不属于当前用户"
+        owner_user_id = space_row.user_id
 
         with open(p, "rb") as f:
             content_bytes = f.read()
@@ -1072,8 +1108,24 @@ def _save_output_to_library(file_path: str, space_id: str, config: SystemConfig)
 # ⚠️ 路由顺序很重要：精确路径必须在动态路径 {workflow_id} 之前注册
 
 
+def _resolve_workflow_user_id(authorization: Optional[str]) -> Optional[str]:
+    cfg = get_config()
+    try:
+        user = resolve_user_from_authorization(
+            authorization,
+            cfg,
+            required=cfg.auth.require_auth,
+        )
+    except PermissionError as exc:
+        raise HTTPException(status_code=401, detail=str(exc))
+    return str(user.id) if user else None
+
+
 @router.post("/execute", response_model=Dict[str, str])
-async def execute_workflow(request: ExecuteRequest):
+async def execute_workflow(
+    request: ExecuteRequest,
+    authorization: Optional[str] = Header(None),
+):
     """
     启动工作流执行（逐文件处理）。
     立即返回 execution_id，前端通过 GET /executions/{id} 轮询进度。
@@ -1090,31 +1142,34 @@ async def execute_workflow(request: ExecuteRequest):
             },
         )
 
+    user_id = _resolve_workflow_user_id(authorization)
     execution_id = uuid.uuid4().hex
 
-    _EXECUTION_STATES[execution_id] = {
-        "status": "running",
-        "progress": 0,
-        "current_file_index": 0,
-        "total_files": 0,
-        "current_file_name": "",
-        "current_node_id": "",
-        "current_node_name": "",
-        "current_node_index": 0,
-        "total_nodes": len(request.nodes),
-        "node_progress": _build_node_progress(request.nodes, request.edges),
-        "logs": [{"type": "info", "message": "任务已启动，正在初始化..."}],
-        "output_files": [],
-        "error": None,
-        "error_code": None,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
-    }
+    with _EXECUTION_STATES_LOCK:
+        _EXECUTION_STATES[execution_id] = {
+            "status": "running",
+            "user_id": user_id,
+            "progress": 0,
+            "current_file_index": 0,
+            "total_files": 0,
+            "current_file_name": "",
+            "current_node_id": "",
+            "current_node_name": "",
+            "current_node_index": 0,
+            "total_nodes": len(request.nodes),
+            "node_progress": _build_node_progress(request.nodes, request.edges),
+            "logs": [{"type": "info", "message": "任务已启动，正在初始化..."}],
+            "output_files": [],
+            "error": None,
+            "error_code": None,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        }
     # 后台运行，不阻塞 HTTP 响应。
     # _run_execution 内部包含文件读写、LLM/执行器等同步耗时逻辑；放到独立线程里，
     # 让前端能立即拿到 execution_id 并开始轮询节点进度。
     threading.Thread(
-        target=lambda: asyncio.run(_run_execution(execution_id, request)),
+        target=lambda: asyncio.run(_run_execution(execution_id, request, user_id=user_id)),
         daemon=True,
     ).start()
 
@@ -1237,10 +1292,17 @@ async def get_template(template_id: str):
 
 
 @router.get("/executions/{execution_id}", response_model=ExecutionResponse)
-async def get_execution_status(execution_id: str):
+async def get_execution_status(
+    execution_id: str,
+    authorization: Optional[str] = Header(None),
+):
     """查询工作流执行状态。"""
-    state = _EXECUTION_STATES.get(execution_id)
+    user_id = _resolve_workflow_user_id(authorization)
+    with _EXECUTION_STATES_LOCK:
+        state = copy.deepcopy(_EXECUTION_STATES.get(execution_id))
     if not state:
+        raise HTTPException(status_code=404, detail="执行记录不存在")
+    if user_id and str(state.get("user_id") or "") != user_id:
         raise HTTPException(status_code=404, detail="执行记录不存在")
     error_code = state.get("error_code")
     if not error_code and state.get("status") == "failed":
@@ -1323,42 +1385,59 @@ class SaveWorkflowRequest(BaseModel):
 
 
 @router.get("", response_model=Dict[str, Any])
-async def list_user_workflows():
+async def list_user_workflows(authorization: Optional[str] = Header(None)):
     """返回用户自定义工作流列表（不含模板）。"""
-    return {"workflows": list_workflows()}
+    user_id = _resolve_workflow_user_id(authorization)
+    return {"workflows": list_workflows(user_id=user_id)}
 
 
 @router.post("", response_model=Dict[str, Any])
-async def save_user_workflow(request: SaveWorkflowRequest):
+async def save_user_workflow(
+    request: SaveWorkflowRequest,
+    authorization: Optional[str] = Header(None),
+):
     """保存（新建或更新）用户工作流。"""
     if request.type == "template":
         raise HTTPException(status_code=400, detail="模板工作流不可通过此接口保存")
+    user_id = _resolve_workflow_user_id(authorization)
     config_data = dict(request.config or {})
     config_data["edges"] = request.edges or []
-    wf = save_workflow(
-        workflow_id=request.id,
-        name=request.name,
-        icon=request.icon,
-        nodes=request.nodes,
-        config_data=config_data,
-        edges=request.edges,
-    )
+    try:
+        wf = save_workflow(
+            workflow_id=request.id,
+            name=request.name,
+            icon=request.icon,
+            nodes=request.nodes,
+            config_data=config_data,
+            edges=request.edges,
+            user_id=user_id,
+        )
+    except PermissionError as exc:
+        raise HTTPException(status_code=403, detail=str(exc))
     return wf
 
 
 @router.get("/{workflow_id}", response_model=Dict[str, Any])
-async def get_single_workflow(workflow_id: str):
+async def get_single_workflow(
+    workflow_id: str,
+    authorization: Optional[str] = Header(None),
+):
     """获取指定工作流的完整配置（含节点和 config）。"""
-    wf = get_workflow(workflow_id)
+    user_id = _resolve_workflow_user_id(authorization)
+    wf = get_workflow(workflow_id, user_id=user_id)
     if not wf:
         raise HTTPException(status_code=404, detail="工作流不存在")
     return wf
 
 
 @router.delete("/{workflow_id}", response_model=Dict[str, bool])
-async def delete_user_workflow(workflow_id: str):
+async def delete_user_workflow(
+    workflow_id: str,
+    authorization: Optional[str] = Header(None),
+):
     """删除指定用户工作流。"""
-    success = delete_workflow(workflow_id)
+    user_id = _resolve_workflow_user_id(authorization)
+    success = delete_workflow(workflow_id, user_id=user_id)
     if not success:
         raise HTTPException(status_code=404, detail="工作流不存在或为模板工作流")
     return {"success": True}

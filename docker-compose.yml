@@ -1,0 +1,67 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-doc_intel}
+      POSTGRES_USER: ${POSTGRES_USER:-docintel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?请在.env.production中设置POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/schema_v1.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+      - ./sql/001_create_sessions_tables.sql:/docker-entrypoint-initdb.d/20-sessions.sql:ro
+      - ./sql/002_auth_user_file_scope.sql:/docker-entrypoint-initdb.d/30-auth.sql:ro
+      - ./sql/003_library_tables.sql:/docker-entrypoint-initdb.d/40-library.sql:ro
+      - ./sql/004_workflow_tables.sql:/docker-entrypoint-initdb.d/50-workflows.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-docintel} -d ${POSTGRES_DB:-doc_intel}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      DB_ENABLED: "true"
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-doc_intel}
+      DB_USER: ${POSTGRES_USER:-docintel}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_SSLMODE: disable
+      AUTH_REQUIRE_LOGIN: "true"
+      WORK_DIR: /app/data/workspace
+      OUTPUT_DIR: /app/data/output
+      TEMP_DIR: /app/data/temp
+      LOG_FILE: /app/data/logs/app.log
+    volumes:
+      - app_data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: extended-frontend/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  app_data:

@@ -6,6 +6,7 @@ Markdown / Plain Text → PDF 生成器（基于 reportlab）。
 from __future__ import annotations
 
 import re
+import os
 from pathlib import Path
 from typing import List
 
@@ -25,14 +26,15 @@ from reportlab.platypus import (
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-# 字体路径（Windows 常用中文字体，优先使用系统自带）
-FONT_DIR = Path("C:/WINDOWS/Fonts")
+# 字体路径同时覆盖Windows与Linux容器；可通过PDF_FONT_PATH显式指定。
 CHINESE_FONT_CANDIDATES = [
-    ("msyh.ttc", "Microsoft YaHei"),
-    ("msyhbd.ttc", "Microsoft YaHei Bold"),
-    ("simhei.ttf", "SimHei"),
-    ("simsun.ttc", "SimSun"),
-    ("NotoSansSC-VF.ttf", "NotoSansSC"),
+    Path("C:/WINDOWS/Fonts/msyh.ttc"),
+    Path("C:/WINDOWS/Fonts/msyhbd.ttc"),
+    Path("C:/WINDOWS/Fonts/simhei.ttf"),
+    Path("C:/WINDOWS/Fonts/simsun.ttc"),
+    Path("C:/WINDOWS/Fonts/NotoSansSC-VF.ttf"),
+    Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"),
+    Path("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"),
 ]
 
 # 全局注册字体别名（模块级别只注册一次）
@@ -48,8 +50,9 @@ def _register_chinese_font() -> None:
         return
     _font_registered = True
 
-    for font_file, font_label in CHINESE_FONT_CANDIDATES:
-        p = FONT_DIR / font_file
+    configured_font = os.getenv("PDF_FONT_PATH", "").strip()
+    candidates = ([Path(configured_font)] if configured_font else []) + CHINESE_FONT_CANDIDATES
+    for p in candidates:
         if not p.exists():
             continue
         try:
